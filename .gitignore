@@ -23,20 +23,16 @@ out
 # gradle
 build
 .gradle
-/gradle
-/gradle*
-gradle.properties
-!gradlew
-!gradlew.bat
-!build.gradle
 
 # other
 eclipse
 run
+!CREDITS*
+!*changelog*
 
 # Vital git files
-!LICENSE
-!README.*
+!LICENSE*
+!README*
 !.gitignore
 
 # Eclipse formatter
