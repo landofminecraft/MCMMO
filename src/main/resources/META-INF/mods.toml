@@ -8,13 +8,13 @@ modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the minecraft version (without the 1.)
 loaderVersion="[13,)" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
-updateJSONURL="http://myurl.me/" #optional
+updateJSONURL="https://github.com/landofminecraft/MCMMO/update.json" #optional
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="http://my.issue.tracker/" #optional
+issueTrackerURL="https://github.com/landofminecraft/MCMMO/issues" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="http://example.com/" #optional
+displayURL="https://github.com/landofminecraft/MCMMO" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="mcmmo.png" #optional
+logoFile="/logo.png" #optional
 # A text field displayed in the mod UI
 credits="The MCMMO Team" #optional
 # A text field displayed in the mod UI
