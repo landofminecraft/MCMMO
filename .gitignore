@@ -1,3 +1,10 @@
+# Important setup
+/*
+/*/
+!/src/
+!/src/*
+*.DS_Store*
+
 # eclipse
 bin
 *.launch
@@ -27,17 +34,13 @@ gradle.properties
 eclipse
 run
 
-# Important setup
-/*
-/*/
-!/src/
-!/src/*
-*.DS_Store*
-
 # Vital git files
 !LICENSE
 !README.*
 !.gitignore
+
+# Eclipse formatter
+!/Cadiboo's Eclipse Formatter.epf
 
 # OPTIONAL - release JARs
 !/build/
