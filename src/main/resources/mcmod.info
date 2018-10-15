@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mcmmo",
+  "name": "Minecraft MMO",
+  "description": "A magic focused MMO for Minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Telemindred", "MDW_01", "Cadiboo", "Oscar", "GlitchedWinner"],
+  "credits": "The MCMMO Team",
+  "logoFile": "https://cdn.discordapp.com/icons/458263013254758423/3a3138ed7086dc5c7ea03707f60d252b.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
