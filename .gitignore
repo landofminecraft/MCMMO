@@ -4,6 +4,7 @@
 !/src/
 !/src/*
 *.DS_Store*
+!/gradle/
 
 # eclipse
 bin
@@ -27,19 +28,3 @@ build
 # other
 eclipse
 run
-!CREDITS*
-!*changelog*
-
-# Vital git files
-!LICENSE*
-!README*
-!.gitignore
-
-# Eclipse formatter
-!/Cadiboo's Eclipse Formatter.epf
-
-# OPTIONAL - release JARs
-!/build/
-/build/*
-!/build/libs/
-/build/libs/*sources*
