@@ -5,7 +5,11 @@ import com.landofminecraft.mcmmo.material.ModMaterial;
 import com.landofminecraft.mcmmo.util.ModUtil;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 
 public class ItemHammer extends ItemTool implements IItemModMaterial {
@@ -24,6 +28,56 @@ public class ItemHammer extends ItemTool implements IItemModMaterial {
 	@Override
 	public ModMaterial getModMaterial() {
 		return this.material;
+	}
+
+	// copy of pickaxe
+	/**
+	 * Check whether this Item can harvest the given Block
+	 */
+	@Override
+	public boolean canHarvestBlock(final IBlockState blockIn) {
+		final Block block = blockIn.getBlock();
+
+		if (block == Blocks.OBSIDIAN) {
+			return this.getModMaterial().getToolMaterial().getHarvestLevel() >= 3;
+		} else if ((block != Blocks.DIAMOND_BLOCK) && (block != Blocks.DIAMOND_ORE)) {
+			if ((block != Blocks.EMERALD_ORE) && (block != Blocks.EMERALD_BLOCK)) {
+				if ((block != Blocks.GOLD_BLOCK) && (block != Blocks.GOLD_ORE)) {
+					if ((block != Blocks.IRON_BLOCK) && (block != Blocks.IRON_ORE)) {
+						if ((block != Blocks.LAPIS_BLOCK) && (block != Blocks.LAPIS_ORE)) {
+							if ((block != Blocks.REDSTONE_ORE) && (block != Blocks.LIT_REDSTONE_ORE)) {
+								final Material material = blockIn.getMaterial();
+
+								if (material == Material.ROCK) {
+									return true;
+								} else if (material == Material.IRON) {
+									return true;
+								} else {
+									return material == Material.ANVIL;
+								}
+							} else {
+								return this.toolMaterial.getHarvestLevel() >= 2;
+							}
+						} else {
+							return this.toolMaterial.getHarvestLevel() >= 1;
+						}
+					} else {
+						return this.toolMaterial.getHarvestLevel() >= 1;
+					}
+				} else {
+					return this.toolMaterial.getHarvestLevel() >= 2;
+				}
+			} else {
+				return this.toolMaterial.getHarvestLevel() >= 2;
+			}
+		} else {
+			return this.toolMaterial.getHarvestLevel() >= 2;
+		}
+	}
+
+	@Override
+	public int getHarvestLevel(final ItemStack stack, final String toolClass, final EntityPlayer player, final IBlockState blockState) {
+		return this.getModMaterial().getToolMaterial().getHarvestLevel();
 	}
 
 }

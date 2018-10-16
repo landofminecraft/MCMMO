@@ -36,7 +36,6 @@ import com.landofminecraft.mcmmo.util.ModReference;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.passive.HorseArmorType;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -86,32 +85,28 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, "", false, "", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 3.00f, null, null, null)),
 
-	GOLD(9, new MetalProperties(false, 2.50f)), // hasOre = false to let vanilla ore gen do the work
+	GOLD(9, new MetalProperties(false, 2.50f)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	IRON(10, new MetalProperties(false, 4.00f)), // hasOre = false to let vanilla ore gen do the work
+	IRON(10, new MetalProperties(false, 4.00f)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	DIAMOND(11, new GemProperties(false, 10.00f, () -> Items.DIAMOND, (final Integer fortune, final Random rand) -> {
-		return rand.nextInt(3) * (fortune + 1);
-	})), // hasOre = false to let vanilla ore gen do the work
+	DIAMOND(11, new GemProperties(false, 10.00f, null, null)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	EMERALD(12, new GemProperties(false, 8.00f, () -> Items.EMERALD, (final Integer fortune, final Random rand) -> {
-		return rand.nextInt(5) * (fortune + 1);
-	})), // hasOre = false to let vanilla ore gen do the work
+	EMERALD(12, new GemProperties(false, 8.00f, null, null)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
 	RUBY(13, new GemProperties(true, 9.00f, () -> ModItems.RUBY, (final Integer fortune, final Random rand) -> {
-		return rand.nextInt(4) * (fortune + 1);
+		return (rand.nextInt(4) + 1) * (fortune + 1);
 	})),
 
 	SAPHIRE(14, new GemProperties(true, 9.00f, () -> ModItems.SAPHIRE, (final Integer fortune, final Random rand) -> {
-		return rand.nextInt(4) * (fortune + 1);
+		return (rand.nextInt(4) + 1) * (fortune + 1);
 	})),
 
 	AMETHYST(15, new GemProperties(true, 7.00f, () -> ModItems.AMETHYST, (final Integer fortune, final Random rand) -> {
-		return rand.nextInt(6) * (fortune + 1);
+		return (rand.nextInt(6) + 1) * (fortune + 1);
 	})),
 
 	TOPAZ(16, new GemProperties(true, 8.00f, () -> ModItems.TOPAZ, (final Integer fortune, final Random rand) -> {
-		return rand.nextInt(5) * (fortune + 1);
+		return (rand.nextInt(5) + 1) * (fortune + 1);
 	})),
 
 	WOOD(17, new ModMaterialProperties(false, false, false, "", false, "", true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, 1.00f, null, null, null)),

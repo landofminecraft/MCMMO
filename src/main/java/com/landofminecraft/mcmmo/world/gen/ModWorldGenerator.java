@@ -2,10 +2,10 @@ package com.landofminecraft.mcmmo.world.gen;
 
 import java.util.Random;
 
+import com.landofminecraft.mcmmo.MinecraftMMO;
 import com.landofminecraft.mcmmo.material.ModMaterial;
 import com.landofminecraft.mcmmo.util.ModUtil;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,10 +38,7 @@ public final class ModWorldGenerator implements IWorldGenerator {
 	private void generateOverworld(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkGenerator chunkGenerator, final IChunkProvider chunkProvider) {
 		for (final ModMaterial material : ModMaterial.values()) {
 			if (material.getProperties().hasOre()) {
-				final Block ore = material.getOre();
-				if (ore != null) {
-					this.generateOre(ore.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, this.getMinY(material), this.getMaxY(material), this.getSize(material), this.getChance(material));
-				}
+				this.generateOre(material.getOre().getDefaultState(), world, random, chunkX << 4, chunkZ << 4, this.getMinY(material), this.getMaxY(material), this.getSize(material), this.getChance(material));
 			}
 		}
 	}
@@ -95,9 +92,10 @@ public final class ModWorldGenerator implements IWorldGenerator {
 
 	private void generateOre(final IBlockState ore, final World world, final Random random, final int x, final int z, final int minY, final int maxY, final int size, final int chances) {
 		final int deltaY = maxY - minY;
-		for (int i = 0; i < chances; i++) {
+		for (int chance = 0; chance < chances; chance++) {
 			final BlockPos pos = new BlockPos(x + random.nextInt(16), minY + random.nextInt(deltaY), z + random.nextInt(16));
 			final WorldGenMinable generator = new WorldGenMinable(ore, size);
+			MinecraftMMO.info("generating " + ore.getBlock().getRegistryName().getPath() + " at " + pos.toString() + " on chance " + chance + " for chances " + chances + " with size " + size);
 			generator.generate(world, random, pos);
 		}
 	}
