@@ -12,12 +12,12 @@ public class MetalProperties extends ModMaterialProperties {
 
 	public static final BlockRenderLayer[] BLOCK_RENDER_LAYERS = new BlockRenderLayer[]{BlockRenderLayer.SOLID};
 
-	public static final BiFunction<Integer, Random, Integer> GET_QUANTITY_DROPPED_WITH_BONUS = (fortune, random) -> {
+	public static final BiFunction<Integer, Random, Integer> GET_QUANTITY_DROPPED_WITH_BONUS_FROM_ORE = (fortune, random) -> {
 		return 1;
 	};
 
 	public MetalProperties(final boolean hasOre, final float MOHS_Hardness) {
-		super(hasOre, true, true, RESOURCE_SUFFIX, true, RESOURCE_PIECE_SUFFIX, true, true, true, true, true, true, true, true, true, true, MOHS_Hardness, null, BLOCK_RENDER_LAYERS, GET_QUANTITY_DROPPED_WITH_BONUS);
+		super(hasOre, true, true, RESOURCE_SUFFIX, true, RESOURCE_PIECE_SUFFIX, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, MOHS_Hardness, null, BLOCK_RENDER_LAYERS, GET_QUANTITY_DROPPED_WITH_BONUS_FROM_ORE);
 	}
 
 }

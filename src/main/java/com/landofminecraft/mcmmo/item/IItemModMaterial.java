@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 
 import com.landofminecraft.mcmmo.material.ModMaterial;
 
-public interface IItemModMaterial extends IModItem {
+public interface IItemModMaterial {
 
 	@Nonnull
 	ModMaterial getModMaterial();

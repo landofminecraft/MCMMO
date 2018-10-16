@@ -33,6 +33,11 @@ public class ModMaterialProperties {
 	private final boolean hasSword;
 	private final boolean hasShovel;
 	private final boolean hasHoe;
+	private final boolean hasMace;
+	private final boolean hasHammer;
+	private final boolean hasWarAxe;
+	private final boolean hasCurvedSword;
+	private final boolean hasDagger;
 	private final float hardness;
 	/** if null reverts to getItemFromBlock(block) */
 	@Nullable
@@ -43,7 +48,7 @@ public class ModMaterialProperties {
 	private final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonus;
 
 	public ModMaterialProperties(
-	/*@formatter:off*/
+	
 		final boolean hasOre,
 		final boolean hasBlock,
 		final boolean hasResource,
@@ -62,6 +67,11 @@ public class ModMaterialProperties {
 		final boolean hasSword,
 		final boolean hasShovel,
 		final boolean hasHoe,
+		final boolean hasMace,
+		final boolean hasHammer,
+		final boolean hasWarAxe,
+		final boolean hasCurvedSword,
+		final boolean hasDagger,
 		final float MOHS_Hardness,
 		@Nullable
 		final Supplier<Item> getOreDrop,
@@ -69,7 +79,7 @@ public class ModMaterialProperties {
 		final BlockRenderLayer[] blockRenderLayers,
 		@Nonnull
 		@MethodsReturnNonnullByDefault
-		final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonus
+		final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonusFromOre
 	/*@formatter:on*/
 	) {
 
@@ -89,6 +99,11 @@ public class ModMaterialProperties {
 		this.hasSword = hasSword;
 		this.hasShovel = hasShovel;
 		this.hasHoe = hasHoe;
+		this.hasMace = hasMace;
+		this.hasHammer = hasHammer;
+		this.hasWarAxe = hasWarAxe;
+		this.hasCurvedSword = hasCurvedSword;
+		this.hasDagger = hasDagger;
 		this.hardness = MOHS_Hardness;
 		this.getOreDrop = getOreDrop;
 		if (blockRenderLayers == null) {
@@ -96,7 +111,7 @@ public class ModMaterialProperties {
 		} else {
 			this.blockRenderLayers = blockRenderLayers;
 		}
-		this.getQuantityDroppedWithBonus = getQuantityDroppedWithBonus;
+		this.getQuantityDroppedWithBonus = getQuantityDroppedWithBonusFromOre;
 
 	}
 
@@ -164,6 +179,26 @@ public class ModMaterialProperties {
 		return this.hasHoe;
 	}
 
+	public boolean hasMace() {
+		return this.hasMace;
+	}
+
+	public boolean hasHammer() {
+		return this.hasHammer;
+	}
+
+	public boolean hasWarAxe() {
+		return this.hasWarAxe;
+	}
+
+	public boolean hasCurvedSword() {
+		return this.hasCurvedSword;
+	}
+
+	public boolean hasDagger() {
+		return this.hasDagger;
+	}
+
 	public float getHardness() {
 		return this.hardness;
 	}
@@ -194,6 +229,11 @@ public class ModMaterialProperties {
 		string += ", hasSword: " + this.hasSword();
 		string += ", hasShovel: " + this.hasShovel();
 		string += ", hasHoe: " + this.hasHoe();
+		string += ", hasMace: " + this.hasMace();
+		string += ", hasHammer: " + this.hasHammer();
+		string += ", hasWarAxe: " + this.hasWarAxe();
+		string += ", hasCurvedSword: " + this.hasCurvedSword();
+		string += ", hasDagger: " + this.hasDagger();
 		string += ", hardness: " + this.getHardness();
 		return string;
 	}

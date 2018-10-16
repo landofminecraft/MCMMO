@@ -79,35 +79,39 @@ public enum ModMaterial implements IEnumNameFormattable {
 	/* technically diamond is the highest the scale goes at 10, but "-Alverium: A unique Alloy that’s stronger than Diamonds" */
 	ALVERIUM(7, new MetalProperties(false, 11.00f)),
 
-	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, "", false, "", false, false, false, false, false, false, false, false, false, false, 3.00f, null, null, null)),
+	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, "", false, "", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 3.00f, null, null, null)),
 
-	GOLD(9, new MetalProperties(true, 2.50f)),
+	GOLD(9, new MetalProperties(false, 2.50f)), // hasOre = false to let vanilla ore gen do the work
 
-	IRON(10, new MetalProperties(true, 4.00f)),
+	IRON(10, new MetalProperties(false, 4.00f)), // hasOre = false to let vanilla ore gen do the work
 
-	DIAMOND(11, new GemProperties(true, 10.00f, () -> Items.DIAMOND, (final Integer fortune, final Random rand) -> {
+	DIAMOND(11, new GemProperties(false, 10.00f, () -> Items.DIAMOND, (final Integer fortune, final Random rand) -> {
 		return rand.nextInt(3) * (fortune + 1);
-	})),
+	})), // hasOre = false to let vanilla ore gen do the work
 
-	RUBY(12, new GemProperties(true, 9.00f, () -> ModItems.RUBY, (final Integer fortune, final Random rand) -> {
+	EMERALD(12, new GemProperties(false, 8.00f, () -> Items.EMERALD, (final Integer fortune, final Random rand) -> {
+		return rand.nextInt(5) * (fortune + 1);
+	})), // hasOre = false to let vanilla ore gen do the work
+
+	RUBY(13, new GemProperties(true, 9.00f, () -> ModItems.RUBY, (final Integer fortune, final Random rand) -> {
 		return rand.nextInt(4) * (fortune + 1);
 	})),
 
-	SAPHIRE(13, new GemProperties(true, 9.00f, () -> ModItems.SAPHIRE, (final Integer fortune, final Random rand) -> {
+	SAPHIRE(14, new GemProperties(true, 9.00f, () -> ModItems.SAPHIRE, (final Integer fortune, final Random rand) -> {
 		return rand.nextInt(4) * (fortune + 1);
 	})),
 
-	AMETHYST(14, new GemProperties(true, 7.00f, () -> ModItems.AMETHYST, (final Integer fortune, final Random rand) -> {
+	AMETHYST(15, new GemProperties(true, 7.00f, () -> ModItems.AMETHYST, (final Integer fortune, final Random rand) -> {
 		return rand.nextInt(6) * (fortune + 1);
 	})),
 
-	TOPAZ(15, new GemProperties(true, 8.00f, () -> ModItems.TOPAZ, (final Integer fortune, final Random rand) -> {
+	TOPAZ(16, new GemProperties(true, 8.00f, () -> ModItems.TOPAZ, (final Integer fortune, final Random rand) -> {
 		return rand.nextInt(5) * (fortune + 1);
 	})),
 
-	// WOOD
+	WOOD(17, new ModMaterialProperties(false, false, false, "", false, "", true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, 1.00f, null, null, null)),
 
-	// STONE
+	STONE(18, new ModMaterialProperties(false, false, false, "", false, "", true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, 2.00f, null, null, null)),
 
 	;
 
