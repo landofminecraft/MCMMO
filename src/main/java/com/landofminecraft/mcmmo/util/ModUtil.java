@@ -22,7 +22,13 @@ public final class ModUtil {
 	public static Block setRegistryNames(final Block block, final ModMaterial material, final String nameSuffix) {
 		final ResourceLocation registryName = new ResourceLocation(material.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.BLOCKS), material.getVanillaNameLowercase(nameSuffix) + (nameSuffix.length() > 0 ? "_" + nameSuffix : ""));
 		block.setHardness(material.getProperties().getHardness());
-		return setRegistryNames(block, registryName);
+		setRegistryNames(block, registryName);
+
+		final Block overriddenBlock = ForgeRegistries.BLOCKS.getValue(registryName);
+		if (overriddenBlock != null) {
+			block.setTranslationKey(overriddenBlock.getTranslationKey().replace("tile.", ""));
+		}
+		return block;
 	}
 
 	/**
