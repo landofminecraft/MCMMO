@@ -15,6 +15,10 @@ import com.landofminecraft.mcmmo.block.BlockResource;
 import com.landofminecraft.mcmmo.block.IBlockModMaterial;
 import com.landofminecraft.mcmmo.init.ModItems;
 import com.landofminecraft.mcmmo.item.IItemModMaterial;
+import com.landofminecraft.mcmmo.item.ItemCurvedSword;
+import com.landofminecraft.mcmmo.item.ItemDagger;
+import com.landofminecraft.mcmmo.item.ItemHammer;
+import com.landofminecraft.mcmmo.item.ItemMace;
 import com.landofminecraft.mcmmo.item.ItemModArmor;
 import com.landofminecraft.mcmmo.item.ItemModAxe;
 import com.landofminecraft.mcmmo.item.ItemModHoe;
@@ -24,6 +28,7 @@ import com.landofminecraft.mcmmo.item.ItemModShovel;
 import com.landofminecraft.mcmmo.item.ItemModSword;
 import com.landofminecraft.mcmmo.item.ItemResource;
 import com.landofminecraft.mcmmo.item.ItemResourcePiece;
+import com.landofminecraft.mcmmo.item.ItemWarAxe;
 import com.landofminecraft.mcmmo.item.ModItemBlock;
 import com.landofminecraft.mcmmo.util.ModEnums.IEnumNameFormattable;
 import com.landofminecraft.mcmmo.util.ModReference;
@@ -140,6 +145,11 @@ public enum ModMaterial implements IEnumNameFormattable {
 	private ItemModSword sword;
 	private ItemModShovel shovel;
 	private ItemModHoe hoe;
+	private ItemMace mace;
+	private ItemHammer hammer;
+	private ItemWarAxe warAxe;
+	private ItemCurvedSword curvedSword;
+	private ItemDagger dagger;
 
 	private ModMaterial(final int id, final ModMaterialProperties properties) {
 		this(id, properties, ModReference.MOD_ID);
@@ -383,6 +393,26 @@ public enum ModMaterial implements IEnumNameFormattable {
 		return this.hoe;
 	}
 
+	public ItemMace getMace() {
+		return this.mace;
+	}
+
+	public ItemHammer getHammer() {
+		return this.hammer;
+	}
+
+	public ItemWarAxe getWarAxe() {
+		return this.warAxe;
+	}
+
+	public ItemCurvedSword getCurvedSword() {
+		return this.curvedSword;
+	}
+
+	public ItemDagger getDagger() {
+		return this.dagger;
+	}
+
 	public static float getHighestHardness() {
 		float ret = 0;
 		for (final ModMaterial material : ModMaterial.values()) {
@@ -482,6 +512,26 @@ public enum ModMaterial implements IEnumNameFormattable {
 				ModMaterial.this.hoe = new ItemModHoe(ModMaterial.this);
 				registry.register(ModMaterial.this.hoe);
 			}
+			if (ModMaterial.this.getProperties().hasMace()) {
+				ModMaterial.this.mace = new ItemMace(ModMaterial.this);
+				registry.register(ModMaterial.this.mace);
+			}
+			if (ModMaterial.this.getProperties().hasHammer()) {
+				ModMaterial.this.hammer = new ItemHammer(ModMaterial.this);
+				registry.register(ModMaterial.this.hammer);
+			}
+			if (ModMaterial.this.getProperties().hasWarAxe()) {
+				ModMaterial.this.warAxe = new ItemWarAxe(ModMaterial.this);
+				registry.register(ModMaterial.this.warAxe);
+			}
+			if (ModMaterial.this.getProperties().hasCurvedSword()) {
+				ModMaterial.this.curvedSword = new ItemCurvedSword(ModMaterial.this);
+				registry.register(ModMaterial.this.curvedSword);
+			}
+			if (ModMaterial.this.getProperties().hasDagger()) {
+				ModMaterial.this.dagger = new ItemDagger(ModMaterial.this);
+				registry.register(ModMaterial.this.dagger);
+			}
 
 			MinecraftMMO.debug("Registered items for " + ModMaterial.this.getNameFormatted());
 
@@ -543,6 +593,21 @@ public enum ModMaterial implements IEnumNameFormattable {
 			}
 			if (ModMaterial.this.getProperties().hasHoe()) {
 				this.registerItemModMaterialModel(ModMaterial.this.getHoe());
+			}
+			if (ModMaterial.this.getProperties().hasMace()) {
+				this.registerItemModMaterialModel(ModMaterial.this.getMace());
+			}
+			if (ModMaterial.this.getProperties().hasHammer()) {
+				this.registerItemModMaterialModel(ModMaterial.this.getHammer());
+			}
+			if (ModMaterial.this.getProperties().hasWarAxe()) {
+				this.registerItemModMaterialModel(ModMaterial.this.getWarAxe());
+			}
+			if (ModMaterial.this.getProperties().hasCurvedSword()) {
+				this.registerItemModMaterialModel(ModMaterial.this.getCurvedSword());
+			}
+			if (ModMaterial.this.getProperties().hasDagger()) {
+				this.registerItemModMaterialModel(ModMaterial.this.getDagger());
 			}
 
 			MinecraftMMO.debug("Registered models for materials");
@@ -631,6 +696,21 @@ public enum ModMaterial implements IEnumNameFormattable {
 				}
 				if (ModMaterial.this.getProperties().hasHoe()) {
 					ModMaterial.this.hoe = (ItemModHoe) this.getRegistryValue(registry, "hoe");
+				}
+				if (ModMaterial.this.getProperties().hasMace()) {
+					ModMaterial.this.mace = (ItemMace) this.getRegistryValue(registry, "mace");
+				}
+				if (ModMaterial.this.getProperties().hasHammer()) {
+					ModMaterial.this.hammer = (ItemHammer) this.getRegistryValue(registry, "hammer");
+				}
+				if (ModMaterial.this.getProperties().hasWarAxe()) {
+					ModMaterial.this.warAxe = (ItemWarAxe) this.getRegistryValue(registry, "war_axe");
+				}
+				if (ModMaterial.this.getProperties().hasCurvedSword()) {
+					ModMaterial.this.curvedSword = (ItemCurvedSword) this.getRegistryValue(registry, "curved_sword");
+				}
+				if (ModMaterial.this.getProperties().hasDagger()) {
+					ModMaterial.this.dagger = (ItemDagger) this.getRegistryValue(registry, "dagger");
 				}
 			}
 
