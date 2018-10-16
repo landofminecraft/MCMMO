@@ -19,7 +19,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod.EventBusSubscriber(modid = ModReference.MOD_ID)
 public final class EventSubscriber {
 
-	private static int entityId = 0;
+	public static int entityId = 0;
 
 	@SubscribeEvent
 	public static void onRegisterBlocksEvent(final RegistryEvent.Register<Block> event) {

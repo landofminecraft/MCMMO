@@ -9,10 +9,13 @@ import javax.annotation.Nullable;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.landofminecraft.mcmmo.EventSubscriber;
 import com.landofminecraft.mcmmo.MinecraftMMO;
 import com.landofminecraft.mcmmo.block.BlockModOre;
 import com.landofminecraft.mcmmo.block.BlockResource;
 import com.landofminecraft.mcmmo.block.IBlockModMaterial;
+import com.landofminecraft.mcmmo.client.render.entity.EntityThrownDaggerRenderer;
+import com.landofminecraft.mcmmo.entity.EntityThrownDagger;
 import com.landofminecraft.mcmmo.init.ModItems;
 import com.landofminecraft.mcmmo.item.IItemModMaterial;
 import com.landofminecraft.mcmmo.item.ItemCurvedSword;
@@ -35,6 +38,7 @@ import com.landofminecraft.mcmmo.util.ModReference;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.HorseArmorType;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -48,10 +52,13 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -145,6 +152,8 @@ public enum ModMaterial implements IEnumNameFormattable {
 	private ItemWarAxe warAxe;
 	private ItemCurvedSword curvedSword;
 	private ItemDagger dagger;
+
+	private EntityEntry thrownDagger;
 
 	private ModMaterial(final int id, final ModMaterialProperties properties) {
 		this(id, properties, ModReference.MOD_ID);
@@ -549,10 +558,40 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 		}
 
+		@SubscribeEvent
+		public void onRegisterEntitiesEvent(final RegistryEvent.Register<EntityEntry> event) {
+			final IForgeRegistry<EntityEntry> registry = event.getRegistry();
+
+			if (ModMaterial.this.getProperties().hasDagger()) {
+				final ResourceLocation registryName = new ResourceLocation(ModReference.MOD_ID, ModMaterial.this.getNameLowercase() + "_thrown_dagger");
+				final boolean hasEgg = false;
+				final int range = 128;
+				final int updateFrequency = 2;
+				final boolean sendVelocityUpdates = true;
+
+				EntityEntryBuilder<Entity> builder = EntityEntryBuilder.create();
+				builder = builder.entity(EntityThrownDagger.class);
+				builder = builder.id(registryName, EventSubscriber.entityId++);
+				builder = builder.name(registryName.getPath());
+				builder = builder.tracker(range, updateFrequency, sendVelocityUpdates);
+
+				if (hasEgg) {
+					builder = builder.egg(0xFFFFFF, 0xAAAAAA);
+				}
+
+				ModMaterial.this.thrownDagger = builder.build();
+				registry.register(ModMaterial.this.thrownDagger);
+			}
+
+			MinecraftMMO.debug("Registered entities for " + ModMaterial.this.getNameFormatted());
+		}
+
 		/** CLIENT ONLY */
 		@SideOnly(Side.CLIENT)
 		@SubscribeEvent
 		public void onRegisterModelsEvent(final ModelRegistryEvent event) {
+
+			RenderingRegistry.registerEntityRenderingHandler(EntityThrownDagger.class, EntityThrownDaggerRenderer::new);
 
 			if (ModMaterial.this.getProperties().hasOre()) {
 				this.registerBlockModMaterialItemBlockModel(ModMaterial.this.getOre());
@@ -653,76 +692,87 @@ public enum ModMaterial implements IEnumNameFormattable {
 			final IForgeRegistry registry = event.getRegistry();
 
 			if (registry == ForgeRegistries.BLOCKS) {
+				final IForgeRegistry<Block> castRegistry = registry;
+
 				if (ModMaterial.this.getProperties().hasOre()) {
-					ModMaterial.this.ore = (BlockModOre) this.getRegistryValue(registry, "ore");
+					ModMaterial.this.ore = (BlockModOre) this.getRegistryValue(castRegistry, "ore");
 				}
 				if (ModMaterial.this.getProperties().hasBlock()) {
-					ModMaterial.this.block = (BlockResource) this.getRegistryValue(registry, "block");
+					ModMaterial.this.block = (BlockResource) this.getRegistryValue(castRegistry, "block");
 				}
 			}
 
 			if (registry == ForgeRegistries.ITEMS) {
+				final IForgeRegistry<Item> castRegistry = registry;
 
 				if (ModMaterial.this.getProperties().hasOre()) {
-					ModMaterial.this.itemBlockOre = (ModItemBlock) this.getRegistryValue(registry, "ore");
+					ModMaterial.this.itemBlockOre = (ModItemBlock) this.getRegistryValue(castRegistry, "ore");
 				}
 				if (ModMaterial.this.getProperties().hasBlock()) {
-					ModMaterial.this.itemBlockBlock = (ModItemBlock) this.getRegistryValue(registry, "block");
+					ModMaterial.this.itemBlockBlock = (ModItemBlock) this.getRegistryValue(castRegistry, "block");
 				}
 
 				//
 
 				if (ModMaterial.this.getProperties().hasResource()) {
-					ModMaterial.this.resource = (ItemResource) this.getRegistryValue(registry, ModMaterial.this.getProperties().getResourceSuffix());
+					ModMaterial.this.resource = (ItemResource) this.getRegistryValue(castRegistry, ModMaterial.this.getProperties().getResourceSuffix());
 				}
 				if (ModMaterial.this.getProperties().hasResourcePiece()) {
-					ModMaterial.this.resourcePiece = (ItemResourcePiece) this.getRegistryValue(registry, ModMaterial.this.getProperties().getResourcePieceSuffix());
+					ModMaterial.this.resourcePiece = (ItemResourcePiece) this.getRegistryValue(castRegistry, ModMaterial.this.getProperties().getResourcePieceSuffix());
 				}
 
 				if (ModMaterial.this.getProperties().hasHelmet()) {
-					ModMaterial.this.helmet = (ItemModArmor) this.getRegistryValue(registry, "helmet");
+					ModMaterial.this.helmet = (ItemModArmor) this.getRegistryValue(castRegistry, "helmet");
 				}
 				if (ModMaterial.this.getProperties().hasChestplate()) {
-					ModMaterial.this.chestplate = (ItemModArmor) this.getRegistryValue(registry, "chestplate");
+					ModMaterial.this.chestplate = (ItemModArmor) this.getRegistryValue(castRegistry, "chestplate");
 				}
 				if (ModMaterial.this.getProperties().hasLeggings()) {
-					ModMaterial.this.leggings = (ItemModArmor) this.getRegistryValue(registry, "leggings");
+					ModMaterial.this.leggings = (ItemModArmor) this.getRegistryValue(castRegistry, "leggings");
 				}
 				if (ModMaterial.this.getProperties().hasBoots()) {
-					ModMaterial.this.boots = (ItemModArmor) this.getRegistryValue(registry, "boots");
+					ModMaterial.this.boots = (ItemModArmor) this.getRegistryValue(castRegistry, "boots");
 				}
 				if (ModMaterial.this.getProperties().hasHorseArmor()) {
-					ModMaterial.this.horseArmor = (ItemModHorseArmor) this.getRegistryValue(registry, "horse_armor");
+					ModMaterial.this.horseArmor = (ItemModHorseArmor) this.getRegistryValue(castRegistry, "horse_armor");
 				}
 				if (ModMaterial.this.getProperties().hasPickaxe()) {
-					ModMaterial.this.pickaxe = (ItemModPickaxe) this.getRegistryValue(registry, "pickaxe");
+					ModMaterial.this.pickaxe = (ItemModPickaxe) this.getRegistryValue(castRegistry, "pickaxe");
 				}
 				if (ModMaterial.this.getProperties().hasAxe()) {
-					ModMaterial.this.axe = (ItemModAxe) this.getRegistryValue(registry, "axe");
+					ModMaterial.this.axe = (ItemModAxe) this.getRegistryValue(castRegistry, "axe");
 				}
 				if (ModMaterial.this.getProperties().hasSword()) {
-					ModMaterial.this.sword = (ItemModSword) this.getRegistryValue(registry, "sword");
+					ModMaterial.this.sword = (ItemModSword) this.getRegistryValue(castRegistry, "sword");
 				}
 				if (ModMaterial.this.getProperties().hasShovel()) {
-					ModMaterial.this.shovel = (ItemModShovel) this.getRegistryValue(registry, "shovel");
+					ModMaterial.this.shovel = (ItemModShovel) this.getRegistryValue(castRegistry, "shovel");
 				}
 				if (ModMaterial.this.getProperties().hasHoe()) {
-					ModMaterial.this.hoe = (ItemModHoe) this.getRegistryValue(registry, "hoe");
+					ModMaterial.this.hoe = (ItemModHoe) this.getRegistryValue(castRegistry, "hoe");
 				}
 				if (ModMaterial.this.getProperties().hasMace()) {
-					ModMaterial.this.mace = (ItemMace) this.getRegistryValue(registry, "mace");
+					ModMaterial.this.mace = (ItemMace) this.getRegistryValue(castRegistry, "mace");
 				}
 				if (ModMaterial.this.getProperties().hasHammer()) {
-					ModMaterial.this.hammer = (ItemHammer) this.getRegistryValue(registry, "hammer");
+					ModMaterial.this.hammer = (ItemHammer) this.getRegistryValue(castRegistry, "hammer");
 				}
 				if (ModMaterial.this.getProperties().hasWarAxe()) {
-					ModMaterial.this.warAxe = (ItemWarAxe) this.getRegistryValue(registry, "war_axe");
+					ModMaterial.this.warAxe = (ItemWarAxe) this.getRegistryValue(castRegistry, "war_axe");
 				}
 				if (ModMaterial.this.getProperties().hasCurvedSword()) {
-					ModMaterial.this.curvedSword = (ItemCurvedSword) this.getRegistryValue(registry, "curved_sword");
+					ModMaterial.this.curvedSword = (ItemCurvedSword) this.getRegistryValue(castRegistry, "curved_sword");
 				}
 				if (ModMaterial.this.getProperties().hasDagger()) {
-					ModMaterial.this.dagger = (ItemDagger) this.getRegistryValue(registry, "dagger");
+					ModMaterial.this.dagger = (ItemDagger) this.getRegistryValue(castRegistry, "dagger");
+				}
+			}
+
+			if (registry == ForgeRegistries.ENTITIES) {
+				final IForgeRegistry<EntityEntry> castRegistry = registry;
+
+				if (ModMaterial.this.getProperties().hasDagger()) {
+					ModMaterial.this.thrownDagger = this.getRegistryValue(castRegistry, "thrown_dagger");
 				}
 			}
 

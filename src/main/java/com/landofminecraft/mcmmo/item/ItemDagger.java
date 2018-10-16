@@ -1,6 +1,8 @@
 package com.landofminecraft.mcmmo.item;
 
 import com.google.common.collect.Multimap;
+import com.landofminecraft.mcmmo.entity.EntityThrownDagger;
+import com.landofminecraft.mcmmo.init.ModSoundEvents;
 import com.landofminecraft.mcmmo.material.ModMaterial;
 import com.landofminecraft.mcmmo.util.ModUtil;
 
@@ -12,9 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -159,12 +159,16 @@ public class ItemDagger extends Item implements IItemModMaterial {
 			itemstack.shrink(1);
 		}
 
-		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / ((itemRand.nextFloat() * 0.4F) + 0.8F));
+		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, ModSoundEvents.ENTITY_DAGGER_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / ((itemRand.nextFloat() * 0.4F) + 0.8F));
 
 		if (!worldIn.isRemote) {
-			final EntitySnowball entitysnowball = new EntitySnowball(worldIn, playerIn);
-			entitysnowball.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-			worldIn.spawnEntity(entitysnowball);
+			final EntityThrownDagger entityDagger = new EntityThrownDagger(worldIn, playerIn);
+
+			entityDagger.setModMaterial(this.getModMaterial());
+			entityDagger.setIsCritical(playerIn.isAirBorne);
+
+			entityDagger.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+			worldIn.spawnEntity(entityDagger);
 		}
 
 		playerIn.addStat(StatList.getObjectUseStats(this));
