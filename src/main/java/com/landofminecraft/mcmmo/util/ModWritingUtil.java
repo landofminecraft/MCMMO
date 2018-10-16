@@ -599,18 +599,8 @@ public class ModWritingUtil {
 
 		if (Loader.MC_VERSION.contains("1.13")) {
 			finalData.add("\"itemGroup." + ModReference.MOD_ID + "\"" + ": " + "\"" + ModReference.MOD_NAME + "\"" + ",");
-			finalData.add("\"item.modifiers.horse\": \"When on horse\",");
-			finalData.add("\"startassembly\": \"Start Assembly\",");
-			finalData.add("\"attachments\": \"Attachments\",");
-			finalData.add("\"attachmentpoint\": \"Attachment Point\",");
-			finalData.add("\"conductivity\": \"Conductivity\",");
 		} else {
 			finalData.add("itemGroup." + ModReference.MOD_ID + "=" + ModReference.MOD_NAME);
-			finalData.add("item.modifiers.horse=When on horse");
-			finalData.add("startassembly=Start Assembly");
-			finalData.add("attachments=Attachments");
-			finalData.add("attachmentpoint=Attachment Point");
-			finalData.add("conductivity=Conductivity");
 		}
 
 		finalData.addAll(data);
