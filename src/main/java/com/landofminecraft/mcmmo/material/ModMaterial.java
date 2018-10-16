@@ -303,7 +303,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 			case "apple" :
 			case "carrot" :
 			case "horse_armor" :
-				return this.getNameLowercase() + (this.getNameLowercase().contains("gold") ? "en" : "");
+				return this.getNameLowercase() + (this.getNameLowercase().equals("gold") || this.getNameLowercase().equals("wood") ? "en" : "");
 			default :
 				return this.getNameLowercase();
 		}
