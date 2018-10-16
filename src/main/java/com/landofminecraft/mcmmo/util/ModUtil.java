@@ -16,7 +16,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 public final class ModUtil {
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.block.Block#setUnlocalizedName() Unlocalised Name} for the block taking vanilla overriding into account
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.block.Block#setTranslationKey() Translation Key} for the block taking vanilla overriding into account
 	 * @param block      the block to set registry names for
 	 * @param material   the {@link cadiboo.wiptech.util.ModEnums.ModMaterial Mod Material} to get the names based on
 	 * @param nameSuffix the string to be appended to the names (for example "ore" or "block")
@@ -38,7 +38,7 @@ public final class ModUtil {
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setUnlocalizedName() Unlocalised Name} for the item taking vanilla overriding and vanilla name quirks into account
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} for the item taking vanilla overriding and vanilla name quirks into account
 	 * @param item       the item to set registry names for
 	 * @param material   the {@link cadiboo.wiptech.util.ModEnums.ModMaterial Mod Material} to get the names based on
 	 * @param nameSuffix the string to be appended to the names (for example "shovel" or "helmet")
@@ -55,7 +55,7 @@ public final class ModUtil {
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setUnlocalizedName() Unlocalised Name} (if applicable) for the entry
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
 	 * @param entry the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param name  the name for the entry that the registry name is derived from
 	 */
@@ -64,7 +64,7 @@ public final class ModUtil {
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setUnlocalizedName() Unlocalised Name} (if applicable) for the entry
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
 	 * @param entry        the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param registryName the registry name for the entry that the unlocalised name is also gotten from
 	 */
@@ -73,7 +73,7 @@ public final class ModUtil {
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setUnlocalizedName() Unlocalised Name} (if applicable) for the entry
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
 	 * @param entry           the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param registryName    the registry name for the entry
 	 * @param unlocalizedName the unlocalized name for the entry
