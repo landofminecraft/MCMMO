@@ -105,6 +105,10 @@ public enum ModMaterial implements IEnumNameFormattable {
 		return rand.nextInt(5) * (fortune + 1);
 	})),
 
+	// WOOD
+
+	// STONE
+
 	;
 
 	private final int id;
