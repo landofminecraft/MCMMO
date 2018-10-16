@@ -1,5 +1,9 @@
 package com.landofminecraft.mcmmo;
 
+import com.landofminecraft.mcmmo.block.BlockGrindstone;
+import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.init.ModBlocks;
+import com.landofminecraft.mcmmo.item.ModItemBlock;
 import com.landofminecraft.mcmmo.util.ModReference;
 import com.landofminecraft.mcmmo.util.ModUtil;
 
@@ -30,6 +34,9 @@ public final class EventSubscriber {
 	public static void onRegisterBlocksEvent(final RegistryEvent.Register<Block> event) {
 		final IForgeRegistry<Block> registry = event.getRegistry();
 
+		registry.register(new BlockGrindstone("grindstone"));
+		registry.register(new BlockGrindstoneHandle("grindstone_handle"));
+
 		MinecraftMMO.debug("Registered blocks");
 
 		registerTileEntities();
@@ -55,6 +62,9 @@ public final class EventSubscriber {
 	@SubscribeEvent
 	public static void onRegisterItemsEvent(final RegistryEvent.Register<Item> event) {
 		final IForgeRegistry<Item> registry = event.getRegistry();
+
+		registry.register(new ModItemBlock(ModBlocks.GRINDSTONE));
+		registry.register(new ModItemBlock(ModBlocks.GRINDSTONE_HANDLE));
 
 		MinecraftMMO.debug("Registered items");
 

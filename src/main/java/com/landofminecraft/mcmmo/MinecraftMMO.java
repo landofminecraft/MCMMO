@@ -60,7 +60,7 @@ public final class MinecraftMMO {
 	// Blast Furnace can have an output slot as well as an input slot for liquids as well. If players want to do so, they can place any metal in the third slot in the gui which will smelt the metal into a liquid. Players can either store the liquid in a bucket, or have it sent out via pipe into a tank for storage instead.
 	// Fuel: Either manually or via pipes insert lava, or manually insert coal or coal blocks. (coal and other non lava materials burn twice as quickly)
 
-	// TODO Grinder
+	// TODO Grindstone
 	// Crafting: wip.
 	// Use: Use to increase weapon base damage by a certain amount.
 
