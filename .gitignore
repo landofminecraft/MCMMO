@@ -28,3 +28,9 @@ build
 # other
 eclipse
 run
+
+# OPTIONAL - release JARs
+!/build/
+/build/*
+!/build/libs/
+/build/libs/*sources*
