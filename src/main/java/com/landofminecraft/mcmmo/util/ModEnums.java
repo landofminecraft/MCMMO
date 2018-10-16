@@ -2,12 +2,14 @@ package com.landofminecraft.mcmmo.util;
 
 /**
  * Holds all enums and enum-related stuff for this mod
+ * 
  * @author Cadiboo
  */
 public final class ModEnums {
 
 	/**
 	 * provides some default methods for formatting enum names
+	 * 
 	 * @author Cadiboo
 	 */
 	public interface IEnumNameFormattable {
@@ -35,6 +37,7 @@ public final class ModEnums {
 
 		/**
 		 * very slightly hacky - this method is provided by Enum
+		 * 
 		 * @return the unformatted name of the enum
 		 */
 		String name();

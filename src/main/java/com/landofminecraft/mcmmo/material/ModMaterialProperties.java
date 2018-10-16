@@ -15,35 +15,42 @@ import net.minecraft.util.BlockRenderLayer;
 
 public class ModMaterialProperties {
 
-	private final boolean hasOre;
-	private final boolean hasBlock;
-	private final boolean hasResource;
+	private final boolean	hasOre;
+	private final boolean	hasBlock;
+
+	private final boolean	hasResource;
 	@Nonnull
-	final String resourceSuffix;
-	private final boolean hasResourcePiece;
+	final String			resourceSuffix;
+	private final boolean	hasResourcePiece;
 	@Nonnull
-	final String resourcePieceSuffix;
-	private final boolean hasHelmet;
-	private final boolean hasChestplate;
-	private final boolean hasLeggings;
-	private final boolean hasBoots;
-	private final boolean hasHorseArmor;
-	private final boolean hasPickaxe;
-	private final boolean hasAxe;
-	private final boolean hasSword;
-	private final boolean hasShovel;
-	private final boolean hasHoe;
-	private final boolean hasMace;
-	private final boolean hasHammer;
-	private final boolean hasWarAxe;
-	private final boolean hasCurvedSword;
-	private final boolean hasDagger;
+	final String			resourcePieceSuffix;
+
+	private final boolean	hasHelmet;
+	private final boolean	hasChestplate;
+	private final boolean	hasLeggings;
+	private final boolean	hasBoots;
+	private final boolean	hasHorseArmor;
+
+	private final boolean	hasPickaxe;
+	private final boolean	hasAxe;
+	private final boolean	hasSword;
+	private final boolean	hasShovel;
+	private final boolean	hasHoe;
+	private final boolean	hasMace;
+	private final boolean	hasHammer;
+	private final boolean	hasWarAxe;
+	private final boolean	hasCurvedSword;
+	private final boolean	hasDagger;
+
 	private final float hardness;
+
 	/** if null reverts to getItemFromBlock(block) */
 	@Nullable
 	private final Supplier<Item> getOreDrop;
+
 	@Nonnull
 	private final BlockRenderLayer[] blockRenderLayers;
+
 	@Nonnull
 	private final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonus;
 

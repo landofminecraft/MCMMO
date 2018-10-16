@@ -1,5 +1,10 @@
 package com.landofminecraft.mcmmo.util;
 
+/**
+ * This class holds all our constants like our name, modId, version etc.
+ *
+ * @author Cadiboo
+ */
 public final class ModReference {
 
 	/** This is our Mod's Name. */
@@ -12,7 +17,7 @@ public final class ModReference {
 
 	/**
 	 * @author Cadiboo
-	 * @see    <a href= "https://mcforge.readthedocs.io/en/latest/conventions/versioning/">Forge Versioning Docs</a>
+	 * @see <a href= "https://mcforge.readthedocs.io/en/latest/conventions/versioning/">Forge Versioning Docs</a>
 	 */
 	public static final class Version {
 
@@ -86,11 +91,11 @@ public final class ModReference {
 
 	}
 
-	public static final String CLIENT_PROXY_CLASS = "com.landofminecraft.mcmmo.client.ClientProxy";
-	public static final String SERVER_PROXY_CLASS = "com.landofminecraft.mcmmo.server.ServerProxy";
+	public static final String	CLIENT_PROXY_CLASS	= "com.landofminecraft.mcmmo.client.ClientProxy";
+	public static final String	SERVER_PROXY_CLASS	= "com.landofminecraft.mcmmo.server.ServerProxy";
 
-	public static final String ACCEPTED_VERSIONS = "[1.12.2, 1.13]";
-	public static final String DEPENDENCIES = "required-after:minecraft;" + "required-after:forge@[14.23.5.2768,);" + "";
+	public static final String	ACCEPTED_VERSIONS	= "[1.12.2, 1.13]";
+	public static final String	DEPENDENCIES		= "required-after:minecraft;" + "required-after:forge@[14.23.5.2768,);" + "";
 
 	public static final class Debug {
 		public static boolean debugOres() {

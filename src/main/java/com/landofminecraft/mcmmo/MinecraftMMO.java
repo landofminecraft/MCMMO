@@ -24,7 +24,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
- * MCMMO
+ * Our main mod class, TODO LIST {@link EventHandler}s and logging utils go here
+ * 
  * @authors Telemindred, MDW_01, Cadiboo, Oscar and GlitchedWinner
  */
 
@@ -102,6 +103,7 @@ public final class MinecraftMMO {
 
 	/**
 	 * Run before anything else. <s>Read your config, create blocks, items, etc, and register them with the GameRegistry</s>
+	 * 
 	 * @see {@link net.minecraftforge.common.ForgeModContainer#preInit(FMLPreInitializationEvent) ForgeModContainer.preInit}
 	 */
 	@EventHandler
@@ -129,6 +131,7 @@ public final class MinecraftMMO {
 
 	/**
 	 * Mod compatibility, or anything which depends on other mods’ init phases being finished.
+	 * 
 	 * @see {@link net.minecraftforge.common.ForgeModContainer#postInit(FMLPostInitializationEvent) ForgeModContainer.postInit}
 	 */
 	@EventHandler
@@ -147,8 +150,9 @@ public final class MinecraftMMO {
 
 	/**
 	 * Logs message object(s) with the {@link org.apache.logging.log4j.Level#DEBUG DEBUG} level.
-	 * @param  messages the message objects to log.
-	 * @author          Cadiboo
+	 * 
+	 * @param messages the message objects to log.
+	 * @author Cadiboo
 	 */
 	public static void debug(final Object... messages) {
 		for (final Object msg : messages) {
@@ -158,8 +162,9 @@ public final class MinecraftMMO {
 
 	/**
 	 * Logs message object(s) with the {@link org.apache.logging.log4j.Level#INFO ERROR} INFO.
-	 * @param  messages the message objects to log.
-	 * @author          Cadiboo
+	 * 
+	 * @param messages the message objects to log.
+	 * @author Cadiboo
 	 */
 	public static void info(final Object... messages) {
 		for (final Object msg : messages) {
@@ -169,8 +174,9 @@ public final class MinecraftMMO {
 
 	/**
 	 * Logs message object(s) with the {@link org.apache.logging.log4j.Level#WARN WARN} level.
-	 * @param  messages the message objects to log.
-	 * @author          Cadiboo
+	 * 
+	 * @param messages the message objects to log.
+	 * @author Cadiboo
 	 */
 	public static void warn(final Object... messages) {
 		for (final Object msg : messages) {
@@ -180,8 +186,9 @@ public final class MinecraftMMO {
 
 	/**
 	 * Logs message object(s) with the {@link org.apache.logging.log4j.Level#ERROR ERROR} level.
-	 * @param  messages the message objects to log.
-	 * @author          Cadiboo
+	 * 
+	 * @param messages the message objects to log.
+	 * @author Cadiboo
 	 */
 	public static void error(final Object... messages) {
 		for (final Object msg : messages) {
@@ -191,8 +198,9 @@ public final class MinecraftMMO {
 
 	/**
 	 * Logs message object(s) with the {@link org.apache.logging.log4j.Level#FATAL FATAL} level.
-	 * @param  messages the message objects to log.
-	 * @author          Cadiboo
+	 * 
+	 * @param messages the message objects to log.
+	 * @author Cadiboo
 	 */
 	public static void fatal(final Object... messages) {
 		for (final Object msg : messages) {
@@ -202,8 +210,9 @@ public final class MinecraftMMO {
 
 	/**
 	 * Logs all {@link java.lang.reflect.Field Field}s and their values of an object with the {@link org.apache.logging.log4j.Level#INFO INFO} level.
-	 * @param  objects the objects to dump.
-	 * @author         Cadiboo
+	 * 
+	 * @param objects the objects to dump.
+	 * @author Cadiboo
 	 */
 	public static void dump(final Object... objects) {
 		for (final Object obj : objects) {

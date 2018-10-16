@@ -5,8 +5,16 @@ import com.landofminecraft.mcmmo.util.ModReference;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod.EventBusSubscriber(modid = ModReference.MOD_ID)
+/**
+ * EventSubscriber for client physical sided events
+ *
+ * @author Cadiboo
+ */
+@SideOnly(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = ModReference.MOD_ID, value = Side.CLIENT)
 public final class ClientEventSubscriber {
 
 	@SubscribeEvent

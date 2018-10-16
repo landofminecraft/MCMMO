@@ -16,14 +16,17 @@ public class ModDataSerializers {
 		public void write(final PacketBuffer buf, final ModMaterial value) {
 			buf.writeEnumValue(value);
 		}
+
 		@Override
 		public ModMaterial read(final PacketBuffer buf) throws IOException {
 			return buf.readEnumValue(ModMaterial.class);
 		}
+
 		@Override
 		public DataParameter<ModMaterial> createKey(final int id) {
 			return new DataParameter<>(id, this);
 		}
+
 		@Override
 		public ModMaterial copyValue(final ModMaterial value) {
 			return value;

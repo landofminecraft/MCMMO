@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 /**
  * Basic world generator that generates ores
+ *
  * @author Cadiboo
  */
 public final class ModWorldGenerator implements IWorldGenerator {
@@ -22,15 +23,15 @@ public final class ModWorldGenerator implements IWorldGenerator {
 	@Override
 	public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkGenerator chunkGenerator, final IChunkProvider chunkProvider) {
 		switch (world.provider.getDimensionType()) {
-			case NETHER :
-				break;
-			case OVERWORLD :
-				this.generateOverworld(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
-				break;
-			case THE_END :
-				break;
-			default :
-				break;
+		case NETHER:
+			break;
+		case OVERWORLD:
+			this.generateOverworld(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+			break;
+		case THE_END:
+			break;
+		default:
+			break;
 		}
 	}
 

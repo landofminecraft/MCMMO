@@ -5,6 +5,11 @@ import com.landofminecraft.mcmmo.util.IProxy;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 
+/**
+ * Some basic functions that differ depending on the physical (server) side
+ *
+ * @author Cadiboo
+ */
 public class ServerProxy implements IProxy {
 
 	@Override

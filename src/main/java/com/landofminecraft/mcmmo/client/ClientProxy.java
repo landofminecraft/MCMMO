@@ -5,6 +5,11 @@ import com.landofminecraft.mcmmo.util.IProxy;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 
+/**
+ * Some basic functions that differ depending on the physical (client) side
+ *
+ * @author Cadiboo
+ */
 public class ClientProxy implements IProxy {
 
 	@Override

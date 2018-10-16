@@ -13,6 +13,7 @@ import net.minecraft.util.BlockRenderLayer;
 
 /**
  * Custom ore block for materials
+ * 
  * @author Cadiboo
  */
 public class BlockModOre extends Block implements IBlockModMaterial {

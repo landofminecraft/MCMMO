@@ -17,7 +17,7 @@ public class ItemModSword extends ItemSword implements IItemModMaterial {
 	}
 
 	@Override
-	public final ModMaterial getModMaterial() {
+	public ModMaterial getModMaterial() {
 		return this.material;
 	}
 

@@ -67,6 +67,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 
 /**
  * MOHS Hardness from <a href= "https://en.wikipedia.org/wiki/Mohs_scale_of_mineral_hardness">Wikipedia</a> and <a href= "http://periodictable.com/Properties/A/MohsHardness.v.html">Periodictable</a>
+ *
  * @author Cadiboo
  */
 public enum ModMaterial implements IEnumNameFormattable {
@@ -122,36 +123,36 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	;
 
-	private final int id;
-	private final ModMaterialProperties properties;
-	private final ArmorMaterial armorMaterial;
-	private final ToolMaterial toolMaterial;
-	private final HorseArmorType horseArmorType;
-	private final String modId;
+	private final int					id;
+	private final ModMaterialProperties	properties;
+	private final ArmorMaterial			armorMaterial;
+	private final ToolMaterial			toolMaterial;
+	private final HorseArmorType		horseArmorType;
+	private final String				modId;
 
-	private BlockModOre ore;
-	private BlockResource block;
+	private BlockModOre		ore;
+	private BlockResource	block;
 
-	private ModItemBlock itemBlockOre;
-	private ModItemBlock itemBlockBlock;
+	private ModItemBlock	itemBlockOre;
+	private ModItemBlock	itemBlockBlock;
 
-	private ItemResource resource;
-	private ItemResourcePiece resourcePiece;
-	private ItemModArmor helmet;
-	private ItemModArmor chestplate;
-	private ItemModArmor leggings;
-	private ItemModArmor boots;
-	private ItemModHorseArmor horseArmor;
-	private ItemModPickaxe pickaxe;
-	private ItemModAxe axe;
-	private ItemModSword sword;
-	private ItemModShovel shovel;
-	private ItemModHoe hoe;
-	private ItemMace mace;
-	private ItemHammer hammer;
-	private ItemWarAxe warAxe;
-	private ItemCurvedSword curvedSword;
-	private ItemDagger dagger;
+	private ItemResource		resource;
+	private ItemResourcePiece	resourcePiece;
+	private ItemModArmor		helmet;
+	private ItemModArmor		chestplate;
+	private ItemModArmor		leggings;
+	private ItemModArmor		boots;
+	private ItemModHorseArmor	horseArmor;
+	private ItemModPickaxe		pickaxe;
+	private ItemModAxe			axe;
+	private ItemModSword		sword;
+	private ItemModShovel		shovel;
+	private ItemModHoe			hoe;
+	private ItemMace			mace;
+	private ItemHammer			hammer;
+	private ItemWarAxe			warAxe;
+	private ItemCurvedSword		curvedSword;
+	private ItemDagger			dagger;
 
 	// something interesting to note is that "because of how minecraft entities work" i.e. "they're based on class" theres actually only 1 dagger entity thats used, despite one being registered for each material
 	private EntityEntry thrownDagger;
@@ -300,35 +301,35 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 		if (this.getNameLowercase().equals("gold")) {
 			switch (suffix.toLowerCase()) {
-				case "sword" :
-				case "shovel" :
-				case "pickaxe" :
-				case "axe" :
-				case "hoe" :
-				case "helmet" :
-				case "chestplate" :
-				case "leggings" :
-				case "boots" :
-				case "apple" :
-				case "carrot" :
-				case "horse_armor" :
-					vanillaNameLowercase = this.getNameLowercase() + "en";
-					break;
-				default :
-					vanillaNameLowercase = this.getNameLowercase();
+			case "sword":
+			case "shovel":
+			case "pickaxe":
+			case "axe":
+			case "hoe":
+			case "helmet":
+			case "chestplate":
+			case "leggings":
+			case "boots":
+			case "apple":
+			case "carrot":
+			case "horse_armor":
+				vanillaNameLowercase = this.getNameLowercase() + "en";
+				break;
+			default:
+				vanillaNameLowercase = this.getNameLowercase();
 			}
 		} else if (this.getNameLowercase().equals("wood")) {
 
 			switch (suffix.toLowerCase()) {
-				case "sword" :
-				case "shovel" :
-				case "pickaxe" :
-				case "axe" :
-				case "hoe" :
-					vanillaNameLowercase = this.getNameLowercase() + "en";
-					break;
-				default :
-					vanillaNameLowercase = this.getNameLowercase();
+			case "sword":
+			case "shovel":
+			case "pickaxe":
+			case "axe":
+			case "hoe":
+				vanillaNameLowercase = this.getNameLowercase() + "en";
+				break;
+			default:
+				vanillaNameLowercase = this.getNameLowercase();
 			}
 		} else {
 			vanillaNameLowercase = this.getNameLowercase();
@@ -788,6 +789,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 	}
 
 	private final MaterialEventSubscriber eventSubscriber = new MaterialEventSubscriber();
+
 	public MaterialEventSubscriber getEventSubscriber() {
 		return this.eventSubscriber;
 	}

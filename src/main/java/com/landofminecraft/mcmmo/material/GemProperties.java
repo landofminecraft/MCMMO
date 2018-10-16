@@ -13,9 +13,10 @@ import net.minecraft.util.BlockRenderLayer;
 
 public class GemProperties extends ModMaterialProperties {
 
-	public static final BlockRenderLayer[] BLOCK_RENDER_LAYERS = new BlockRenderLayer[]{BlockRenderLayer.TRANSLUCENT};
-	public static final String RESOURCE_SUFFIX = "";
-	public static final String RESOURCE_PIECE_SUFFIX = "shard";
+	public static final String	RESOURCE_SUFFIX			= "";
+	public static final String	RESOURCE_PIECE_SUFFIX	= "shard";
+
+	public static final BlockRenderLayer[] BLOCK_RENDER_LAYERS = new BlockRenderLayer[] { BlockRenderLayer.TRANSLUCENT };
 
 	public GemProperties(final boolean hasOre, final float MOHS_Hardness, @Nullable final Supplier<Item> getOreDrop, @Nonnull @MethodsReturnNonnullByDefault final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonusFromOre) {
 		this(hasOre, MOHS_Hardness, getOreDrop, BLOCK_RENDER_LAYERS, getQuantityDroppedWithBonusFromOre);

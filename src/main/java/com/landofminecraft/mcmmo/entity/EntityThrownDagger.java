@@ -21,8 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityThrownDagger extends EntityThrowable implements IEntityModMaterial {
 
-	public static final DataParameter<Boolean> CRITICAL = EntityDataManager.<Boolean>createKey(EntityArrow.class, DataSerializers.BOOLEAN);
-	public static final DataParameter<ModMaterial> MATERIAL = EntityDataManager.<ModMaterial>createKey(EntityThrownDagger.class, ModDataSerializers.MATERIAL);
+	public static final DataParameter<Boolean>		CRITICAL	= EntityDataManager.<Boolean>createKey(EntityArrow.class, DataSerializers.BOOLEAN);
+	public static final DataParameter<ModMaterial>	MATERIAL	= EntityDataManager.<ModMaterial>createKey(EntityThrownDagger.class, ModDataSerializers.MATERIAL);
 
 	public EntityArrow.PickupStatus pickupStatus;
 

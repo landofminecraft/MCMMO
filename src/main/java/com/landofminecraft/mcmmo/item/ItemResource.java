@@ -16,7 +16,7 @@ public class ItemResource extends Item implements IItemModMaterial {
 	}
 
 	@Override
-	public final ModMaterial getModMaterial() {
+	public ModMaterial getModMaterial() {
 		return this.material;
 	}
 

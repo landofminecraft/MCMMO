@@ -22,8 +22,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemWarAxe extends Item implements IItemModMaterial {
 
-	private final ModMaterial material;
-	private final float attackDamage;
+	private final ModMaterial	material;
+	private final float			attackDamage;
 
 	// copied pretty much everything from ItemSword
 	public ItemWarAxe(final ModMaterial material) {
@@ -113,6 +113,7 @@ public class ItemWarAxe extends Item implements IItemModMaterial {
 
 	/**
 	 * Return whether this item is repairable in an anvil.
+	 *
 	 * @param toRepair the {@code ItemStack} being repaired
 	 * @param repair   the {@code ItemStack} being used to perform the repair
 	 */

@@ -7,10 +7,10 @@ import net.minecraft.util.BlockRenderLayer;
 
 public class MetalProperties extends ModMaterialProperties {
 
-	public static final String RESOURCE_SUFFIX = "ingot";
-	public static final String RESOURCE_PIECE_SUFFIX = "nugget";
+	public static final String	RESOURCE_SUFFIX			= "ingot";
+	public static final String	RESOURCE_PIECE_SUFFIX	= "nugget";
 
-	public static final BlockRenderLayer[] BLOCK_RENDER_LAYERS = new BlockRenderLayer[]{BlockRenderLayer.SOLID};
+	public static final BlockRenderLayer[] BLOCK_RENDER_LAYERS = new BlockRenderLayer[] { BlockRenderLayer.SOLID };
 
 	public static final BiFunction<Integer, Random, Integer> GET_QUANTITY_DROPPED_WITH_BONUS_FROM_ORE = (fortune, random) -> {
 		return 1;

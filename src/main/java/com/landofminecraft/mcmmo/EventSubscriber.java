@@ -16,6 +16,11 @@ import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
+/**
+ * EventSubscriber for events that fire on both physical sides
+ *
+ * @author Cadiboo
+ */
 @Mod.EventBusSubscriber(modid = ModReference.MOD_ID)
 public final class EventSubscriber {
 
