@@ -541,9 +541,9 @@ public enum ModMaterial implements IEnumNameFormattable {
 			if (item == null) {
 				MinecraftMMO.debug("sad");
 			}
-			final boolean isVanilla = item.getRegistryName().getResourceDomain().equals("minecraft");
+			final boolean isVanilla = item.getRegistryName().getNamespace().equals("minecraft");
 			final String registryNameResourceDomain = isVanilla ? "minecraft" : item.getModMaterial().getModId().toString();
-			final String registryNameResourcePath = item.getRegistryName().getResourcePath();
+			final String registryNameResourcePath = item.getRegistryName().getPath();
 
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(registryNameResourceDomain, registryNameResourcePath), "normal"));
 		}
@@ -551,9 +551,9 @@ public enum ModMaterial implements IEnumNameFormattable {
 		/** CLIENT ONLY */
 		@SideOnly(Side.CLIENT)
 		private <T extends Block & IBlockModMaterial> void registerBlockModMaterialItemBlockModel(final T block) {
-			final boolean isVanilla = block.getRegistryName().getResourceDomain().equals("minecraft");
+			final boolean isVanilla = block.getRegistryName().getNamespace().equals("minecraft");
 			final String registryNameResourceDomain = isVanilla ? "minecraft" : block.getModMaterial().getModId().toString();
-			final String registryNameResourcePath = block.getRegistryName().getResourcePath();
+			final String registryNameResourcePath = block.getRegistryName().getPath();
 
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(new ResourceLocation(registryNameResourceDomain, registryNameResourcePath), "normal"));
 		}

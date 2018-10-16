@@ -31,8 +31,13 @@ public class BlockModOre extends Block implements IBlockModMaterial {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
+	public BlockRenderLayer getRenderLayer() {
+		return this.material.getProperties().getBlockRenderLayers().get(0);
+	}
+
+	@Override
+	public boolean canRenderInLayer(final IBlockState state, final BlockRenderLayer layer) {
+		return this.material.getProperties().getBlockRenderLayers().contains(layer);
 	}
 
 	@Override

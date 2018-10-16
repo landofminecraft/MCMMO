@@ -35,7 +35,7 @@ public class BlockResource extends Block implements IBlockModMaterial {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return this.material.getProperties().getBlockRenderLayers().get(0);
 	}
 

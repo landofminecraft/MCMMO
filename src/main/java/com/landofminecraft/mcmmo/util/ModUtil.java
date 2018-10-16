@@ -37,7 +37,7 @@ public final class ModUtil {
 
 		final Item overriddenItem = ForgeRegistries.ITEMS.getValue(registryName);
 		if (overriddenItem != null) {
-			item.setUnlocalizedName(overriddenItem.getUnlocalizedName().replace("item.", ""));
+			item.setTranslationKey(overriddenItem.getTranslationKey().replace("item.", ""));
 		}
 		return item;
 	}
@@ -57,7 +57,7 @@ public final class ModUtil {
 	 * @param registryName the registry name for the entry that the unlocalised name is also gotten from
 	 */
 	public static <T extends IForgeRegistryEntry.Impl<?>> T setRegistryNames(final T entry, final ResourceLocation registryName) {
-		return setRegistryNames(entry, registryName, registryName.getResourcePath());
+		return setRegistryNames(entry, registryName, registryName.getPath());
 	}
 
 	/**
@@ -69,12 +69,12 @@ public final class ModUtil {
 	public static <T extends IForgeRegistryEntry.Impl<?>> T setRegistryNames(final T entry, final ResourceLocation registryName, final String unlocalizedName) {
 		entry.setRegistryName(registryName);
 		if (entry instanceof Block) {
-			((Block) entry).setUnlocalizedName(unlocalizedName);
+			((Block) entry).setTranslationKey(unlocalizedName);
 			setCreativeTab((Block) entry);
 			((Block) entry).setHardness(1);
 		}
 		if (entry instanceof Item) {
-			((Item) entry).setUnlocalizedName(unlocalizedName);
+			((Item) entry).setTranslationKey(unlocalizedName);
 			setCreativeTab((Item) entry);
 		}
 		return entry;
@@ -104,7 +104,7 @@ public final class ModUtil {
 	 * @param block the {@link net.minecraft.block.Block Block}
 	 */
 	public static void setCreativeTab(final Block block) {
-		if (block.getCreativeTabToDisplayOn() == null) {
+		if (block.getCreativeTab() == null) {
 			block.setCreativeTab(ModCreativeTabs.CREATIVE_TAB);
 		}
 	}
