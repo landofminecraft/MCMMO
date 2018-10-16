@@ -40,9 +40,16 @@ public class BlockModOre extends Block implements IBlockModMaterial {
 		return this.material.getProperties().getBlockRenderLayers().contains(layer);
 	}
 
+	// TODO remove this
 	@Override
 	public boolean isFullCube(final IBlockState state) {
-		return true;
+		return false;
+	}
+
+	// TODO remove this
+	@Override
+	public boolean isOpaqueCube(final IBlockState state) {
+		return false;
 	}
 
 	@Override
