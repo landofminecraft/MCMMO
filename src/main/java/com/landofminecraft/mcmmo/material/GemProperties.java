@@ -13,7 +13,7 @@ import net.minecraft.util.BlockRenderLayer;
 
 public class GemProperties extends ModMaterialProperties {
 
-	public static final BlockRenderLayer[] BLOCK_RENDER_LAYERS = new BlockRenderLayer[]{BlockRenderLayer.SOLID, BlockRenderLayer.TRANSLUCENT};
+	public static final BlockRenderLayer[] BLOCK_RENDER_LAYERS = new BlockRenderLayer[]{BlockRenderLayer.TRANSLUCENT};
 	public static final String RESOURCE_SUFFIX = "";
 	public static final String RESOURCE_PIECE_SUFFIX = "shard";
 

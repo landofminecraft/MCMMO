@@ -48,8 +48,38 @@ public class ModMaterialProperties {
 	private final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonus;
 
 	public ModMaterialProperties(
-
-			final boolean hasOre, final boolean hasBlock, final boolean hasResource, @Nonnull final String resourceSuffix, final boolean hasResourcePiece, @Nonnull final String resourcePieceSuffix, final boolean hasHelmet, final boolean hasChestplate, final boolean hasLeggings, final boolean hasBoots, final boolean hasHorseArmor, final boolean hasPickaxe, final boolean hasAxe, final boolean hasSword, final boolean hasShovel, final boolean hasHoe, final boolean hasMace, final boolean hasHammer, final boolean hasWarAxe, final boolean hasCurvedSword, final boolean hasDagger, final float MOHS_Hardness, @Nullable final Supplier<Item> getOreDrop, @Nullable final BlockRenderLayer[] blockRenderLayers, @Nonnull @MethodsReturnNonnullByDefault final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonusFromOre
+	/*@formatter:off*/
+		final boolean hasOre,
+		final boolean hasBlock,
+		final boolean hasResource,
+		@Nonnull
+		final String resourceSuffix,
+		final boolean hasResourcePiece,
+		@Nonnull
+		final String resourcePieceSuffix,
+		final boolean hasHelmet,
+		final boolean hasChestplate,
+		final boolean hasLeggings,
+		final boolean hasBoots,
+		final boolean hasHorseArmor,
+		final boolean hasPickaxe,
+		final boolean hasAxe,
+		final boolean hasSword,
+		final boolean hasShovel,
+		final boolean hasHoe,
+		final boolean hasMace,
+		final boolean hasHammer,
+		final boolean hasWarAxe,
+		final boolean hasCurvedSword,
+		final boolean hasDagger,
+		final float MOHS_Hardness,
+		@Nullable
+		final Supplier<Item> getOreDrop,
+		@Nullable
+		final BlockRenderLayer[] blockRenderLayers,
+		@Nonnull
+		@MethodsReturnNonnullByDefault
+		final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonusFromOre
 	/*@formatter:on*/
 	) {
 
@@ -77,7 +107,7 @@ public class ModMaterialProperties {
 		this.hardness = MOHS_Hardness;
 		this.getOreDrop = getOreDrop;
 		if (blockRenderLayers == null) {
-			this.blockRenderLayers = new BlockRenderLayer[]{null};
+			this.blockRenderLayers = new BlockRenderLayer[0];
 		} else {
 			this.blockRenderLayers = blockRenderLayers;
 		}
@@ -212,7 +242,6 @@ public class ModMaterialProperties {
 	}
 
 	public int getQuantityDroppedWithBonus(final int fortune, final Random random) {
-		// return 1;
 		return this.getQuantityDroppedWithBonus.apply(fortune, random);
 	}
 
