@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"normal": {
+			"model": "mcmmo:mixed_chunk_block"
+		}
+	}
+}
