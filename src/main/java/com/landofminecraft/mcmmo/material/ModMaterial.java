@@ -93,19 +93,19 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	EMERALD(12, new GemProperties(false, 8.00f, null, null)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	RUBY(13, new GemProperties(true, 9.00f, () -> ModItems.RUBY, (final Integer fortune, final Random rand) -> {
+	RUBY(13, new ModGemProperties(true, 9.00f, () -> ModItems.RUBY, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(4) + 1) * (fortune + 1);
 	})),
 
-	SAPHIRE(14, new GemProperties(true, 9.00f, () -> ModItems.SAPHIRE, (final Integer fortune, final Random rand) -> {
+	SAPHIRE(14, new ModGemProperties(true, 9.00f, () -> ModItems.SAPHIRE, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(4) + 1) * (fortune + 1);
 	})),
 
-	AMETHYST(15, new GemProperties(true, 7.00f, () -> ModItems.AMETHYST, (final Integer fortune, final Random rand) -> {
+	AMETHYST(15, new ModGemProperties(true, 7.00f, () -> ModItems.AMETHYST, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(6) + 1) * (fortune + 1);
 	})),
 
-	TOPAZ(16, new GemProperties(true, 8.00f, () -> ModItems.TOPAZ, (final Integer fortune, final Random rand) -> {
+	TOPAZ(16, new ModGemProperties(true, 8.00f, () -> ModItems.TOPAZ, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(5) + 1) * (fortune + 1);
 	})),
 
