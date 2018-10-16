@@ -40,6 +40,12 @@ public class ItemMace extends Item implements IItemModMaterial {
 	public ModMaterial getModMaterial() {
 		return this.material;
 	}
+
+	@Override
+	public CreativeTabs[] getCreativeTabs() {
+		return ModUtil.getCreativeTabs(this);
+	}
+
 	/**
 	 * Returns the amount of damage this item will deal. One heart of damage is equal to 2 damage points.
 	 */
