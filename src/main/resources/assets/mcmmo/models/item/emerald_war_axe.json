@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/handheld",
+	"textures": {
+		"layer0": "mcmmo:item/emerald_war_axe"
+	}
+}
