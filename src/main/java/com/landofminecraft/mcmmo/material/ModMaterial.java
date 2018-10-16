@@ -109,9 +109,9 @@ public enum ModMaterial implements IEnumNameFormattable {
 		return (rand.nextInt(5) + 1) * (fortune + 1);
 	})),
 
-	WOOD(17, new ModMaterialProperties(false, false, false, "", false, "", true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, 1.00f, null, null, null)),
+	WOOD(17, new ModMaterialProperties(false, false, false, "", false, "", false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, 1.00f, null, null, null)),
 
-	STONE(18, new ModMaterialProperties(false, false, false, "", false, "", true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, 2.00f, null, null, null)),
+	STONE(18, new ModMaterialProperties(false, false, false, "", false, "", false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, 2.00f, null, null, null)),
 
 	;
 
@@ -286,27 +286,44 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	public String getVanillaNameLowercase(final String suffix) {
 
-		// if (suffix.toLowerCase().equals("horse_armor") && this.getNameLowercase().equals("iron")) {
-		// return "metal_horse_armor";
-		// }
+		final String vanillaNameLowercase;
 
-		switch (suffix.toLowerCase()) {
-			case "sword" :
-			case "shovel" :
-			case "pickaxe" :
-			case "axe" :
-			case "hoe" :
-			case "helmet" :
-			case "chestplate" :
-			case "leggings" :
-			case "boots" :
-			case "apple" :
-			case "carrot" :
-			case "horse_armor" :
-				return this.getNameLowercase() + (this.getNameLowercase().equals("gold") || this.getNameLowercase().equals("wood") ? "en" : "");
-			default :
-				return this.getNameLowercase();
+		if (this.getNameLowercase().equals("gold")) {
+			switch (suffix.toLowerCase()) {
+				case "sword" :
+				case "shovel" :
+				case "pickaxe" :
+				case "axe" :
+				case "hoe" :
+				case "helmet" :
+				case "chestplate" :
+				case "leggings" :
+				case "boots" :
+				case "apple" :
+				case "carrot" :
+				case "horse_armor" :
+					vanillaNameLowercase = this.getNameLowercase() + "en";
+					break;
+				default :
+					vanillaNameLowercase = this.getNameLowercase();
+			}
+		} else if (this.getNameLowercase().equals("wood")) {
+
+			switch (suffix.toLowerCase()) {
+				case "sword" :
+				case "shovel" :
+				case "pickaxe" :
+				case "axe" :
+				case "hoe" :
+					vanillaNameLowercase = this.getNameLowercase() + "en";
+					break;
+				default :
+					vanillaNameLowercase = this.getNameLowercase();
+			}
+		} else {
+			vanillaNameLowercase = this.getNameLowercase();
 		}
+		return vanillaNameLowercase;
 
 	}
 
