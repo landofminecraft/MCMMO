@@ -153,6 +153,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 	private ItemCurvedSword curvedSword;
 	private ItemDagger dagger;
 
+	// something interesting to note is that "because of how minecraft entities work" i.e. "they're based on class" theres actually only 1 dagger entity thats used, despite one being registered for each material
 	private EntityEntry thrownDagger;
 
 	private ModMaterial(final int id, final ModMaterialProperties properties) {

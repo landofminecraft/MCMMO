@@ -103,13 +103,17 @@ public class EntityThrownDagger extends EntityThrowable implements IEntityModMat
 			this.posY = result.hitVec.y;
 			this.posZ = result.hitVec.z;
 
-			this.motionX = 0;
-			this.motionY = 0;
-			this.motionZ = 0;
+			this.prevPosX = result.hitVec.x;
+			this.prevPosY = result.hitVec.y;
+			this.prevPosZ = result.hitVec.z;
+			//
+			// this.motionX *= 0.5;
+			// this.motionY *= 0.5;
+			// this.motionZ *= 0.5;
 
 			this.inGround = true;
 
-			// why tf is'nt all this public
+			// why tf isn't all this public
 
 			// set xyz tile to pos
 			ReflectionHelper.setPrivateValue(EntityThrowable.class, this, result.getBlockPos().getX(), "field_145788_c", "xTile");
@@ -118,6 +122,11 @@ public class EntityThrownDagger extends EntityThrowable implements IEntityModMat
 
 			// set inTile to the tile we are in
 			ReflectionHelper.setPrivateValue(EntityThrowable.class, this, this.world.getBlockState(result.getBlockPos()).getBlock(), "field_174853_f", "inTile");
+
+			this.isAirBorne = true;
+
+			// ((WorldServer) this.world).setEntityState(this, (byte) 200);
+			this.world.setEntityState(this, (byte) 200);
 
 		}
 	}
