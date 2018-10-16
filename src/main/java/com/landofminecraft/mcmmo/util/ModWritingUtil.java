@@ -94,8 +94,8 @@ public class ModWritingUtil {
 
 				blockstates.put(path, generateBlockstateJSON(model));
 
-				final ResourceLocation parent = new ResourceLocation(ModReference.MOD_ID, "block/ore");
-				final String textureName = "ore";
+				final ResourceLocation parent = new ResourceLocation("", "block/cube_all");
+				final String textureName = "all";
 				final ResourceLocation textureLocation = getTextureLocation(ore, "block");
 
 				blockModels.put(path, generateModelJSON(parent, textureName, textureLocation));
