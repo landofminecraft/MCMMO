@@ -32,8 +32,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ModWritingUtil {
 
-	private static String assetDir = "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MinecraftMMOAlpha/src/main/resources/assets/wiptech/";
-	private static String dataDir = "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MinecraftMMOAlpha/src/main/resources/data/wiptech/";
+	private static String assetDir = "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MCMMO/src/main/resources/assets/mcmmo/";
+	private static String dataDir = "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MCMMO/src/main/resources/data/mcmmo/";
 
 	private static final ResourceLocation ITEM_GENERATED = new ResourceLocation("", "item/generated");
 	private static final ResourceLocation item_handheld = new ResourceLocation("", "item/handheld");
