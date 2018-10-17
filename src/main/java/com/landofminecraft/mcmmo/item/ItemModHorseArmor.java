@@ -5,6 +5,7 @@ import com.landofminecraft.mcmmo.util.ModUtil;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.HorseArmorType;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -15,6 +16,7 @@ public class ItemModHorseArmor extends Item implements IItemModMaterial {
 	public ItemModHorseArmor(final ModMaterial material) {
 		super();
 		this.setMaxStackSize(1);
+		this.setCreativeTab(Items.IRON_HORSE_ARMOR.getCreativeTab());
 		ModUtil.setRegistryNames(this, material, "horse_armor");
 		this.material = material;
 	}

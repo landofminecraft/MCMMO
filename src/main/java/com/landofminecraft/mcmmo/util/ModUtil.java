@@ -22,7 +22,7 @@ public final class ModUtil {
 
 	/**
 	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.block.Block#setTranslationKey() Translation Key} for the block taking vanilla overriding into account
-	 * 
+	 *
 	 * @param block      the block to set registry names for
 	 * @param material   the {@link cadiboo.wiptech.util.ModEnums.ModMaterial Mod Material} to get the names based on
 	 * @param nameSuffix the string to be appended to the names (for example "ore" or "block")
@@ -45,7 +45,7 @@ public final class ModUtil {
 
 	/**
 	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} for the item taking vanilla overriding and vanilla name quirks into account
-	 * 
+	 *
 	 * @param item       the item to set registry names for
 	 * @param material   the {@link cadiboo.wiptech.util.ModEnums.ModMaterial Mod Material} to get the names based on
 	 * @param nameSuffix the string to be appended to the names (for example "shovel" or "helmet")
@@ -63,7 +63,7 @@ public final class ModUtil {
 
 	/**
 	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
-	 * 
+	 *
 	 * @param entry the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param name  the name for the entry that the registry name is derived from
 	 */
@@ -73,7 +73,7 @@ public final class ModUtil {
 
 	/**
 	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
-	 * 
+	 *
 	 * @param entry        the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param registryName the registry name for the entry that the unlocalised name is also gotten from
 	 */
@@ -83,7 +83,7 @@ public final class ModUtil {
 
 	/**
 	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
-	 * 
+	 *
 	 * @param entry           the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param registryName    the registry name for the entry
 	 * @param unlocalizedName the unlocalized name for the entry
@@ -104,17 +104,20 @@ public final class ModUtil {
 
 	/**
 	 * Utility method to make sure that all our items appear on our creative tab, the search tab and any other tab they specify
-	 * 
+	 *
 	 * @param item the {@link net.minecraft.item.Item Item}
 	 * @return an array of all tabs that this item is on.
 	 */
 	public static CreativeTabs[] getCreativeTabs(final Item item) {
-		return new CreativeTabs[] { item.getCreativeTab(), ModCreativeTabs.CREATIVE_TAB, CreativeTabs.SEARCH };
+		if (item.getRegistryName().getPath().equals(ModReference.MOD_ID)) {
+			return new CreativeTabs[] { item.getCreativeTab(), ModCreativeTabs.CREATIVE_TAB, CreativeTabs.SEARCH };
+		}
+		return new CreativeTabs[] { item.getCreativeTab(), CreativeTabs.SEARCH };
 	}
 
 	/**
 	 * Utility method to make sure that all our items appear on our creative tab
-	 * 
+	 *
 	 * @param item the {@link net.minecraft.item.Item Item}
 	 */
 	public static void setCreativeTab(final Item item) {
@@ -125,7 +128,7 @@ public final class ModUtil {
 
 	/**
 	 * Utility method to make sure that all our blocks appear on our creative tab
-	 * 
+	 *
 	 * @param block the {@link net.minecraft.block.Block Block}
 	 */
 	public static void setCreativeTab(final Block block) {
@@ -136,7 +139,7 @@ public final class ModUtil {
 
 	/**
 	 * https://stackoverflow.com/a/5732117
-	 * 
+	 *
 	 * @param input_start
 	 * @param input_end
 	 * @param output_start
@@ -157,7 +160,7 @@ public final class ModUtil {
 	 * (EntityPortableGenerator, "Entity") -> portable_generator<br>
 	 * (TileEntityPortableGenerator, "Entity") -> tile_portable_generator<br>
 	 * (EntityPortableEntityGeneratorEntity, "Entity") -> portable_generator<br>
-	 * 
+	 *
 	 * @param clazz      the class
 	 * @param removeType the string to be removed from the class's name
 	 * @return the recommended registry name for the class
@@ -171,7 +174,7 @@ public final class ModUtil {
 	 * super_advanced_furnace -> Super Advanced Furnace<br>
 	 * portable_generator -> Portable Generator<br>
 	 * tile_portable_generator -> Tile Portable Generator <br>
-	 * 
+	 *
 	 * @param unlocalised the unlocalised name in
 	 * @return the recommended localised name for the class
 	 */
@@ -187,7 +190,7 @@ public final class ModUtil {
 	/**
 	 * Gets the game name from a slot<br>
 	 * For example {@link net.minecraft.inventory.EntityEquipmentSlot.CHEST EntityEquipmentSlot.CHEST} -> "chestplate"
-	 * 
+	 *
 	 * @param slotIn the {@link net.minecraft.inventory.EntityEquipmentSlot EntityEquipmentSlot} to get the name for
 	 * @return the game name for the slot
 	 */
