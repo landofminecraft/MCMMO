@@ -41,11 +41,28 @@ public class BlockGrindstone extends BlockHorizontal {
 	}
 
 	@Override
+	public boolean isFullBlock(final IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube(final IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube(final IBlockState state) {
+		return false;
+	}
+
+	@Deprecated
+	@Override
 	public int getMetaFromState(final IBlockState state) {
 		return state.getValue(FACING).getHorizontalIndex();
 
 	}
 
+	@Deprecated
 	@Override
 	public IBlockState getStateFromMeta(final int meta) {
 		return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));

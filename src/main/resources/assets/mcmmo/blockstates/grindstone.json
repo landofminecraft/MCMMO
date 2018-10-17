@@ -1,0 +1,9 @@
+{
+	"variants": {
+		"normal":		{ "model": "mcmmo:grindstone" },
+		"facing=north":	{ "model": "mcmmo:grindstone" },
+		"facing=south":	{ "model": "mcmmo:grindstone", "y": 180 },
+		"facing=west":	{ "model": "mcmmo:grindstone", "y": 270 },
+		"facing=east":	{ "model": "mcmmo:grindstone", "y": 90 }
+	}
+}

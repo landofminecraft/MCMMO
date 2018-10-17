@@ -4,6 +4,7 @@ import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
 import com.landofminecraft.mcmmo.init.ModBlocks;
 import com.landofminecraft.mcmmo.item.ModItemBlock;
+import com.landofminecraft.mcmmo.tileentity.TileEntityGrindstone;
 import com.landofminecraft.mcmmo.util.ModReference;
 import com.landofminecraft.mcmmo.util.ModUtil;
 
@@ -46,8 +47,7 @@ public final class EventSubscriber {
 	}
 
 	private static void registerTileEntities() {
-		// registerTileEntity(TileEntity.class);
-		// registerTileEntity(TileEntity.class);
+		registerTileEntity(TileEntityGrindstone.class);
 	}
 
 	private static void registerTileEntity(final Class<? extends TileEntity> clazz) {
