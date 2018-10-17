@@ -156,7 +156,7 @@ public class ModMaterialProperties {
 	/*@formatter:on*/
 	) {
 
-		this(hasOre, hasBlock, hasResourcePiece, resourceSuffix, hasResourcePiece, resourcePieceSuffix, hasArmor, hasArmor, hasArmor, hasArmor, hasArmor, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, MOHS_Hardness, getOreDrop, blockRenderLayers, getQuantityDroppedWithBonusFromOre);
+		this(hasOre, hasBlock, hasResource, resourceSuffix, hasResourcePiece, resourcePieceSuffix, hasArmor, hasArmor, hasArmor, hasArmor, hasArmor, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, MOHS_Hardness, getOreDrop, blockRenderLayers, getQuantityDroppedWithBonusFromOre);
 
 	}
 
