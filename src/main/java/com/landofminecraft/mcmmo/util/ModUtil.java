@@ -109,7 +109,7 @@ public final class ModUtil {
 	 * @return an array of all tabs that this item is on.
 	 */
 	public static CreativeTabs[] getCreativeTabs(final Item item) {
-		if (item.getRegistryName().getPath().equals(ModReference.MOD_ID)) {
+		if (item.getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 			return new CreativeTabs[] { item.getCreativeTab(), ModCreativeTabs.CREATIVE_TAB, CreativeTabs.SEARCH };
 		}
 		return new CreativeTabs[] { item.getCreativeTab(), CreativeTabs.SEARCH };
