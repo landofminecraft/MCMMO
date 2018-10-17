@@ -133,6 +133,33 @@ public class ModMaterialProperties {
 
 	}
 
+	public ModMaterialProperties(
+	/*@formatter:off*/
+		final boolean hasOre,
+		final boolean hasBlock,
+		final boolean hasResource,
+		@Nullable
+		final String resourceSuffix,
+		final boolean hasResourcePiece,
+		@Nullable
+		final String resourcePieceSuffix,
+		final boolean hasArmor,
+		final boolean hasTools,
+		final float MOHS_Hardness,
+		@Nullable
+		final Supplier<Item> getOreDrop,
+		@Nullable
+		final BlockRenderLayer[] blockRenderLayers,
+		@Nonnull
+		@MethodsReturnNonnullByDefault
+		final BiFunction<Integer, Random, Integer> getQuantityDroppedWithBonusFromOre
+	/*@formatter:on*/
+	) {
+
+		this(hasOre, hasBlock, hasResourcePiece, resourceSuffix, hasResourcePiece, resourcePieceSuffix, hasArmor, hasArmor, hasArmor, hasArmor, hasArmor, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, MOHS_Hardness, getOreDrop, blockRenderLayers, getQuantityDroppedWithBonusFromOre);
+
+	}
+
 	public boolean hasOre() {
 		return this.hasOre;
 	}
