@@ -34,3 +34,6 @@ run
 /build/*
 !/build/libs/
 /build/libs/*sources*
+
+#Mac setup script
+!/mac_setup.command
