@@ -36,7 +36,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModWritingUtil {
 
 	@SubscribeEvent
-	public void onRegisterModelsEvent(final ModelRegistryEvent event) {
+	public static void onRegisterModelsEvent(final ModelRegistryEvent event) {
 		writeMod();
 	}
 
