@@ -42,10 +42,52 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public final class MinecraftMMO {
 
 	/****** TODO LIST ******/
+
 	// TODO Weapons
 	// -Crossbows & shortbows
 	// -Javelins/Spears
+	// @Cadiboo @MDW_01
 	// -Daggers/throwing knives (entity)
+
+	// TODO @Oscar
+	// Crossbow & shortbow models
+
+	// TODO @Cadiboo
+	// -Cloth: Lightweight clothing that doesn’t restrict movement or spells
+
+	// TODO
+	// Armor @Cadiboo @MDW_01 need to talk to telemindred
+	// @Cadiboo @Cadiboo MODULAR ARMOR!
+	// -Armor: (basically armor how it is now) (DONE!!!)
+	// -Light Armor: Leather/Cloth armor that doesn’t slow the user down
+	// -Plated/Heavy Armor: Stronger but heavier, slowing the user down and preventing parkour
+	// -Reinforced Armor: Not as heavy as plated armor and not as defensive, but still slows the user down and prevents parkour (typically old, ancient or weak materials reinforced to be stronger)
+
+	// TODO Weight @Cadiboo
+	// Metals
+	// -Bronze: Slightly weaker than iron
+	// -Steel: Stronger than Iron, weaker than diamond, this is an alloy of iron and coal.
+	// -Silver: Slightly weaker than bronze
+	// -Dark iron: Stronger but heavier than steel
+	// -Light steel: Strong as but lighter than steel
+	// -QuickSilver: slightly more strong than steel and light as light steel, it is an alloy of silver and lightsteel
+	// -Titanium: The most dense, strong and durable metal, but also extremely heavy and cumbersome
+	// -Alverium: A unique Alloy that’s stronger than Diamonds but more rare, a combination of ____ and ____.
+	// -Mixed Chunk: An alloy made when two incompatible metals mix together. Cannot be crafted into anything. Literally useless.
+
+	// TODO
+	// Stones/Blocks
+	// Wattle and Daub
+	// Clay Walls
+	// Timber Framing
+	// Roof Shingles
+	// Walls/fences
+	// Stairs/Slabs
+	// Window Designs
+	// Tiles/Colored Tiles
+	// Ropes/Chains
+	// Decorations (festival, signs, etc.)
+	// Furniture (chairs, tables, chandelier, barrels/crates, etc.)
 
 	// TODO Wagon/Carriage
 	// - Crafting: wip
@@ -56,11 +98,13 @@ public final class MinecraftMMO {
 
 	// TODO Blast Furnace
 	// How to craft: Must craft 8 Corner Furnace blocks (5 stone bricks, 3 smooth darkstone, 1 blaze powder). Place the corners in a 2x2 radius and the furnace will be forged. When it’s built, player needs to use a pickaxe on 1 side to create the input/output slot. Then the player needs to choose another side (excluding bottom) for the fuel input.
-	// Use: Furnace has two input slots making smelting faster. Speed of smelting is 50% faster than a normal furnace. Special use: By putting two ingots in the two inputs, one can make an alloy. If the ingots are not compatible, only a mixed chunk will come out. Placing an ore in a blast furnace reaps double the original haul.
+	// Use: Furnace has two input slots making smelting faster. Speed of smelting is 50% faster than a normal furnace.
+	// Special use: By putting two ingots in the two inputs, one can make an alloy. If the ingots are not compatible, only a mixed chunk will come out. Placing an ore in a blast furnace reaps double the original haul.
 	// Blast Furnace can have an output slot as well as an input slot for liquids as well. If players want to do so, they can place any metal in the third slot in the gui which will smelt the metal into a liquid. Players can either store the liquid in a bucket, or have it sent out via pipe into a tank for storage instead.
 	// Fuel: Either manually or via pipes insert lava, or manually insert coal or coal blocks. (coal and other non lava materials burn twice as quickly)
+	// summary a 2x speed 2x size 2x reward furnace
 
-	// TODO Grindstone
+	// TODO Grindstone @Cadiboo
 	// Crafting: wip.
 	// Use: Use to increase weapon base damage by a certain amount.
 
@@ -68,7 +112,7 @@ public final class MinecraftMMO {
 
 	// TODO Tubes and Pumps
 	// - Pumps:
-	// https://goo.gl/images/6VLBYL
+	// <a href="https://goo.gl/images/6VLBYL">click!</a>
 	// Crafting: wip
 	// Use: By setting it up correctly, pump will bring liquid from a large body of liquid up, and can transport it into tanks or tubes. Can push liquids higher up to about 10 blocks high.
 	//
