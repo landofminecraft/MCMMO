@@ -17,7 +17,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.landofminecraft.mcmmo.MinecraftMMO;
 import com.landofminecraft.mcmmo.init.ModBlocks;
 import com.landofminecraft.mcmmo.init.ModItems;
-import com.landofminecraft.mcmmo.material.GemProperties;
 import com.landofminecraft.mcmmo.material.ModMaterial;
 import com.landofminecraft.mcmmo.material.ModMaterialProperties;
 
@@ -25,19 +24,28 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Mod.EventBusSubscriber(Side.CLIENT)
 @SideOnly(Side.CLIENT)
 public class ModWritingUtil {
 
-	private static String assetDir = "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MCMMO/src/main/resources/assets/mcmmo/";
-	private static String dataDir = "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MCMMO/src/main/resources/data/mcmmo/";
+	@SubscribeEvent
+	public void onRegisterModelsEvent(final ModelRegistryEvent event) {
+		writeMod();
+	}
 
-	private static final ResourceLocation ITEM_GENERATED = new ResourceLocation("", "item/generated");
-	private static final ResourceLocation item_handheld = new ResourceLocation("", "item/handheld");
-	private static final String ITEM_DEFAULT_TEXTURE_NAME = "layer0";
+	private static final String	ASSET_DIR	= "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MCMMO/src/main/resources/assets/mcmmo/";
+	private static final String	DATA_DIR	= "/Users/" + System.getProperty("user.name") + "/Developer/Modding/MCMMO/src/main/resources/data/mcmmo/";
+
+	private static final ResourceLocation	ITEM_GENERATED				= new ResourceLocation("", "item/generated");
+	private static final ResourceLocation	item_handheld				= new ResourceLocation("", "item/handheld");
+	private static final String				ITEM_DEFAULT_TEXTURE_NAME	= "layer0";
 
 	@SideOnly(Side.CLIENT)
 	public static void writeMod() {
@@ -378,7 +386,7 @@ public class ModWritingUtil {
 				}
 			}
 
-			final Path file = Paths.get(assetDir + "blockstates/" + name.toLowerCase() + ".json");
+			final Path file = Paths.get(ASSET_DIR + "blockstates/" + name.toLowerCase() + ".json");
 			try {
 				MinecraftMMO.info("Writing Blockstate " + name.toLowerCase() + ".json");
 				Files.write(file, data, Charset.forName("UTF-8"));
@@ -398,7 +406,7 @@ public class ModWritingUtil {
 				}
 			}
 
-			final Path file = Paths.get(assetDir + "models/block/" + name.toLowerCase() + ".json");
+			final Path file = Paths.get(ASSET_DIR + "models/block/" + name.toLowerCase() + ".json");
 			try {
 				MinecraftMMO.info("Writing Block Model " + name.toLowerCase() + ".json");
 				Files.write(file, data, Charset.forName("UTF-8"));
@@ -418,7 +426,7 @@ public class ModWritingUtil {
 				}
 			}
 
-			final Path file = Paths.get(assetDir + "models/item/" + name.toLowerCase() + ".json");
+			final Path file = Paths.get(ASSET_DIR + "models/item/" + name.toLowerCase() + ".json");
 			try {
 				MinecraftMMO.info("Writing Item Model " + name.toLowerCase() + ".json");
 				Files.write(file, data, Charset.forName("UTF-8"));
@@ -449,83 +457,83 @@ public class ModWritingUtil {
 
 		for (final ModMaterial material : ModMaterial.values()) {
 
-			if (material.getOre() != null) {
+			if ((material.getOre() != null) && material.getOre().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getOre().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Ore");
 			}
 
-			if (material.getBlock() != null) {
+			if ((material.getBlock() != null) && material.getBlock().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getBlock().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Block");
 			}
 
-			if (material.getResource() != null) {
-				lang.put(material.getResource().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + (material.getProperties() instanceof GemProperties ? "" : " Ingot"));
+			if ((material.getResource() != null) && material.getResource().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
+				lang.put(material.getResource().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + (material.getProperties().getResourceSuffix().length() > 0 ? " " + getTranslatedTranslationKey(material.getProperties().getResourceSuffix()) : ""));
 			}
 
-			if (material.getResourcePiece() != null) {
-				lang.put(material.getResourcePiece().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " " + (material.getProperties() instanceof GemProperties ? "Shard" : "Nugget"));
+			if ((material.getResourcePiece() != null) && material.getResourcePiece().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
+				lang.put(material.getResourcePiece().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + (material.getProperties().getResourcePieceSuffix().length() > 0 ? " " + getTranslatedTranslationKey(material.getProperties().getResourcePieceSuffix()) : ""));
 			}
 
 			// armor
 
-			if (material.getHelmet() != null) {
+			if ((material.getHelmet() != null) && material.getHelmet().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getHelmet().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Helmet");
 			}
 
-			if (material.getChestplate() != null) {
+			if ((material.getChestplate() != null) && material.getChestplate().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getChestplate().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Chestplate");
 			}
 
-			if (material.getLeggings() != null) {
+			if ((material.getLeggings() != null) && material.getLeggings().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getLeggings().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Leggings");
 			}
 
-			if (material.getBoots() != null) {
+			if ((material.getBoots() != null) && material.getBoots().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getBoots().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Boots");
 			}
 
-			if (material.getHorseArmor() != null) {
+			if ((material.getHorseArmor() != null) && material.getHorseArmor().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getHorseArmor().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Horse Armor");
 			}
 
 			// tools
 
-			if (material.getAxe() != null) {
+			if ((material.getAxe() != null) && material.getAxe().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getAxe().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Axe");
 			}
 
-			if (material.getPickaxe() != null) {
+			if ((material.getPickaxe() != null) && material.getPickaxe().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getPickaxe().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Pickaxe");
 			}
 
-			if (material.getSword() != null) {
+			if ((material.getSword() != null) && material.getSword().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getSword().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Sword");
 			}
 
-			if (material.getShovel() != null) {
+			if ((material.getShovel() != null) && material.getShovel().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getShovel().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Shovel");
 			}
 
-			if (material.getHoe() != null) {
+			if ((material.getHoe() != null) && material.getHoe().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getHoe().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Hoe");
 			}
 
-			if (material.getMace() != null) {
+			if ((material.getMace() != null) && material.getMace().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getMace().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Mace");
 			}
 
-			if (material.getHammer() != null) {
+			if ((material.getHammer() != null) && material.getHammer().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getHammer().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Hammer");
 			}
 
-			if (material.getWarAxe() != null) {
+			if ((material.getWarAxe() != null) && material.getWarAxe().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getWarAxe().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " War Axe");
 			}
 
-			if (material.getCurvedSword() != null) {
+			if ((material.getCurvedSword() != null) && material.getCurvedSword().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getCurvedSword().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Curved Sword");
 			}
 
-			if (material.getDagger() != null) {
+			if ((material.getDagger() != null) && material.getDagger().getRegistryName().getNamespace().equals(ModReference.MOD_ID)) {
 				lang.put(material.getDagger().getTranslationKey(), getTranslatedTranslationKey(material.getNameLowercase()) + " Dagger");
 			}
 
@@ -612,7 +620,7 @@ public class ModWritingUtil {
 			MinecraftMMO.info("Lang Entry " + langEntry);
 		}
 
-		final Path file = Paths.get(assetDir + "lang/" + getLangFileName() + "." + (Loader.MC_VERSION.contains("1.13") ? "json" : "lang"));
+		final Path file = Paths.get(ASSET_DIR + "lang/" + getLangFileName() + "." + (Loader.MC_VERSION.contains("1.13") ? "json" : "lang"));
 		MinecraftMMO.debug("Writing lang");
 		try {
 			Files.write(file, finalData, Charset.forName("UTF-8"));

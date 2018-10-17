@@ -10,7 +10,6 @@ import com.landofminecraft.mcmmo.network.ModNetworkManager;
 import com.landofminecraft.mcmmo.util.IProxy;
 import com.landofminecraft.mcmmo.util.ModGuiHandler;
 import com.landofminecraft.mcmmo.util.ModReference;
-import com.landofminecraft.mcmmo.util.ModWritingUtil;
 import com.landofminecraft.mcmmo.world.gen.ModWorldGenerator;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -178,7 +177,6 @@ public final class MinecraftMMO {
 	 */
 	@EventHandler
 	public void postInit(final FMLPostInitializationEvent event) {
-		ModWritingUtil.writeMod();
 	}
 
 	private static Logger getLogger() {
