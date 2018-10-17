@@ -121,7 +121,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	STONE(18, new ModMaterialProperties(false, false, false, null, false, null, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, 2.00f, null, null, null)),
 
-	CLOTH(18, new ModMaterialProperties(false, true, true, "", false, null, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, 0.50f, null, null, null)),
+	CLOTH(18, new ModMaterialProperties(false, true, true, "", false, null, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, 0.50f, null, GemProperties.BLOCK_RENDER_LAYERS, null)),
 
 	;
 
