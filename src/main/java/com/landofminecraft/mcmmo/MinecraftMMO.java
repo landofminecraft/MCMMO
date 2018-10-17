@@ -43,6 +43,9 @@ public final class MinecraftMMO {
 
 	/****** TODO LIST ******/
 
+	// TODO: @Telemindred
+	// Repository README.md
+
 	// TODO Weapons
 	// -Crossbows & shortbows
 	// -Javelins/Spears
