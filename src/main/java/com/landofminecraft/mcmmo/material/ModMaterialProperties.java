@@ -15,6 +15,9 @@ import net.minecraft.util.BlockRenderLayer;
 
 public class ModMaterialProperties {
 
+	public static final String	NULL_RESOURCE_SUFFIX		= "";
+	public static final String	NULL_RESOURCE_PIECE_SUFFIX	= "";
+
 	private final boolean	hasOre;
 	private final boolean	hasBlock;
 
@@ -59,10 +62,10 @@ public class ModMaterialProperties {
 		final boolean hasOre,
 		final boolean hasBlock,
 		final boolean hasResource,
-		@Nonnull
+		@Nullable
 		final String resourceSuffix,
 		final boolean hasResourcePiece,
-		@Nonnull
+		@Nullable
 		final String resourcePieceSuffix,
 		final boolean hasHelmet,
 		final boolean hasChestplate,
@@ -93,9 +96,17 @@ public class ModMaterialProperties {
 		this.hasOre = hasOre;
 		this.hasBlock = hasBlock;
 		this.hasResource = hasResource;
-		this.resourceSuffix = resourceSuffix;
+		if (resourceSuffix == null) {
+			this.resourceSuffix = NULL_RESOURCE_SUFFIX;
+		} else {
+			this.resourceSuffix = resourceSuffix;
+		}
 		this.hasResourcePiece = hasResourcePiece;
-		this.resourcePieceSuffix = resourcePieceSuffix;
+		if (resourceSuffix == null) {
+			this.resourcePieceSuffix = NULL_RESOURCE_PIECE_SUFFIX;
+		} else {
+			this.resourcePieceSuffix = resourcePieceSuffix;
+		}
 		this.hasHelmet = hasHelmet;
 		this.hasChestplate = hasChestplate;
 		this.hasLeggings = hasLeggings;

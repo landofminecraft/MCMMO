@@ -72,7 +72,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
  */
 public enum ModMaterial implements IEnumNameFormattable {
 
-	/* ore block ingot armor tools hard cond */
+	// TODO @Cadiboo weight
 
 	BRONZE(0, new MetalProperties(false, 3.00f)),
 
@@ -91,7 +91,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 	/* technically diamond is the highest the scale goes at 10, but "-Alverium: A unique Alloy that’s stronger than Diamonds" */
 	ALVERIUM(7, new MetalProperties(false, 11.00f)),
 
-	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, "", false, "", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 3.00f, null, null, null)),
+	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, null, false, null, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 3.00f, null, null, null)),
 
 	GOLD(9, new MetalProperties(false, 2.50f)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
@@ -117,9 +117,11 @@ public enum ModMaterial implements IEnumNameFormattable {
 		return (rand.nextInt(5) + 1) * (fortune + 1);
 	})),
 
-	WOOD(17, new ModMaterialProperties(false, false, false, "", false, "", false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, 1.00f, null, null, null)),
+	WOOD(17, new ModMaterialProperties(false, false, false, null, false, null, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, 1.00f, null, null, null)),
 
-	STONE(18, new ModMaterialProperties(false, false, false, "", false, "", false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, 2.00f, null, null, null)),
+	STONE(18, new ModMaterialProperties(false, false, false, null, false, null, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, 2.00f, null, null, null)),
+
+	CLOTH(18, new ModMaterialProperties(false, true, true, "", false, null, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, 0.50f, null, null, null)),
 
 	;
 
