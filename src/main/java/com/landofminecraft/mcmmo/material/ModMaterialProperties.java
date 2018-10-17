@@ -125,7 +125,7 @@ public class ModMaterialProperties {
 		this.hardness = MOHS_Hardness;
 		this.getOreDrop = getOreDrop;
 		if (blockRenderLayers == null) {
-			this.blockRenderLayers = new BlockRenderLayer[0];
+			this.blockRenderLayers = new BlockRenderLayer[] { BlockRenderLayer.SOLID };
 		} else {
 			this.blockRenderLayers = blockRenderLayers;
 		}
