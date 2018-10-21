@@ -8,11 +8,13 @@ import net.minecraft.item.ItemSword;
 
 public class ItemCurvedSword extends ItemSword implements IItemModMaterial {
 
+	public static final String SUFFIX = "curved_sword";
+
 	protected final ModMaterial material;
 
 	public ItemCurvedSword(final ModMaterial material) {
 		super(material.getToolMaterial());
-		ModUtil.setRegistryNames(this, material, "curved_sword");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 	}
 

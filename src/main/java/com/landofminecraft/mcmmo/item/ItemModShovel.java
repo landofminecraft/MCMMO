@@ -8,11 +8,13 @@ import net.minecraft.item.ItemSpade;
 
 public class ItemModShovel extends ItemSpade implements IItemModMaterial {
 
+	public static final String SUFFIX = "shovel";
+
 	protected final ModMaterial material;
 
 	public ItemModShovel(final ModMaterial material) {
 		super(material.getToolMaterial());
-		ModUtil.setRegistryNames(this, material, "shovel");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 	}
 

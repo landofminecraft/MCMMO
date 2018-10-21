@@ -13,16 +13,18 @@ import net.minecraft.util.BlockRenderLayer;
 
 /**
  * Custom ore block for materials
- * 
+ *
  * @author Cadiboo
  */
 public class BlockModOre extends Block implements IBlockModMaterial {
+
+	public static final String SUFFIX = "ore";
 
 	protected final ModMaterial material;
 
 	public BlockModOre(final ModMaterial material) {
 		super(Material.ROCK);
-		ModUtil.setRegistryNames(this, material, "ore");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 	}
 
@@ -39,18 +41,6 @@ public class BlockModOre extends Block implements IBlockModMaterial {
 	@Override
 	public boolean canRenderInLayer(final IBlockState state, final BlockRenderLayer layer) {
 		return this.material.getProperties().getBlockRenderLayers().contains(layer);
-	}
-
-	// TODO remove this
-	@Override
-	public boolean isFullCube(final IBlockState state) {
-		return false;
-	}
-
-	// TODO remove this
-	@Override
-	public boolean isOpaqueCube(final IBlockState state) {
-		return false;
 	}
 
 	@Override

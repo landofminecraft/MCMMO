@@ -35,6 +35,7 @@ import com.landofminecraft.mcmmo.item.ItemWarAxe;
 import com.landofminecraft.mcmmo.item.ModItemBlock;
 import com.landofminecraft.mcmmo.util.ModEnums.IEnumNameFormattable;
 import com.landofminecraft.mcmmo.util.ModReference;
+import com.landofminecraft.mcmmo.util.ModUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -49,6 +50,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
@@ -67,7 +69,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 /**
- * MOHS Hardness from <a href= "https://en.wikipedia.org/wiki/Mohs_scale_of_mineral_hardness">Wikipedia</a> and <a href= "http://periodictable.com/Properties/A/MohsHardness.v.html">Periodictable</a>
+ * MOHS Hardness from <a href= "https://en.wikipedia.org/wiki/Mohs_scale_of_mineral_hardness">Wikipedia</a> and <a href= "http://periodictable.com/Properties/A/MohsHardness.v.html">Periodictable</a><br>
+ * Density (g/cm3) mostly from <a href="http://www.psyclops.com/tools/technotes/materials/density.html">Psyclops</a><br>
  *
  * @author Cadiboo
  */
@@ -75,56 +78,58 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	// TODO @Cadiboo weight
 
-	BRONZE(0, new MetalProperties(false, 3.00f)),
+	BRONZE(0, new MetalProperties(false, 3.00f, 8.7f)),
 
-	STEEL(1, new MetalProperties(false, 4.50f)),
+	STEEL(1, new MetalProperties(false, 4.50f, 8.0f)),
 
-	SILVER(2, new MetalProperties(true, 2.50f)),
+	SILVER(2, new MetalProperties(true, 2.50f, 10.49f)),
 
-	DARK_IRON(3, new MetalProperties(true, 5.00f)),
+	DARK_IRON(3, new MetalProperties(true, 5.00f, 7.87f)),
 
-	LIGHT_STEEL(4, new MetalProperties(false, 5.00f)),
+	LIGHT_STEEL(4, new MetalProperties(false, 5.00f, 7.75f)),
 
-	QUICK_SILVER(5, new MetalProperties(false, 5.50f)),
+	QUICK_SILVER(5, new MetalProperties(false, 5.50f, LIGHT_STEEL.getProperties().getDensity())),
 
-	TITANIUM(6, new MetalProperties(true, 6.00f)),
+	TITANIUM(6, new MetalProperties(true, 6.00f, 4.51f)),
 
 	/* technically diamond is the highest the scale goes at 10, but "-Alverium: A unique Alloy that’s stronger than Diamonds" */
-	ALVERIUM(7, new MetalProperties(false, 11.00f)),
+	ALVERIUM(7, new MetalProperties(false, 11.00f, Float.MAX_VALUE)),
 
-	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, null, false, null, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 3.00f, null, null, null)),
+	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, null, false, null, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 3.00f, 10.0f, null, null, null)),
 
-	GOLD(9, new MetalProperties(false, 2.50f)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
+	GOLD(9, new MetalProperties(false, 2.50f, 19.3f)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	IRON(10, new MetalProperties(false, 4.00f)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
+	IRON(10, new MetalProperties(false, 4.00f, 7.87f)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	DIAMOND(11, new GemProperties(false, true, true, 10.00f, null, null)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
+	DIAMOND(11, new GemProperties(false, true, true, 10.00f, 3.51f, null, null)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	EMERALD(12, new GemProperties(false, false, false, 8.00f, null, null)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
+	EMERALD(12, new GemProperties(false, false, false, 8.00f, 2.75f, null, null)), // hasOre = false to let vanilla ore gen do the work. note that this results in getOre() always returning null
 
-	RUBY(13, new GemProperties(true, false, false, 9.00f, () -> ModItems.RUBY, (final Integer fortune, final Random rand) -> {
+	RUBY(13, new GemProperties(true, false, false, 9.00f, 4.02f, () -> ModItems.RUBY, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(4) + 1) * (fortune + 1);
 	})),
 
-	SAPHIRE(14, new GemProperties(true, false, false, 9.00f, () -> ModItems.SAPHIRE, (final Integer fortune, final Random rand) -> {
+	SAPHIRE(14, new GemProperties(true, false, false, 9.00f, 3.98f, () -> ModItems.SAPHIRE, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(4) + 1) * (fortune + 1);
 	})),
 
-	AMETHYST(15, new GemProperties(true, false, false, 7.00f, () -> ModItems.AMETHYST, (final Integer fortune, final Random rand) -> {
+	AMETHYST(15, new GemProperties(true, false, false, 7.00f, 2.66f, () -> ModItems.AMETHYST, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(6) + 1) * (fortune + 1);
 	})),
 
-	TOPAZ(16, new GemProperties(true, false, false, 8.00f, () -> ModItems.TOPAZ, (final Integer fortune, final Random rand) -> {
+	TOPAZ(16, new GemProperties(true, false, false, 8.00f, 3.55f, () -> ModItems.TOPAZ, (final Integer fortune, final Random rand) -> {
 		return (rand.nextInt(5) + 1) * (fortune + 1);
 	})),
 
-	WOOD(17, new ModMaterialProperties(false, false, false, null, false, null, false, true, 1.00f, null, null, null)),
+	WOOD(17, new ModMaterialProperties(false, false, false, null, false, null, false, true, 1.00f, 0.5f, null, null, null)),
 
-	STONE(18, new ModMaterialProperties(false, false, false, null, false, null, false, true, 2.00f, null, null, null)),
+	STONE(18, new ModMaterialProperties(false, false, false, null, false, null, false, true, 2.00f, 5.0f, null, null, null)),
 
-	CLOTH(18, new ModMaterialProperties(false, true, true, "", false, null, true, false, 0.50f, null, new BlockRenderLayer[] { BlockRenderLayer.CUTOUT }, null)),
+	CLOTH(18, new ModMaterialProperties(false, true, true, "", false, null, true, false, 0.50f, 1.5f, null, new BlockRenderLayer[] { BlockRenderLayer.CUTOUT }, null)),
 
 	;
+
+	public static final int MAX_ARMOR_REDUCTION_PER_PIECE = 6;
 
 	private final int					id;
 	private final ModMaterialProperties	properties;
@@ -177,26 +182,32 @@ public enum ModMaterial implements IEnumNameFormattable {
 		return this.id;
 	}
 
+	@Nonnull
 	public ModMaterialProperties getProperties() {
 		return this.properties;
 	}
 
+	@Nonnull
 	public String getModId() {
 		return this.modId;
 	}
 
+	@Nullable
 	public ArmorMaterial getArmorMaterial() {
 		return this.armorMaterial;
 	}
 
+	@Nullable
 	public ToolMaterial getToolMaterial() {
 		return this.toolMaterial;
 	}
 
+	@Nonnull
 	public HorseArmorType getHorseArmorType() {
 		return this.horseArmorType;
 	}
 
+	@Nullable
 	private ToolMaterial generateToolMaterial() {
 		boolean hasTools = false;
 		hasTools |= this.getProperties().hasPickaxe();
@@ -213,13 +224,14 @@ public enum ModMaterial implements IEnumNameFormattable {
 			final int maxUses = (int) Math.ceil(this.getProperties().getHardness() * 150f);
 			final float efficiency = this.getProperties().getHardness();
 			final float damageVsEntity = this.getProperties().getHardness();
-			final int enchantability = (int) this.getProperties().getHardness();
+			final int enchantability = (int) (this.getProperties().getHardness() + this.getProperties().getDensity());
 
 			final ToolMaterial toolMaterial = EnumHelper.addToolMaterial(name, harvestLevel, maxUses, efficiency, damageVsEntity, enchantability);
 			return toolMaterial;
 		}
 	}
 
+	@Nullable
 	private ArmorMaterial generateArmorMaterial() {
 		boolean hasArmor = false;
 		hasArmor |= this.getProperties().hasHelmet();
@@ -248,16 +260,21 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 			final String textureName = new ResourceLocation(this.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.ITEMS), this.getNameLowercase()).toString();
 
-			final int durability = (int) Math.ceil(this.getProperties().getHardness() * 5);
+			final int durability = (int) Math.ceil(this.getProperties().getHardness() * this.getProperties().getDensity());
 
+			// a total of 25 reduction = invincibility (if you want invincibility achieve it a different way)
+			// so we clamp reduction between 0 and (25-1)/4 for each armor piece
 			final int[] reductionAmounts = new int[4];
-			Arrays.fill(reductionAmounts, (int) Math.ceil(this.getProperties().getHardness() / 2f));
+			reductionAmounts[EntityEquipmentSlot.HEAD.getIndex()] = MathHelper.clamp((int) (this.getProperties().getHardness() * 0.3f), 0, MAX_ARMOR_REDUCTION_PER_PIECE);
+			reductionAmounts[EntityEquipmentSlot.CHEST.getIndex()] = MathHelper.clamp((int) (this.getProperties().getHardness() * 0.8f), 0, MAX_ARMOR_REDUCTION_PER_PIECE);
+			reductionAmounts[EntityEquipmentSlot.LEGS.getIndex()] = MathHelper.clamp((int) (this.getProperties().getHardness() * 0.6f), 0, MAX_ARMOR_REDUCTION_PER_PIECE);
+			reductionAmounts[EntityEquipmentSlot.LEGS.getIndex()] = MathHelper.clamp((int) (this.getProperties().getHardness() * 0.3f), 0, MAX_ARMOR_REDUCTION_PER_PIECE);
 
 			final int enchantability = (int) Math.ceil(this.getProperties().getHardness());
 
 			final SoundEvent soundOnEquip = SoundEvents.ITEM_ARMOR_EQUIP_IRON;
 
-			final float toughness = (int) Math.ceil(this.getProperties().getHardness() / 5f);
+			final float toughness = (int) Math.ceil(this.getProperties().getHardness() * this.getProperties().getDensity() * 0.2f);
 
 			final ArmorMaterial armorMaterial = EnumHelper.addArmorMaterial(name, textureName, durability, reductionAmounts, enchantability, soundOnEquip, toughness);
 			// TODO TEST THIS!!
@@ -267,6 +284,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 		}
 	}
 
+	@Nonnull
 	private HorseArmorType generateHorseArmorType() {
 		boolean hasArmor = false;
 		hasArmor |= this.getProperties().hasHelmet();
@@ -287,6 +305,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 		}
 	}
 
+	@Nonnull
 	public String getResouceLocationDomainWithOverrides(final String nameSuffix, final IForgeRegistry registry) {
 		for (final ModContainer mod : Loader.instance().getActiveModList()) {
 			if (!mod.getModId().equals(ModReference.MOD_ID)) {
@@ -298,41 +317,42 @@ public enum ModMaterial implements IEnumNameFormattable {
 		return ModReference.MOD_ID;
 	}
 
+	@Nonnull
 	public String getVanillaNameLowercase(final String suffix) {
 
 		final String vanillaNameLowercase;
 
 		if (this.getNameLowercase().equals("gold")) {
 			switch (suffix.toLowerCase()) {
-			case "sword":
-			case "shovel":
-			case "pickaxe":
-			case "axe":
-			case "hoe":
-			case "helmet":
-			case "chestplate":
-			case "leggings":
-			case "boots":
-			case "apple":
-			case "carrot":
-			case "horse_armor":
-				vanillaNameLowercase = this.getNameLowercase() + "en";
-				break;
-			default:
-				vanillaNameLowercase = this.getNameLowercase();
+				case "sword":
+				case "shovel":
+				case "pickaxe":
+				case "axe":
+				case "hoe":
+				case "helmet":
+				case "chestplate":
+				case "leggings":
+				case "boots":
+				case "apple":
+				case "carrot":
+				case "horse_armor":
+					vanillaNameLowercase = this.getNameLowercase() + "en";
+					break;
+				default:
+					vanillaNameLowercase = this.getNameLowercase();
 			}
 		} else if (this.getNameLowercase().equals("wood")) {
 
 			switch (suffix.toLowerCase()) {
-			case "sword":
-			case "shovel":
-			case "pickaxe":
-			case "axe":
-			case "hoe":
-				vanillaNameLowercase = this.getNameLowercase() + "en";
-				break;
-			default:
-				vanillaNameLowercase = this.getNameLowercase();
+				case "sword":
+				case "shovel":
+				case "pickaxe":
+				case "axe":
+				case "hoe":
+					vanillaNameLowercase = this.getNameLowercase() + "en";
+					break;
+				default:
+					vanillaNameLowercase = this.getNameLowercase();
 			}
 		} else {
 			vanillaNameLowercase = this.getNameLowercase();
@@ -341,10 +361,12 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	}
 
+	@Nonnull
 	public String getVanillaNameUppercase(final String suffix) {
 		return this.getVanillaNameLowercase(suffix).toUpperCase();
 	}
 
+	@Nonnull
 	public String getVanillaNameFormatted(final String suffix) {
 		return StringUtils.capitalize(this.getVanillaNameLowercase(suffix));
 	}
@@ -355,100 +377,128 @@ public enum ModMaterial implements IEnumNameFormattable {
 		return String.join(" ", Arrays.asList(this.getNameLowercase().split("_")).stream().map(String::toUpperCase).collect(Collectors.toList()));
 	}
 
+	@Nullable
 	public BlockModOre getOre() {
 		return this.ore;
 	}
 
+	@Nullable
 	public BlockResource getBlock() {
 		return this.block;
 	}
 
+	@Nullable
 	public ItemResource getResource() {
 		return this.resource;
 	}
 
+	@Nullable
 	public ItemResourcePiece getResourcePiece() {
 		return this.resourcePiece;
 	}
 
+	@Nullable
 	public ModItemBlock getItemBlockOre() {
 		return this.itemBlockOre;
 	}
 
+	@Nullable
 	public ModItemBlock getItemBlockBlock() {
 		return this.itemBlockBlock;
 	}
 
+	@Nullable
 	public ItemModArmor getHelmet() {
 		return this.helmet;
 	}
 
+	@Nullable
 	public ItemModArmor getChestplate() {
 		return this.chestplate;
 	}
 
+	@Nullable
 	public ItemModArmor getLeggings() {
 		return this.leggings;
 	}
 
+	@Nullable
 	public ItemModArmor getBoots() {
 		return this.boots;
 	}
 
+	@Nullable
 	public ItemModHorseArmor getHorseArmor() {
 		return this.horseArmor;
 	}
 
+	@Nullable
 	public ItemModPickaxe getPickaxe() {
 		return this.pickaxe;
 	}
 
+	@Nullable
 	public ItemModAxe getAxe() {
 		return this.axe;
 	}
 
+	@Nullable
 	public ItemModSword getSword() {
 		return this.sword;
 	}
 
+	@Nullable
 	public ItemModShovel getShovel() {
 		return this.shovel;
 	}
 
+	@Nullable
 	public ItemModHoe getHoe() {
 		return this.hoe;
 	}
 
+	@Nullable
 	public ItemMace getMace() {
 		return this.mace;
 	}
 
+	@Nullable
 	public ItemHammer getHammer() {
 		return this.hammer;
 	}
 
+	@Nullable
 	public ItemWarAxe getWarAxe() {
 		return this.warAxe;
 	}
 
+	@Nullable
 	public ItemCurvedSword getCurvedSword() {
 		return this.curvedSword;
 	}
 
+	@Nullable
 	public ItemDagger getDagger() {
 		return this.dagger;
 	}
 
 	public static float getHighestHardness() {
-		float ret = 0;
+		float highestHardness = 0;
 		for (final ModMaterial material : ModMaterial.values()) {
-			if (material.getProperties().getHardness() > ret) {
-				ret = material.getProperties().getHardness();
-			}
+			highestHardness = Math.max(highestHardness, material.getProperties().getHardness());
 		}
-		return ret;
+		return highestHardness;
 	}
 
+	public static float getHighestDensity() {
+		float highestDensity = 0;
+		for (final ModMaterial material : ModMaterial.values()) {
+			highestDensity = Math.max(highestDensity, material.getProperties().getDensity());
+		}
+		return highestDensity;
+	}
+
+	@Nonnull
 	public static ModMaterial byId(final int id) {
 		return values()[Math.min(Math.abs(id), values().length)];
 	}
@@ -477,12 +527,12 @@ public enum ModMaterial implements IEnumNameFormattable {
 			final IForgeRegistry<Item> registry = event.getRegistry();
 
 			if (ModMaterial.this.getProperties().hasOre()) {
-				ModMaterial.this.itemBlockOre = new ModItemBlock(ModMaterial.this.getOre(), new ResourceLocation(ModMaterial.this.getResouceLocationDomainWithOverrides("ore", ForgeRegistries.BLOCKS), ModMaterial.this.getNameLowercase() + "_ore"));
+				ModMaterial.this.itemBlockOre = new ModItemBlock(ModMaterial.this.getOre());
 				registry.register(ModMaterial.this.itemBlockOre);
 			}
 
 			if (ModMaterial.this.getProperties().hasBlock()) {
-				ModMaterial.this.itemBlockBlock = new ModItemBlock(ModMaterial.this.getBlock(), new ResourceLocation(ModMaterial.this.getResouceLocationDomainWithOverrides("block", ForgeRegistries.BLOCKS), ModMaterial.this.getNameLowercase() + "_block"));
+				ModMaterial.this.itemBlockBlock = new ModItemBlock(ModMaterial.this.getBlock());
 				registry.register(ModMaterial.this.itemBlockBlock);
 			}
 
@@ -700,10 +750,10 @@ public enum ModMaterial implements IEnumNameFormattable {
 				final IForgeRegistry<Block> castRegistry = registry;
 
 				if (ModMaterial.this.getProperties().hasOre()) {
-					ModMaterial.this.ore = (BlockModOre) this.getRegistryValue(castRegistry, "ore");
+					ModMaterial.this.ore = (BlockModOre) this.getRegistryValue(castRegistry, BlockModOre.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasBlock()) {
-					ModMaterial.this.block = (BlockResource) this.getRegistryValue(castRegistry, "block");
+					ModMaterial.this.block = (BlockResource) this.getRegistryValue(castRegistry, BlockResource.SUFFIX);
 				}
 			}
 
@@ -711,10 +761,10 @@ public enum ModMaterial implements IEnumNameFormattable {
 				final IForgeRegistry<Item> castRegistry = registry;
 
 				if (ModMaterial.this.getProperties().hasOre()) {
-					ModMaterial.this.itemBlockOre = (ModItemBlock) this.getRegistryValue(castRegistry, "ore");
+					ModMaterial.this.itemBlockOre = (ModItemBlock) this.getRegistryValue(castRegistry, BlockModOre.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasBlock()) {
-					ModMaterial.this.itemBlockBlock = (ModItemBlock) this.getRegistryValue(castRegistry, "block");
+					ModMaterial.this.itemBlockBlock = (ModItemBlock) this.getRegistryValue(castRegistry, BlockResource.SUFFIX);
 				}
 
 				//
@@ -727,49 +777,49 @@ public enum ModMaterial implements IEnumNameFormattable {
 				}
 
 				if (ModMaterial.this.getProperties().hasHelmet()) {
-					ModMaterial.this.helmet = (ItemModArmor) this.getRegistryValue(castRegistry, "helmet");
+					ModMaterial.this.helmet = (ItemModArmor) this.getRegistryValue(castRegistry, ModUtil.getSlotGameNameLowercase(EntityEquipmentSlot.HEAD));
 				}
 				if (ModMaterial.this.getProperties().hasChestplate()) {
-					ModMaterial.this.chestplate = (ItemModArmor) this.getRegistryValue(castRegistry, "chestplate");
+					ModMaterial.this.chestplate = (ItemModArmor) this.getRegistryValue(castRegistry, ModUtil.getSlotGameNameLowercase(EntityEquipmentSlot.CHEST));
 				}
 				if (ModMaterial.this.getProperties().hasLeggings()) {
-					ModMaterial.this.leggings = (ItemModArmor) this.getRegistryValue(castRegistry, "leggings");
+					ModMaterial.this.leggings = (ItemModArmor) this.getRegistryValue(castRegistry, ModUtil.getSlotGameNameLowercase(EntityEquipmentSlot.LEGS));
 				}
 				if (ModMaterial.this.getProperties().hasBoots()) {
-					ModMaterial.this.boots = (ItemModArmor) this.getRegistryValue(castRegistry, "boots");
+					ModMaterial.this.boots = (ItemModArmor) this.getRegistryValue(castRegistry, ModUtil.getSlotGameNameLowercase(EntityEquipmentSlot.FEET));
 				}
 				if (ModMaterial.this.getProperties().hasHorseArmor()) {
-					ModMaterial.this.horseArmor = (ItemModHorseArmor) this.getRegistryValue(castRegistry, "horse_armor");
+					ModMaterial.this.horseArmor = (ItemModHorseArmor) this.getRegistryValue(castRegistry, ItemModHorseArmor.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasPickaxe()) {
-					ModMaterial.this.pickaxe = (ItemModPickaxe) this.getRegistryValue(castRegistry, "pickaxe");
+					ModMaterial.this.pickaxe = (ItemModPickaxe) this.getRegistryValue(castRegistry, ItemModPickaxe.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasAxe()) {
-					ModMaterial.this.axe = (ItemModAxe) this.getRegistryValue(castRegistry, "axe");
+					ModMaterial.this.axe = (ItemModAxe) this.getRegistryValue(castRegistry, ItemModAxe.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasSword()) {
-					ModMaterial.this.sword = (ItemModSword) this.getRegistryValue(castRegistry, "sword");
+					ModMaterial.this.sword = (ItemModSword) this.getRegistryValue(castRegistry, ItemModSword.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasShovel()) {
-					ModMaterial.this.shovel = (ItemModShovel) this.getRegistryValue(castRegistry, "shovel");
+					ModMaterial.this.shovel = (ItemModShovel) this.getRegistryValue(castRegistry, ItemModShovel.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasHoe()) {
-					ModMaterial.this.hoe = (ItemModHoe) this.getRegistryValue(castRegistry, "hoe");
+					ModMaterial.this.hoe = (ItemModHoe) this.getRegistryValue(castRegistry, ItemModHoe.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasMace()) {
-					ModMaterial.this.mace = (ItemMace) this.getRegistryValue(castRegistry, "mace");
+					ModMaterial.this.mace = (ItemMace) this.getRegistryValue(castRegistry, ItemMace.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasHammer()) {
-					ModMaterial.this.hammer = (ItemHammer) this.getRegistryValue(castRegistry, "hammer");
+					ModMaterial.this.hammer = (ItemHammer) this.getRegistryValue(castRegistry, ItemHammer.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasWarAxe()) {
-					ModMaterial.this.warAxe = (ItemWarAxe) this.getRegistryValue(castRegistry, "war_axe");
+					ModMaterial.this.warAxe = (ItemWarAxe) this.getRegistryValue(castRegistry, ItemWarAxe.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasCurvedSword()) {
-					ModMaterial.this.curvedSword = (ItemCurvedSword) this.getRegistryValue(castRegistry, "curved_sword");
+					ModMaterial.this.curvedSword = (ItemCurvedSword) this.getRegistryValue(castRegistry, ItemCurvedSword.SUFFIX);
 				}
 				if (ModMaterial.this.getProperties().hasDagger()) {
-					ModMaterial.this.dagger = (ItemDagger) this.getRegistryValue(castRegistry, "dagger");
+					ModMaterial.this.dagger = (ItemDagger) this.getRegistryValue(castRegistry, ItemDagger.SUFFIX);
 				}
 			}
 
@@ -793,6 +843,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	private final MaterialEventSubscriber eventSubscriber = new MaterialEventSubscriber();
 
+	@Nonnull
 	public MaterialEventSubscriber getEventSubscriber() {
 		return this.eventSubscriber;
 	}

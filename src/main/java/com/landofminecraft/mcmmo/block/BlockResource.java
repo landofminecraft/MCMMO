@@ -12,16 +12,18 @@ import net.minecraft.world.IBlockAccess;
 
 /**
  * The same as a block of Iron or a block of Gold but for all materials
- * 
+ *
  * @author Cadiboo
  */
 public class BlockResource extends Block implements IBlockModMaterial {
+
+	public static final String SUFFIX = "block";
 
 	protected final ModMaterial material;
 
 	public BlockResource(final ModMaterial material) {
 		super(Material.IRON);
-		ModUtil.setRegistryNames(this, material, "block");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 	}
 

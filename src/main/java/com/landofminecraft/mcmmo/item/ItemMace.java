@@ -22,13 +22,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMace extends Item implements IItemModMaterial {
 
+	public static final String SUFFIX = "mace";
+
 	private final ModMaterial	material;
 	private final float			attackDamage;
 
 	// copied pretty much everything from ItemSword
 	public ItemMace(final ModMaterial material) {
 		super();
-		ModUtil.setRegistryNames(this, material, "mace");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 		this.maxStackSize = 1;
 		this.setMaxDamage(material.getToolMaterial().getMaxUses());
@@ -113,7 +115,7 @@ public class ItemMace extends Item implements IItemModMaterial {
 
 	/**
 	 * Return whether this item is repairable in an anvil.
-	 * 
+	 *
 	 * @param toRepair the {@code ItemStack} being repaired
 	 * @param repair   the {@code ItemStack} being used to perform the repair
 	 */

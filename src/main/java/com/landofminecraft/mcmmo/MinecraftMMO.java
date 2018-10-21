@@ -56,7 +56,7 @@ public final class MinecraftMMO {
 	// Crossbow & shortbow models
 
 	// TODO @Cadiboo
-	// -Cloth: Lightweight clothing that doesn’t restrict movement or spells
+	// -Cloth: Lightweight clothing that doesn’t restrict movement or <strong>spells</strong>
 
 	// TODO
 	// Armor @Cadiboo @MDW_01 need to talk to telemindred

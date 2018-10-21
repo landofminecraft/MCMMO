@@ -8,11 +8,13 @@ import net.minecraft.item.ItemAxe;
 
 public class ItemModAxe extends ItemAxe implements IItemModMaterial {
 
+	public static final String SUFFIX = "axe";
+
 	protected final ModMaterial material;
 
 	public ItemModAxe(final ModMaterial material) {
 		super(material.getToolMaterial(), material.getToolMaterial().getAttackDamage(), material.getToolMaterial().getEfficiency());
-		ModUtil.setRegistryNames(this, material, "axe");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 	}
 

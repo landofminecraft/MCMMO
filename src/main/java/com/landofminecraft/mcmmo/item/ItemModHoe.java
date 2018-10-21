@@ -8,11 +8,13 @@ import net.minecraft.item.ItemHoe;
 
 public class ItemModHoe extends ItemHoe implements IItemModMaterial {
 
+	public static final String SUFFIX = "hoe";
+
 	protected final ModMaterial material;
 
 	public ItemModHoe(final ModMaterial material) {
 		super(material.getToolMaterial());
-		ModUtil.setRegistryNames(this, material, "hoe");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 	}
 

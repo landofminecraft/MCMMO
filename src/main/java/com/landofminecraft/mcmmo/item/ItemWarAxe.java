@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -22,13 +23,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemWarAxe extends Item implements IItemModMaterial {
 
+	public static final String SUFFIX = "war_axe";
+
 	private final ModMaterial	material;
 	private final float			attackDamage;
 
 	// copied pretty much everything from ItemSword
 	public ItemWarAxe(final ModMaterial material) {
 		super();
-		ModUtil.setRegistryNames(this, material, "war_axe");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 		this.maxStackSize = 1;
 		this.setMaxDamage(material.getToolMaterial().getMaxUses());
@@ -44,6 +47,11 @@ public class ItemWarAxe extends Item implements IItemModMaterial {
 	@Override
 	public CreativeTabs[] getCreativeTabs() {
 		return ModUtil.getCreativeTabs(this);
+	}
+
+	@Override
+	public boolean canDestroyBlockInCreative(final World world, final BlockPos pos, final ItemStack stack, final EntityPlayer player) {
+		return false;
 	}
 
 	/**
@@ -84,14 +92,6 @@ public class ItemWarAxe extends Item implements IItemModMaterial {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Check whether this Item can harvest the given Block
-	 */
-	@Override
-	public boolean canHarvestBlock(final IBlockState blockIn) {
-		return blockIn.getBlock() == Blocks.WEB;
 	}
 
 	/**

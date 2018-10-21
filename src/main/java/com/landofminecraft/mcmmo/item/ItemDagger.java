@@ -30,13 +30,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDagger extends Item implements IItemModMaterial {
 
+	public static final String SUFFIX = "dagger";
+
 	private final ModMaterial	material;
 	private final float			attackDamage;
 
 	// copied pretty much everything from ItemSword & ItemSnowball
 	public ItemDagger(final ModMaterial material) {
 		super();
-		ModUtil.setRegistryNames(this, material, "dagger");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 		this.maxStackSize = 8;
 		this.setMaxDamage(material.getToolMaterial().getMaxUses());
@@ -121,7 +123,7 @@ public class ItemDagger extends Item implements IItemModMaterial {
 
 	/**
 	 * Return whether this item is repairable in an anvil.
-	 * 
+	 *
 	 * @param toRepair the {@code ItemStack} being repaired
 	 * @param repair   the {@code ItemStack} being used to perform the repair
 	 */

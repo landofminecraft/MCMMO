@@ -45,7 +45,10 @@ public class ModMaterialProperties {
 	private final boolean	hasCurvedSword;
 	private final boolean	hasDagger;
 
-	private final float hardness;
+	/** http://periodictable.com/Properties/A/MohsHardness.al.html */
+	private final float	hardness;
+	/** http://www.psyclops.com/tools/technotes/materials/density.html */
+	private final float	density;
 
 	/** if null reverts to getItemFromBlock(block) */
 	@Nullable
@@ -83,6 +86,7 @@ public class ModMaterialProperties {
 		final boolean hasCurvedSword,
 		final boolean hasDagger,
 		final float MOHS_Hardness,
+		final float density_gramsPerCentimeterCubed,
 		@Nullable
 		final Supplier<Item> getOreDrop,
 		@Nullable
@@ -123,6 +127,7 @@ public class ModMaterialProperties {
 		this.hasCurvedSword = hasCurvedSword;
 		this.hasDagger = hasDagger;
 		this.hardness = MOHS_Hardness;
+		this.density = density_gramsPerCentimeterCubed;
 		this.getOreDrop = getOreDrop;
 		if (blockRenderLayers == null) {
 			this.blockRenderLayers = new BlockRenderLayer[] { BlockRenderLayer.SOLID };
@@ -146,6 +151,7 @@ public class ModMaterialProperties {
 		final boolean hasArmor,
 		final boolean hasTools,
 		final float MOHS_Hardness,
+		final float density_gramsPerCentimeterCubed,
 		@Nullable
 		final Supplier<Item> getOreDrop,
 		@Nullable
@@ -156,7 +162,7 @@ public class ModMaterialProperties {
 	/*@formatter:on*/
 	) {
 
-		this(hasOre, hasBlock, hasResource, resourceSuffix, hasResourcePiece, resourcePieceSuffix, hasArmor, hasArmor, hasArmor, hasArmor, hasArmor, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, MOHS_Hardness, getOreDrop, blockRenderLayers, getQuantityDroppedWithBonusFromOre);
+		this(hasOre, hasBlock, hasResource, resourceSuffix, hasResourcePiece, resourcePieceSuffix, hasArmor, hasArmor, hasArmor, hasArmor, hasArmor, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, hasTools, MOHS_Hardness, density_gramsPerCentimeterCubed, getOreDrop, blockRenderLayers, getQuantityDroppedWithBonusFromOre);
 
 	}
 
@@ -248,6 +254,10 @@ public class ModMaterialProperties {
 		return this.hardness;
 	}
 
+	public float getDensity() {
+		return this.density;
+	}
+
 	@Nullable
 	public Item getOreDrop() {
 		if (this.getOreDrop == null) {
@@ -283,6 +293,7 @@ public class ModMaterialProperties {
 		string += ", hasCurvedSword: " + this.hasCurvedSword();
 		string += ", hasDagger: " + this.hasDagger();
 		string += ", hardness: " + this.getHardness();
+		string += ", density: " + this.getDensity();
 		return string;
 	}
 

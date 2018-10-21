@@ -11,13 +11,15 @@ import net.minecraft.item.ItemStack;
 
 public class ItemModHorseArmor extends Item implements IItemModMaterial {
 
+	public static final String SUFFIX = "horse_armor";
+
 	protected final ModMaterial material;
 
 	public ItemModHorseArmor(final ModMaterial material) {
 		super();
 		this.setMaxStackSize(1);
 		this.setCreativeTab(Items.IRON_HORSE_ARMOR.getCreativeTab());
-		ModUtil.setRegistryNames(this, material, "horse_armor");
+		ModUtil.setRegistryNames(this, material, SUFFIX);
 		this.material = material;
 	}
 

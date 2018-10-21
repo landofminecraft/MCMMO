@@ -16,8 +16,8 @@ public class MetalProperties extends ModMaterialProperties {
 		return 1;
 	};
 
-	public MetalProperties(final boolean hasOre, final float MOHS_Hardness) {
-		super(hasOre, true, true, RESOURCE_SUFFIX, true, RESOURCE_PIECE_SUFFIX, true, true, MOHS_Hardness, null, BLOCK_RENDER_LAYERS, GET_QUANTITY_DROPPED_WITH_BONUS_FROM_ORE);
+	public MetalProperties(final boolean hasOre, final float MOHS_Hardness, final float density_gramsPerCentimeterCubed) {
+		super(hasOre, true, true, RESOURCE_SUFFIX, true, RESOURCE_PIECE_SUFFIX, true, true, MOHS_Hardness, density_gramsPerCentimeterCubed, null, BLOCK_RENDER_LAYERS, GET_QUANTITY_DROPPED_WITH_BONUS_FROM_ORE);
 	}
 
 }

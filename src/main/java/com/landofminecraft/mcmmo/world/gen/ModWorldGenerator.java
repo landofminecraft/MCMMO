@@ -23,15 +23,15 @@ public final class ModWorldGenerator implements IWorldGenerator {
 	@Override
 	public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkGenerator chunkGenerator, final IChunkProvider chunkProvider) {
 		switch (world.provider.getDimensionType()) {
-		case NETHER:
-			break;
-		case OVERWORLD:
-			this.generateOverworld(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
-			break;
-		case THE_END:
-			break;
-		default:
-			break;
+			case NETHER:
+				break;
+			case OVERWORLD:
+				this.generateOverworld(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+				break;
+			case THE_END:
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -60,6 +60,14 @@ public final class ModWorldGenerator implements IWorldGenerator {
 
 										this.maxHardnessMinusMaterialHardness(material)
 
+								) *
+
+								ModUtil.map(0,
+
+										ModMaterial.getHighestDensity(), 0, 1,
+
+										this.maxDensityMinusMaterialDensity(material)
+
 								)
 
 						)
@@ -87,7 +95,18 @@ public final class ModWorldGenerator implements IWorldGenerator {
 			return 1;
 		}
 
-		return Math.round(ModMaterial.getHighestHardness()) - Math.round(material.getProperties().getHardness());
+		return Math.round(highest - hardness);
+	}
+
+	private int maxDensityMinusMaterialDensity(final ModMaterial material) {
+		final float highest = ModMaterial.getHighestDensity();
+		final float density = material.getProperties().getDensity();
+
+		if (density == highest) {
+			return 1;
+		}
+
+		return Math.round(highest - density);
 	}
 
 	private void generateOre(final IBlockState ore, final World world, final Random random, final int x, final int z, final int minY, final int maxY, final int size, final int chances) {
