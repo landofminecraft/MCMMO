@@ -66,7 +66,7 @@ public final class MinecraftMMO {
 	// -Plated/Heavy Armor: Stronger but heavier, slowing the user down and preventing parkour
 	// -Reinforced Armor: Not as heavy as plated armor and not as defensive, but still slows the user down and prevents parkour (typically old, ancient or weak materials reinforced to be stronger)
 
-	// TODO Weight @Cadiboo
+	// TODO Weight @Cadiboo (Half done, need @Telemindred to review it)
 	// Metals
 	// -Bronze: Slightly weaker than iron
 	// -Steel: Stronger than Iron, weaker than diamond, this is an alloy of iron and coal.
