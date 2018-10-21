@@ -572,7 +572,7 @@ public class ModWritingUtil {
 
 				final Block block = (Block) value;
 
-				if ((block != null) && !block.getRegistryName().getPath().equalsIgnoreCase("napalm") && !block.getRegistryName().getPath().equalsIgnoreCase("peripheral")) {
+				if ((block != null)) {
 					lang.put(block.getTranslationKey(), getTranslatedTranslationKey(block.getRegistryName().getPath()));
 				}
 
