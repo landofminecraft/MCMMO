@@ -21,6 +21,7 @@ import com.landofminecraft.mcmmo.material.ModMaterial;
 import com.landofminecraft.mcmmo.material.ModMaterialProperties;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -75,6 +76,81 @@ public class ModWritingUtil {
 				for (final ModMaterial material : ModMaterial.values()) {
 					try {
 						generateAndWriteModels(material);
+
+						final HashMap<String, String> blockstates = new HashMap<>();
+						final HashMap<String, String> blockModels = new HashMap<>();
+						final HashMap<String, String> itemModels = new HashMap<>();
+
+						for (final EnumDyeColor color : EnumDyeColor.values()) {
+//							final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, color + "_" + BlockStainedHardenedClayWall.SUFFIX);
+//							blockstates.put(model.getPath(), generateBlockstateJSON(model, EnumFacing.UP, EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.WEST, EnumFacing.EAST));
+//
+//							final ResourceLocation parent = new ResourceLocation("", "block/cube_all");
+//							final String textureName = "all";
+//							final ResourceLocation blockTextureLocation = getTextureLocation(model, "block");
+//							blockModels.put(model.getPath(), generateModelJSON(parent, textureName, blockTextureLocation));
+//
+//							final ResourceLocation itemTextureLocation = getTextureLocation(model, "item");
+//							itemModels.put(model.getPath(), generateModelJSON(ITEM_GENERATED, ITEM_DEFAULT_TEXTURE_NAME, itemTextureLocation));
+						}
+
+						blockstates.forEach((name, state) -> {
+							final ArrayList data = new ArrayList<>(Arrays.asList(state.split("\n")));
+							final Iterator<String> it = data.iterator();
+							while (it.hasNext()) {
+								if (it.next().equals("")) {
+									it.remove();
+								}
+							}
+
+							final Path file = Paths.get(ASSET_DIR + "blockstates/" + name.toLowerCase() + ".json");
+							try {
+								MinecraftMMO.info("Writing Blockstate " + name.toLowerCase() + ".json");
+								Files.write(file, data, Charset.forName("UTF-8"));
+							} catch (final IOException e) {
+								e.printStackTrace();
+							}
+
+						});
+
+						blockModels.forEach((name, model) -> {
+							final ArrayList data = new ArrayList<>(Arrays.asList(model.split("\n")));
+							final Iterator<String> it = data.iterator();
+							while (it.hasNext()) {
+								if (it.next().equals("")) {
+									it.remove();
+								}
+							}
+
+							final Path file = Paths.get(ASSET_DIR + "models/block/" + name.toLowerCase() + ".json");
+							try {
+								MinecraftMMO.info("Writing Block Model " + name.toLowerCase() + ".json");
+								Files.write(file, data, Charset.forName("UTF-8"));
+							} catch (final IOException e) {
+								e.printStackTrace();
+							}
+
+						});
+
+						itemModels.forEach((name, model) -> {
+							final ArrayList data = new ArrayList<>(Arrays.asList(model.split("\n")));
+							final Iterator<String> it = data.iterator();
+							while (it.hasNext()) {
+								if (it.next().equals("")) {
+									it.remove();
+								}
+							}
+
+							final Path file = Paths.get(ASSET_DIR + "models/item/" + name.toLowerCase() + ".json");
+							try {
+								MinecraftMMO.info("Writing Item Model " + name.toLowerCase() + ".json");
+								Files.write(file, data, Charset.forName("UTF-8"));
+							} catch (final IOException e) {
+								e.printStackTrace();
+							}
+
+						});
+
 					} catch (final Exception e) {
 						e.printStackTrace();
 					}

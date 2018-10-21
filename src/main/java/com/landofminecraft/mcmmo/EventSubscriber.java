@@ -2,6 +2,7 @@ package com.landofminecraft.mcmmo;
 
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
 import com.landofminecraft.mcmmo.init.ModBlocks;
 import com.landofminecraft.mcmmo.item.ModItemBlock;
 import com.landofminecraft.mcmmo.tileentity.TileEntityGrindstone;
@@ -10,6 +11,7 @@ import com.landofminecraft.mcmmo.util.ModUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -38,6 +40,10 @@ public final class EventSubscriber {
 		registry.register(new BlockGrindstone("grindstone"));
 		registry.register(new BlockGrindstoneHandle("grindstone_handle"));
 
+		for (final EnumDyeColor color : EnumDyeColor.values()) {
+			registry.register(new BlockStainedHardenedClayWall(color));
+		}
+
 		MinecraftMMO.debug("Registered blocks");
 
 		registerTileEntities();
@@ -65,6 +71,22 @@ public final class EventSubscriber {
 
 		registry.register(new ModItemBlock(ModBlocks.GRINDSTONE));
 		registry.register(new ModItemBlock(ModBlocks.GRINDSTONE_HANDLE));
+
+		registry.register(new ModItemBlock(ModBlocks.WHITE_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.RED_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_CLAY_WALL));
 
 		MinecraftMMO.debug("Registered items");
 
