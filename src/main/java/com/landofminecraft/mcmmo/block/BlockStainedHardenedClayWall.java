@@ -155,10 +155,10 @@ public class BlockStainedHardenedClayWall extends Block {
 	public int getMetaFromState(final IBlockState state) {
 		int meta = 0b0000;
 
-		meta |= state.getValue(NORTH) == true ? 1 : 0 << EnumFacing.NORTH.getHorizontalIndex();
-		meta |= state.getValue(SOUTH) == true ? 1 : 0 << EnumFacing.SOUTH.getHorizontalIndex();
-		meta |= state.getValue(WEST) == true ? 1 : 0 << EnumFacing.WEST.getHorizontalIndex();
-		meta |= state.getValue(EAST) == true ? 1 : 0 << EnumFacing.EAST.getHorizontalIndex();
+		meta |= (state.getValue(NORTH) == true ? 1 : 0) << EnumFacing.NORTH.getHorizontalIndex();
+		meta |= (state.getValue(SOUTH) == true ? 1 : 0) << EnumFacing.SOUTH.getHorizontalIndex();
+		meta |= (state.getValue(WEST) == true ? 1 : 0) << EnumFacing.WEST.getHorizontalIndex();
+		meta |= (state.getValue(EAST) == true ? 1 : 0) << EnumFacing.EAST.getHorizontalIndex();
 
 		return meta;
 	}
