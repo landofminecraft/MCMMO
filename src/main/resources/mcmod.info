@@ -10,7 +10,7 @@
   "authorList": ["Telemindred", "MDW_01", "Cadiboo", "Oscar", "GlitchedWinner"],
   "credits": "The MCMMO Team",
   "logoFile": "/logo.png",
-  "screenshots": [],
+  "screenshots": ["/sc1.png", "/sc2.png", "/sc3.png"],
   "dependencies": []
 }
 ]
