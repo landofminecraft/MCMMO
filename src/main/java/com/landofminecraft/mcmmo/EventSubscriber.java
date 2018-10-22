@@ -1,5 +1,7 @@
 package com.landofminecraft.mcmmo;
 
+import com.landofminecraft.mcmmo.block.BlockConcreteWall;
+import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
 import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
@@ -42,6 +44,10 @@ public final class EventSubscriber {
 
 		for (final EnumDyeColor color : EnumDyeColor.values()) {
 			registry.register(new BlockStainedHardenedClayWall(color));
+
+			registry.register(new BlockConcreteWall(color));
+
+			registry.register(new BlockGlazedTerracottaWall(color));
 		}
 
 		MinecraftMMO.debug("Registered blocks");
@@ -87,6 +93,38 @@ public final class EventSubscriber {
 		registry.register(new ModItemBlock(ModBlocks.GREEN_CLAY_WALL));
 		registry.register(new ModItemBlock(ModBlocks.RED_CLAY_WALL));
 		registry.register(new ModItemBlock(ModBlocks.BLACK_CLAY_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.WHITE_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.RED_CONCRETE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_CONCRETE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.WHITE_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.RED_GLAZED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_GLAZED_TERRACOTTA_WALL));
 
 		MinecraftMMO.debug("Registered items");
 
