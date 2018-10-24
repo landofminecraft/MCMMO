@@ -250,7 +250,7 @@ public class ModWritingUtil {
 						}
 
 						blockstates.forEach((name, state) -> {
-							final ArrayList data = new ArrayList<>(Arrays.asList(state.split("\n")));
+							final ArrayList<String> data = new ArrayList<>(Arrays.asList(state.split("\n")));
 							final Iterator<String> it = data.iterator();
 							while (it.hasNext()) {
 								if (it.next().equals("")) {
@@ -269,7 +269,7 @@ public class ModWritingUtil {
 						});
 
 						blockModels.forEach((name, model) -> {
-							final ArrayList data = new ArrayList<>(Arrays.asList(model.split("\n")));
+							final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
 							final Iterator<String> it = data.iterator();
 							while (it.hasNext()) {
 								if (it.next().equals("")) {
@@ -288,7 +288,7 @@ public class ModWritingUtil {
 						});
 
 						itemModels.forEach((name, model) -> {
-							final ArrayList data = new ArrayList<>(Arrays.asList(model.split("\n")));
+							final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
 							final Iterator<String> it = data.iterator();
 							while (it.hasNext()) {
 								if (it.next().equals("")) {
@@ -609,7 +609,7 @@ public class ModWritingUtil {
 
 		MinecraftMMO.debug("Writing blockstates for " + material);
 		blockstates.forEach((name, state) -> {
-			final ArrayList data = new ArrayList<>(Arrays.asList(state.split("\n")));
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(state.split("\n")));
 			final Iterator<String> it = data.iterator();
 			while (it.hasNext()) {
 				if (it.next().equals("")) {
@@ -629,7 +629,7 @@ public class ModWritingUtil {
 
 		MinecraftMMO.debug("Writing blockModels for " + material);
 		blockModels.forEach((name, model) -> {
-			final ArrayList data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
 			final Iterator<String> it = data.iterator();
 			while (it.hasNext()) {
 				if (it.next().equals("")) {
@@ -649,7 +649,7 @@ public class ModWritingUtil {
 
 		MinecraftMMO.debug("Writing itemModels for " + material);
 		itemModels.forEach((name, model) -> {
-			final ArrayList data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
 			final Iterator<String> it = data.iterator();
 			while (it.hasNext()) {
 				if (it.next().equals("")) {

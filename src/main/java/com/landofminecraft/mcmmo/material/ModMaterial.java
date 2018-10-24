@@ -306,7 +306,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 	}
 
 	@Nonnull
-	public String getResouceLocationDomainWithOverrides(final String nameSuffix, final IForgeRegistry registry) {
+	public String getResouceLocationDomainWithOverrides(final String nameSuffix, final IForgeRegistry<?> registry) {
 		for (final ModContainer mod : Loader.instance().getActiveModList()) {
 			if (!mod.getModId().equals(ModReference.MOD_ID)) {
 				if (registry.containsKey(new ResourceLocation(mod.getModId(), this.getVanillaNameLowercase(nameSuffix) + (nameSuffix.length() > 0 ? "_" + nameSuffix : "")))) {
@@ -743,11 +743,11 @@ public enum ModMaterial implements IEnumNameFormattable {
 		}
 
 		@SubscribeEvent(priority = EventPriority.LOWEST)
-		public void onRegistryEventRegister(final RegistryEvent.Register event) {
-			final IForgeRegistry registry = event.getRegistry();
+		public void onRegistryEventRegister(final RegistryEvent.Register<?> event) {
+			final IForgeRegistry<?> registry = event.getRegistry();
 
 			if (registry == ForgeRegistries.BLOCKS) {
-				final IForgeRegistry<Block> castRegistry = registry;
+				final IForgeRegistry<Block> castRegistry = (IForgeRegistry<Block>) registry;
 
 				if (ModMaterial.this.getProperties().hasOre()) {
 					ModMaterial.this.ore = (BlockModOre) this.getRegistryValue(castRegistry, BlockModOre.SUFFIX);
@@ -758,7 +758,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 			}
 
 			if (registry == ForgeRegistries.ITEMS) {
-				final IForgeRegistry<Item> castRegistry = registry;
+				final IForgeRegistry<Item> castRegistry = (IForgeRegistry<Item>) registry;
 
 				if (ModMaterial.this.getProperties().hasOre()) {
 					ModMaterial.this.itemBlockOre = (ModItemBlock) this.getRegistryValue(castRegistry, BlockModOre.SUFFIX);
@@ -824,7 +824,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 			}
 
 			if (registry == ForgeRegistries.ENTITIES) {
-				final IForgeRegistry<EntityEntry> castRegistry = registry;
+				final IForgeRegistry<EntityEntry> castRegistry = (IForgeRegistry<EntityEntry>) registry;
 
 				if (ModMaterial.this.getProperties().hasDagger()) {
 					ModMaterial.this.thrownDagger = this.getRegistryValue(castRegistry, "thrown_dagger");

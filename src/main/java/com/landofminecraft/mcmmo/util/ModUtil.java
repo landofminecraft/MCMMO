@@ -21,11 +21,12 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 public final class ModUtil {
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.block.Block#setTranslationKey() Translation Key} for the block taking vanilla overriding into account
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.block.Block#setTranslationKey(String) Translation Key} for the block taking vanilla overriding into account
 	 *
 	 * @param block      the block to set registry names for
-	 * @param material   the {@link cadiboo.wiptech.util.ModEnums.ModMaterial Mod Material} to get the names based on
+	 * @param material   the {@link ModMaterial} to get the names based on
 	 * @param nameSuffix the string to be appended to the names (for example "ore" or "block")
+	 * @return the block
 	 */
 	public static Block setRegistryNames(final Block block, final ModMaterial material, final String nameSuffix) {
 		final ResourceLocation registryName = new ResourceLocation(material.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.BLOCKS), material.getVanillaNameLowercase(nameSuffix) + (nameSuffix.length() > 0 ? "_" + nameSuffix : ""));
@@ -36,7 +37,7 @@ public final class ModUtil {
 
 		if ((overriddenBlock != null)) {
 			// WHY do you not return null forge, WHY (it returns air)
-			if (overriddenBlock != ReflectionHelper.getPrivateValue(ForgeRegistry.class, (ForgeRegistry) ForgeRegistries.BLOCKS, "defaultValue")) {
+			if (overriddenBlock != ReflectionHelper.getPrivateValue(ForgeRegistry.class, (ForgeRegistry<?>) ForgeRegistries.BLOCKS, "defaultValue")) {
 				block.setTranslationKey(overriddenBlock.getTranslationKey().replace("tile.", ""));
 			}
 		}
@@ -44,11 +45,12 @@ public final class ModUtil {
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} for the item taking vanilla overriding and vanilla name quirks into account
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey(String) Translation Key} for the item taking vanilla overriding and vanilla name quirks into account
 	 *
 	 * @param item       the item to set registry names for
-	 * @param material   the {@link cadiboo.wiptech.util.ModEnums.ModMaterial Mod Material} to get the names based on
+	 * @param material   the {@link ModMaterial} to get the names based on
 	 * @param nameSuffix the string to be appended to the names (for example "shovel" or "helmet")
+	 * @return the item
 	 */
 	public static Item setRegistryNames(final Item item, final ModMaterial material, final String nameSuffix) {
 		final ResourceLocation registryName = new ResourceLocation(material.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.ITEMS), material.getVanillaNameLowercase(nameSuffix) + (nameSuffix.length() > 0 ? "_" + nameSuffix : ""));
@@ -62,31 +64,34 @@ public final class ModUtil {
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey(String) Translation Key} (if applicable) for the entry
 	 *
 	 * @param entry the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param name  the name for the entry that the registry name is derived from
+	 * @return the entry
 	 */
 	public static <T extends IForgeRegistryEntry.Impl<?>> T setRegistryNames(final T entry, final String name) {
 		return setRegistryNames(entry, new ResourceLocation(ModReference.MOD_ID, name));
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey(String) Translation Key} (if applicable) for the entry
 	 *
 	 * @param entry        the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param registryName the registry name for the entry that the unlocalised name is also gotten from
+	 * @return the entry
 	 */
 	public static <T extends IForgeRegistryEntry.Impl<?>> T setRegistryNames(final T entry, final ResourceLocation registryName) {
 		return setRegistryNames(entry, registryName, registryName.getPath());
 	}
 
 	/**
-	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey() Translation Key} (if applicable) for the entry
+	 * Sets the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl#setRegistryName(net.minecraft.util.ResourceLocation) Registry Name} and the {@link net.minecraft.item.Item#setTranslationKey(String) Translation Key} (if applicable) for the entry
 	 *
 	 * @param entry           the {@link net.minecraftforge.registries.IForgeRegistryEntry.Impl IForgeRegistryEntry.Impl<?>} to set the names for
 	 * @param registryName    the registry name for the entry
 	 * @param unlocalizedName the unlocalized name for the entry
+	 * @return the entry
 	 */
 	public static <T extends IForgeRegistryEntry.Impl<?>> T setRegistryNames(final T entry, final ResourceLocation registryName, final String unlocalizedName) {
 		entry.setRegistryName(registryName);
@@ -165,7 +170,7 @@ public final class ModUtil {
 	 * @param removeType the string to be removed from the class's name
 	 * @return the recommended registry name for the class
 	 */
-	public static String getRegistryNameForClass(final Class clazz, final String removeType) {
+	public static String getRegistryNameForClass(final Class<?> clazz, final String removeType) {
 		return org.apache.commons.lang3.StringUtils.uncapitalize(clazz.getSimpleName().replace(removeType, "")).replaceAll("([A-Z])", "_$1").toLowerCase();
 	}
 
@@ -189,23 +194,23 @@ public final class ModUtil {
 
 	/**
 	 * Gets the game name from a slot<br>
-	 * For example {@link net.minecraft.inventory.EntityEquipmentSlot.CHEST EntityEquipmentSlot.CHEST} -> "chestplate"
+	 * For example {@link net.minecraft.inventory.EntityEquipmentSlot#CHEST EntityEquipmentSlot.CHEST} -> "chestplate"
 	 *
 	 * @param slotIn the {@link net.minecraft.inventory.EntityEquipmentSlot EntityEquipmentSlot} to get the name for
 	 * @return the game name for the slot
 	 */
 	public static String getSlotGameNameLowercase(final EntityEquipmentSlot slotIn) {
 		switch (slotIn) {
-		case CHEST:
-			return "chestplate";
-		case FEET:
-			return "boots";
-		case HEAD:
-			return "helmet";
-		case LEGS:
-			return "leggings";
-		default:
-			return slotIn.name().toLowerCase();
+			case CHEST:
+				return "chestplate";
+			case FEET:
+				return "boots";
+			case HEAD:
+				return "helmet";
+			case LEGS:
+				return "leggings";
+			default:
+				return slotIn.name().toLowerCase();
 		}
 	}
 
