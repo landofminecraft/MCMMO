@@ -15,18 +15,34 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.landofminecraft.mcmmo.MinecraftMMO;
+import com.landofminecraft.mcmmo.block.BlockCobblestoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockCobblestoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockConcreteStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockConcreteStructureWall;
 import com.landofminecraft.mcmmo.block.BlockConcreteWall;
+import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
+import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockSandStoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockSandStoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayStructureWall;
 import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
+import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureWall;
+import com.landofminecraft.mcmmo.block.BlockStoneBrickWall;
 import com.landofminecraft.mcmmo.init.ModBlocks;
 import com.landofminecraft.mcmmo.init.ModItems;
 import com.landofminecraft.mcmmo.material.ModMaterial;
 import com.landofminecraft.mcmmo.material.ModMaterialProperties;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRedSandstone;
+import net.minecraft.block.BlockSandStone;
+import net.minecraft.block.BlockStoneBrick;
+import net.minecraft.block.BlockWall;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
@@ -87,6 +103,7 @@ public class ModWritingUtil {
 
 						generateAndWriteWallModels();
 						generateAndWriteStructureWallModels();
+						generateAndWriteStructureHorizontalModels();
 
 					} catch (final Exception e) {
 						e.printStackTrace();
@@ -94,6 +111,391 @@ public class ModWritingUtil {
 				}
 			}, "JSON Writer Thread").start();
 		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	private static void generateAndWriteStructureHorizontalModels() {
+		final HashMap<String, String> blockstates = new HashMap<>();
+		final HashMap<String, String> blockModels = new HashMap<>();
+		final HashMap<String, String> itemModels = new HashMap<>();
+
+		for (final EnumDyeColor color : EnumDyeColor.values()) {
+
+			for (final Tuple<String, String> tupple : new Tuple[] {
+
+					new Tuple<>(BlockStainedHardenedClayStructureHorizontal.SUFFIX, "hardened_clay_stained_"),
+
+					new Tuple<>(BlockConcreteStructureHorizontal.SUFFIX, "concrete_"),
+
+					new Tuple<>(BlockGlazedTerracottaStructureHorizontal.SUFFIX, "glazed_terracotta_"),
+
+			}) {
+				final String suffix = tupple.getFirst();
+				final String vanillaTexture = tupple.getSecond();
+
+				final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, color.getName() + "_" + suffix);
+				blockstates.put(model.getPath(), "{\n" +
+
+						"    \"multipart\": [\n" +
+
+						// when always true
+						"        {   \"when\": {\"OR\": [{\"north_east\": true}, {\"north_east\": false}]},\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"north_east\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"north_west\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"south_east\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"south_west\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+						"        }\n" +
+
+						"    ]\n" +
+
+						"}\n");
+
+				final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + color.getName());
+
+				final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post");
+				final String textureName = "wall";
+				final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+				blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+				final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side");
+				blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+				final ResourceLocation itemTextureLocation = blockTextureLocation;
+				final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory");
+				itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+			}
+
+		}
+
+		for (final BlockWall.EnumType cobblestoneType : BlockWall.EnumType.values()) {
+
+			final String suffix = BlockCobblestoneStructureHorizontal.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, cobblestoneType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north_east\": true}, {\"north_east\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + cobblestoneType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", cobblestoneType.getName().equals("cobblestone") ? "cobblestone" : "cobblestone_" + cobblestoneType.getName().replace("_cobblestone", ""));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+		}
+
+		for (final BlockStoneBrick.EnumType stoneBrickType : BlockStoneBrick.EnumType.values()) {
+
+			final String suffix = BlockStoneBrickStructureHorizontal.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, stoneBrickType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north_east\": true}, {\"north_east\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + stoneBrickType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", stoneBrickType.getName().equals("stonebrick") ? "stonebrick" : "stonebrick_" + stoneBrickType.getName().replace("_stonebrick", "").replace("chiseled", "carved"));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+		}
+
+		for (final BlockSandStone.EnumType sandStoneType : BlockSandStone.EnumType.values()) {
+
+			final String suffix = BlockSandStoneStructureHorizontal.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, sandStoneType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north_east\": true}, {\"north_east\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + sandStoneType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", sandStoneType.getName().equals("sandstone") ? "sandstone_normal" : "sandstone_" + sandStoneType.getName().replace("_sandstone", "").replace("chiseled", "carved"));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+		}
+
+		for (final BlockRedSandstone.EnumType redSandstoneType : BlockRedSandstone.EnumType.values()) {
+
+			final String suffix = BlockRedSandstoneStructureHorizontal.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, redSandstoneType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north_east\": true}, {\"north_east\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south_west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + redSandstoneType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", redSandstoneType.getName().equals("red_sandstone") ? "red_sandstone_normal" : "red_sandstone_" + redSandstoneType.getName().replace("_red_sandstone", "").replace("chiseled", "carved"));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+		}
+
+		blockstates.forEach((name, state) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(state.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "blockstates/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Blockstate " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		blockModels.forEach((name, model) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "models/block/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Block Model " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		itemModels.forEach((name, model) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "models/item/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Item Model " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
 
 	}
 
@@ -172,6 +574,254 @@ public class ModWritingUtil {
 				itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
 
 			}
+
+		}
+
+		for (final BlockWall.EnumType cobblestoneType : BlockWall.EnumType.values()) {
+
+			final String suffix = BlockCobblestoneStructureWall.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, cobblestoneType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north\": true}, {\"north\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + cobblestoneType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", cobblestoneType.getName().equals("cobblestone") ? "cobblestone" : "cobblestone_" + cobblestoneType.getName().replace("_cobblestone", ""));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+		}
+
+		for (final BlockStoneBrick.EnumType stoneBrickType : BlockStoneBrick.EnumType.values()) {
+
+			final String suffix = BlockStoneBrickStructureWall.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, stoneBrickType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north\": true}, {\"north\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + stoneBrickType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", stoneBrickType.getName().equals("stonebrick") ? "stonebrick" : "stonebrick_" + stoneBrickType.getName().replace("_stonebrick", "").replace("chiseled", "carved"));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+		}
+
+		for (final BlockSandStone.EnumType sandStoneType : BlockSandStone.EnumType.values()) {
+
+			final String suffix = BlockSandStoneStructureWall.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, sandStoneType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north\": true}, {\"north\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + sandStoneType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", sandStoneType.getName().equals("sandstone") ? "sandstone_normal" : "sandstone_" + sandStoneType.getName().replace("_sandstone", "").replace("chiseled", "carved"));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+		}
+
+		for (final BlockRedSandstone.EnumType redSandstoneType : BlockRedSandstone.EnumType.values()) {
+
+			final String suffix = BlockRedSandstoneStructureWall.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, redSandstoneType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					// when always true
+					"        {   \"when\": {\"OR\": [{\"north\": true}, {\"north\": false}]},\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + redSandstoneType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", redSandstoneType.getName().equals("red_sandstone") ? "red_sandstone_normal" : "red_sandstone_" + redSandstoneType.getName().replace("_red_sandstone", "").replace("chiseled", "carved"));
+
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
 
 		}
 
@@ -308,6 +958,66 @@ public class ModWritingUtil {
 				itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
 
 			}
+
+		}
+
+		for (final BlockStoneBrick.EnumType stoneBrickType : BlockStoneBrick.EnumType.values()) {
+			final String suffix = BlockStoneBrickWall.SUFFIX;
+			final String vanillaTexture = "";
+
+			final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, stoneBrickType.getName() + "_" + suffix);
+			blockstates.put(model.getPath(), "{\n" +
+
+					"    \"multipart\": [\n" +
+
+					"        {   \"when\": { \"up\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"north\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"east\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"south\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+					"        },\n" +
+
+					"        {   \"when\": { \"west\": \"true\" },\n" +
+
+					"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+					"        }\n" +
+
+					"    ]\n" +
+
+					"}\n");
+
+//			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + stoneBrickType.getName());
+			final ResourceLocation textureLocation = new ResourceLocation("minecraft", stoneBrickType.getName().equals("stonebrick") ? "stonebrick" : "stonebrick_" + stoneBrickType.getName().replace("_stonebrick", "").replace("chiseled", "carved"));
+
+			final ResourceLocation postParent = new ResourceLocation("", "block/wall_post");
+			final String textureName = "wall";
+			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+			final ResourceLocation sideParent = new ResourceLocation("", "block/wall_side");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+			final ResourceLocation itemTextureLocation = blockTextureLocation;
+			final ResourceLocation itemParent = new ResourceLocation("minecraft", "block/wall_inventory");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
 
 		}
 
@@ -902,9 +1612,9 @@ public class ModWritingUtil {
 			finalData.add("}");
 		}
 
-		for (final String langEntry : finalData) {
-			MinecraftMMO.info("Lang Entry " + langEntry);
-		}
+//		for (final String langEntry : finalData) {
+//			MinecraftMMO.info("Lang Entry " + langEntry);
+//		}
 
 		final Path file = Paths.get(ASSET_DIR + "lang/" + getLangFileName() + "." + (Loader.MC_VERSION.contains("1.13") ? "json" : "lang"));
 		MinecraftMMO.debug("Writing lang");

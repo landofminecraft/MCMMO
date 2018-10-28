@@ -28,22 +28,22 @@ public final class ClientEventSubscriber {
 		registerModel(ModBlocks.GRINDSTONE);
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.GRINDSTONE_HANDLE), 0, new ModelResourceLocation(Item.getItemFromBlock(ModBlocks.GRINDSTONE_HANDLE).getRegistryName(), "normal"));
 
-		registerModel(ModBlocks.WHITE_CLAY_WALL);
-		registerModel(ModBlocks.ORANGE_CLAY_WALL);
-		registerModel(ModBlocks.MAGENTA_CLAY_WALL);
-		registerModel(ModBlocks.LIGHT_BLUE_CLAY_WALL);
-		registerModel(ModBlocks.YELLOW_CLAY_WALL);
-		registerModel(ModBlocks.LIME_CLAY_WALL);
-		registerModel(ModBlocks.PINK_CLAY_WALL);
-		registerModel(ModBlocks.GRAY_CLAY_WALL);
-		registerModel(ModBlocks.SILVER_CLAY_WALL);
-		registerModel(ModBlocks.CYAN_CLAY_WALL);
-		registerModel(ModBlocks.PURPLE_CLAY_WALL);
-		registerModel(ModBlocks.BLUE_CLAY_WALL);
-		registerModel(ModBlocks.BROWN_CLAY_WALL);
-		registerModel(ModBlocks.GREEN_CLAY_WALL);
-		registerModel(ModBlocks.RED_CLAY_WALL);
-		registerModel(ModBlocks.BLACK_CLAY_WALL);
+		registerModel(ModBlocks.WHITE_TERRACOTTA_WALL);
+		registerModel(ModBlocks.ORANGE_TERRACOTTA_WALL);
+		registerModel(ModBlocks.MAGENTA_TERRACOTTA_WALL);
+		registerModel(ModBlocks.LIGHT_BLUE_TERRACOTTA_WALL);
+		registerModel(ModBlocks.YELLOW_TERRACOTTA_WALL);
+		registerModel(ModBlocks.LIME_TERRACOTTA_WALL);
+		registerModel(ModBlocks.PINK_TERRACOTTA_WALL);
+		registerModel(ModBlocks.GRAY_TERRACOTTA_WALL);
+		registerModel(ModBlocks.SILVER_TERRACOTTA_WALL);
+		registerModel(ModBlocks.CYAN_TERRACOTTA_WALL);
+		registerModel(ModBlocks.PURPLE_TERRACOTTA_WALL);
+		registerModel(ModBlocks.BLUE_TERRACOTTA_WALL);
+		registerModel(ModBlocks.BROWN_TERRACOTTA_WALL);
+		registerModel(ModBlocks.GREEN_TERRACOTTA_WALL);
+		registerModel(ModBlocks.RED_TERRACOTTA_WALL);
+		registerModel(ModBlocks.BLACK_TERRACOTTA_WALL);
 
 		registerModel(ModBlocks.WHITE_CONCRETE_WALL);
 		registerModel(ModBlocks.ORANGE_CONCRETE_WALL);
@@ -79,22 +79,22 @@ public final class ClientEventSubscriber {
 		registerModel(ModBlocks.RED_GLAZED_TERRACOTTA_WALL);
 		registerModel(ModBlocks.BLACK_GLAZED_TERRACOTTA_WALL);
 
-		registerModel(ModBlocks.WHITE_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.ORANGE_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.MAGENTA_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.LIGHT_BLUE_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.YELLOW_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.LIME_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.PINK_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.GRAY_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.SILVER_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.CYAN_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.PURPLE_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.BLUE_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.BROWN_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.GREEN_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.RED_CLAY_STRUCTURE_WALL);
-		registerModel(ModBlocks.BLACK_CLAY_STRUCTURE_WALL);
+		registerModel(ModBlocks.WHITE_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.ORANGE_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.MAGENTA_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.LIGHT_BLUE_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.YELLOW_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.LIME_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.PINK_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.GRAY_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.SILVER_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.CYAN_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.PURPLE_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.BLUE_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.BROWN_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.GREEN_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.RED_TERRACOTTA_STRUCTURE_WALL);
+		registerModel(ModBlocks.BLACK_TERRACOTTA_STRUCTURE_WALL);
 
 		registerModel(ModBlocks.WHITE_CONCRETE_STRUCTURE_WALL);
 		registerModel(ModBlocks.ORANGE_CONCRETE_STRUCTURE_WALL);
@@ -129,6 +129,94 @@ public final class ClientEventSubscriber {
 		registerModel(ModBlocks.GREEN_GLAZED_TERRACOTTA_STRUCTURE_WALL);
 		registerModel(ModBlocks.RED_GLAZED_TERRACOTTA_STRUCTURE_WALL);
 		registerModel(ModBlocks.BLACK_GLAZED_TERRACOTTA_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.COBBLESTONE_STRUCTURE_WALL);
+		registerModel(ModBlocks.MOSSY_COBBLESTONE_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.STONEBRICK_WALL);
+		registerModel(ModBlocks.MOSSY_STONEBRICK_WALL);
+		registerModel(ModBlocks.CRACKED_STONEBRICK_WALL);
+		registerModel(ModBlocks.CHISELED_STONEBRICK_WALL);
+
+		registerModel(ModBlocks.STONEBRICK_STRUCTURE_WALL);
+		registerModel(ModBlocks.MOSSY_STONEBRICK_STRUCTURE_WALL);
+		registerModel(ModBlocks.CRACKED_STONEBRICK_STRUCTURE_WALL);
+		registerModel(ModBlocks.CHISELED_STONEBRICK_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.WHITE_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.ORANGE_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.MAGENTA_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.LIGHT_BLUE_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.YELLOW_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.LIME_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.PINK_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GRAY_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.SILVER_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.CYAN_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.PURPLE_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BLUE_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BROWN_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GREEN_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.RED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BLACK_TERRACOTTA_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.WHITE_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.ORANGE_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.MAGENTA_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.LIGHT_BLUE_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.YELLOW_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.LIME_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.PINK_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GRAY_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.SILVER_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.CYAN_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.PURPLE_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BLUE_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BROWN_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GREEN_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.RED_CONCRETE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BLACK_CONCRETE_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.WHITE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.ORANGE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.MAGENTA_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.LIGHT_BLUE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.YELLOW_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.LIME_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.PINK_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GRAY_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.SILVER_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.CYAN_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.PURPLE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BLUE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BROWN_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GREEN_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.RED_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BLACK_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.COBBLESTONE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.MOSSY_COBBLESTONE_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.STONEBRICK_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.MOSSY_STONEBRICK_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.CRACKED_STONEBRICK_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.CHISELED_STONEBRICK_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.SANDSTONE_STRUCTURE_WALL);
+		registerModel(ModBlocks.CHISELED_SANDSTONE_STRUCTURE_WALL);
+		registerModel(ModBlocks.SMOOTH_SANDSTONE_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.SANDSTONE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.CHISELED_SANDSTONE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.SMOOTH_SANDSTONE_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.RED_SANDSTONE_STRUCTURE_WALL);
+		registerModel(ModBlocks.CHISELED_RED_SANDSTONE_STRUCTURE_WALL);
+		registerModel(ModBlocks.SMOOTH_RED_SANDSTONE_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.RED_SANDSTONE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.CHISELED_RED_SANDSTONE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.SMOOTH_RED_SANDSTONE_STRUCTURE_HORIZONTAL);
 
 		registerTileEntitySpecialRenderers();
 		registerEntityRenderers();

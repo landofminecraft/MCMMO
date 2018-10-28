@@ -1,0 +1,19 @@
+{
+    "multipart": [
+        {   "when": {"OR": [{"north_east": true}, {"north_east": false}]},
+            "apply": { "model": "mcmmo:silver_glazed_terracotta_structure_horizontal_post" }
+        },
+        {   "when": { "north_east": "true" },
+            "apply": { "model": "mcmmo:silver_glazed_terracotta_structure_horizontal_side", "uvlock": true }
+        },
+        {   "when": { "north_west": "true" },
+            "apply": { "model": "mcmmo:silver_glazed_terracotta_structure_horizontal_side", "y": 270, "uvlock": true }
+        },
+        {   "when": { "south_east": "true" },
+            "apply": { "model": "mcmmo:silver_glazed_terracotta_structure_horizontal_side", "y": 90, "uvlock": true }
+        },
+        {   "when": { "south_west": "true" },
+            "apply": { "model": "mcmmo:silver_glazed_terracotta_structure_horizontal_side", "y": 180, "uvlock": true }
+        }
+    ]
+}

@@ -5,8 +5,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockPane;
+import net.minecraft.block.BlockLadder;
+import net.minecraft.block.BlockTorch;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -175,16 +175,8 @@ public abstract class BlockModStructureWall extends Block {
 		return false;
 	}
 
-	public static boolean canConnectTo(final IBlockAccess worldIn, final BlockPos pos, final EnumFacing p_176253_3_) {
-		final IBlockState iblockstate = worldIn.getBlockState(pos);
-		final Block block = iblockstate.getBlock();
-		final BlockFaceShape blockfaceshape = iblockstate.getBlockFaceShape(worldIn, pos, p_176253_3_);
-		final boolean flag = (blockfaceshape == BlockFaceShape.MIDDLE_POLE_THICK) || ((blockfaceshape == BlockFaceShape.MIDDLE_POLE) && (block instanceof BlockFenceGate));
-		return (!isExcepBlockForAttachWithPiston(block) && (blockfaceshape == BlockFaceShape.SOLID)) || flag;
-	}
-
-	public static boolean isExcepBlockForAttachWithPiston(final Block p_194143_0_) {
-		return Block.isExceptBlockForAttachWithPiston(p_194143_0_) || (p_194143_0_ == Blocks.BARRIER) || (p_194143_0_ == Blocks.MELON_BLOCK) || (p_194143_0_ == Blocks.PUMPKIN) || (p_194143_0_ == Blocks.LIT_PUMPKIN);
+	public static boolean isExcepBlockForAttachWithPiston(final Block block) {
+		return Block.isExceptBlockForAttachWithPiston(block) || (block == Blocks.BARRIER) || (block == Blocks.MELON_BLOCK) || (block == Blocks.PUMPKIN) || (block == Blocks.LIT_PUMPKIN);
 	}
 
 	/**
@@ -220,22 +212,58 @@ public abstract class BlockModStructureWall extends Block {
 	@Deprecated
 	@Override
 	public BlockFaceShape getBlockFaceShape(final IBlockAccess worldIn, final IBlockState state, final BlockPos pos, final EnumFacing face) {
-		return (face != EnumFacing.UP) && (face != EnumFacing.DOWN) ? BlockFaceShape.MIDDLE_POLE_THICK : BlockFaceShape.CENTER_BIG;
+		return BlockFaceShape.SOLID;
+
+		// return (face != EnumFacing.UP) && (face != EnumFacing.DOWN) ? BlockFaceShape.MIDDLE_POLE_THICK : BlockFaceShape.CENTER_BIG;
 	}
 
 	/* ======================================== FORGE START ======================================== */
 
 	@Override
 	public boolean canBeConnectedTo(final IBlockAccess world, final BlockPos pos, final EnumFacing facing) {
-		return (world.getBlockState(pos.offset(facing)).getBlock() instanceof BlockPane) || canConnectTo(world, pos.offset(facing), facing.getOpposite());
+		return true;
 	}
 
 	public static boolean canWallConnectTo(final IBlockAccess world, final BlockPos pos, final EnumFacing facing) {
-		final BlockPos other = pos.offset(facing);
-		final Block block = world.getBlockState(other).getBlock();
-		return block.canBeConnectedTo(world, other, facing.getOpposite()) || canConnectTo(world, other, facing.getOpposite());
+		final BlockPos otherPos = pos.offset(facing);
+		final IBlockState otherState = world.getBlockState(otherPos);
+		final Block otherBlock = otherState.getBlock();
+
+		if (otherBlock instanceof BlockModStructureWall) {
+			return true;
+		}
+
+		if (otherState.getMaterial().isReplaceable()) {
+			return false;
+		}
+
+		if (otherBlock instanceof BlockLadder) {
+			return otherState.getValue(BlockLadder.FACING) == facing;
+		}
+
+		if (otherBlock instanceof BlockTorch) {
+			return otherState.getValue(BlockTorch.FACING) == facing;
+		}
+
+		if (otherState.getBlockFaceShape(world, otherPos, facing.getOpposite()) == BlockFaceShape.SOLID) {
+			return true;
+		}
+
+		if (otherBlock.canBeConnectedTo(world, otherPos, facing.getOpposite())) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/* ======================================== FORGE END ======================================== */
+
+	@Override
+	public boolean isSideSolid(final IBlockState base_state, final IBlockAccess world, final BlockPos pos, final EnumFacing side) {
+		if (true) {
+			return true;
+		}
+		return false;
+	}
 
 }

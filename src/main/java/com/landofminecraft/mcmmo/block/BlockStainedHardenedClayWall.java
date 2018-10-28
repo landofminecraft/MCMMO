@@ -7,7 +7,7 @@ import net.minecraft.item.EnumDyeColor;
 
 public class BlockStainedHardenedClayWall extends BlockModWall {
 
-	public static final String SUFFIX = "clay_wall";
+	public static final String SUFFIX = "terracotta_wall";
 
 	private final EnumDyeColor color;
 

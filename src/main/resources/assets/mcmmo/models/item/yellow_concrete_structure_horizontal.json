@@ -1,0 +1,6 @@
+{
+	"parent": "mcmmo:block/structure_horizontal_inventory",
+	"textures": {
+		"wall": "minecraft:blocks/concrete_yellow"
+	}
+}

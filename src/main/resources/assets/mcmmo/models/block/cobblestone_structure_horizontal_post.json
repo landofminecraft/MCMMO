@@ -1,0 +1,6 @@
+{
+	"parent": "mcmmo:block/structure_horizontal_post",
+	"textures": {
+		"wall": "minecraft:blocks/cobblestone"
+	}
+}

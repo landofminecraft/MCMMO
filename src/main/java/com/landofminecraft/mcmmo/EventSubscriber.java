@@ -1,13 +1,25 @@
 package com.landofminecraft.mcmmo;
 
+import com.landofminecraft.mcmmo.block.BlockCobblestoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockCobblestoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockConcreteStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockConcreteStructureWall;
 import com.landofminecraft.mcmmo.block.BlockConcreteWall;
+import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockSandStoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockSandStoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayStructureWall;
 import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
+import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureWall;
+import com.landofminecraft.mcmmo.block.BlockStoneBrickWall;
 import com.landofminecraft.mcmmo.init.ModBlocks;
 import com.landofminecraft.mcmmo.item.ModItemBlock;
 import com.landofminecraft.mcmmo.tileentity.TileEntityGrindstone;
@@ -15,6 +27,10 @@ import com.landofminecraft.mcmmo.util.ModReference;
 import com.landofminecraft.mcmmo.util.ModUtil;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRedSandstone;
+import net.minecraft.block.BlockSandStone;
+import net.minecraft.block.BlockStoneBrick;
+import net.minecraft.block.BlockWall;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
@@ -59,6 +75,43 @@ public final class EventSubscriber {
 			registry.register(new BlockConcreteStructureWall(color));
 
 			registry.register(new BlockGlazedTerracottaStructureWall(color));
+
+			//
+
+			registry.register(new BlockStainedHardenedClayStructureHorizontal(color));
+
+			registry.register(new BlockConcreteStructureHorizontal(color));
+
+			registry.register(new BlockGlazedTerracottaStructureHorizontal(color));
+		}
+
+		for (final BlockWall.EnumType cobblestoneType : BlockWall.EnumType.values()) {
+
+			registry.register(new BlockCobblestoneStructureWall(cobblestoneType));
+
+			registry.register(new BlockCobblestoneStructureHorizontal(cobblestoneType));
+		}
+
+		for (final BlockStoneBrick.EnumType stoneBrickType : BlockStoneBrick.EnumType.values()) {
+			registry.register(new BlockStoneBrickWall(stoneBrickType));
+
+			registry.register(new BlockStoneBrickStructureWall(stoneBrickType));
+
+			registry.register(new BlockStoneBrickStructureHorizontal(stoneBrickType));
+		}
+
+		for (final BlockSandStone.EnumType cobblestoneType : BlockSandStone.EnumType.values()) {
+
+			registry.register(new BlockSandStoneStructureWall(cobblestoneType));
+
+			registry.register(new BlockSandStoneStructureHorizontal(cobblestoneType));
+		}
+
+		for (final BlockRedSandstone.EnumType cobblestoneType : BlockRedSandstone.EnumType.values()) {
+
+			registry.register(new BlockRedSandstoneStructureWall(cobblestoneType));
+
+			registry.register(new BlockRedSandstoneStructureHorizontal(cobblestoneType));
 		}
 
 		MinecraftMMO.debug("Registered blocks");
@@ -89,22 +142,22 @@ public final class EventSubscriber {
 		registry.register(new ModItemBlock(ModBlocks.GRINDSTONE));
 		registry.register(new ModItemBlock(ModBlocks.GRINDSTONE_HANDLE));
 
-		registry.register(new ModItemBlock(ModBlocks.WHITE_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.ORANGE_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.MAGENTA_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.YELLOW_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.LIME_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.PINK_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.GRAY_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.SILVER_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.CYAN_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.PURPLE_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.BLUE_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.BROWN_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.GREEN_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.RED_CLAY_WALL));
-		registry.register(new ModItemBlock(ModBlocks.BLACK_CLAY_WALL));
+		registry.register(new ModItemBlock(ModBlocks.WHITE_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BLUE_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.RED_TERRACOTTA_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_TERRACOTTA_WALL));
 
 		registry.register(new ModItemBlock(ModBlocks.WHITE_CONCRETE_WALL));
 		registry.register(new ModItemBlock(ModBlocks.ORANGE_CONCRETE_WALL));
@@ -140,22 +193,22 @@ public final class EventSubscriber {
 		registry.register(new ModItemBlock(ModBlocks.RED_GLAZED_TERRACOTTA_WALL));
 		registry.register(new ModItemBlock(ModBlocks.BLACK_GLAZED_TERRACOTTA_WALL));
 
-		registry.register(new ModItemBlock(ModBlocks.WHITE_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.ORANGE_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.MAGENTA_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.YELLOW_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.LIME_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.PINK_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.GRAY_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.SILVER_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.CYAN_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.PURPLE_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.BLUE_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.BROWN_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.GREEN_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.RED_CLAY_STRUCTURE_WALL));
-		registry.register(new ModItemBlock(ModBlocks.BLACK_CLAY_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.WHITE_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BLUE_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.RED_TERRACOTTA_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_TERRACOTTA_STRUCTURE_WALL));
 
 		registry.register(new ModItemBlock(ModBlocks.WHITE_CONCRETE_STRUCTURE_WALL));
 		registry.register(new ModItemBlock(ModBlocks.ORANGE_CONCRETE_STRUCTURE_WALL));
@@ -190,6 +243,94 @@ public final class EventSubscriber {
 		registry.register(new ModItemBlock(ModBlocks.GREEN_GLAZED_TERRACOTTA_STRUCTURE_WALL));
 		registry.register(new ModItemBlock(ModBlocks.RED_GLAZED_TERRACOTTA_STRUCTURE_WALL));
 		registry.register(new ModItemBlock(ModBlocks.BLACK_GLAZED_TERRACOTTA_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.COBBLESTONE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MOSSY_COBBLESTONE_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.STONEBRICK_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MOSSY_STONEBRICK_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CRACKED_STONEBRICK_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CHISELED_STONEBRICK_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.STONEBRICK_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.MOSSY_STONEBRICK_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CRACKED_STONEBRICK_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CHISELED_STONEBRICK_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.WHITE_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BLUE_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.RED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_TERRACOTTA_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.WHITE_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BLUE_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.RED_CONCRETE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_CONCRETE_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.WHITE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.ORANGE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.MAGENTA_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.LIGHT_BLUE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.YELLOW_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.LIME_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.PINK_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GRAY_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.SILVER_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.CYAN_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.PURPLE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BLUE_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BROWN_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GREEN_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.RED_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BLACK_GLAZED_TERRACOTTA_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.COBBLESTONE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.MOSSY_COBBLESTONE_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.STONEBRICK_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.MOSSY_STONEBRICK_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.CRACKED_STONEBRICK_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.CHISELED_STONEBRICK_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.SANDSTONE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CHISELED_SANDSTONE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SMOOTH_SANDSTONE_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.SANDSTONE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.CHISELED_SANDSTONE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.SMOOTH_SANDSTONE_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.RED_SANDSTONE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.CHISELED_RED_SANDSTONE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SMOOTH_RED_SANDSTONE_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.RED_SANDSTONE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.CHISELED_RED_SANDSTONE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.SMOOTH_RED_SANDSTONE_STRUCTURE_HORIZONTAL));
 
 		MinecraftMMO.debug("Registered items");
 

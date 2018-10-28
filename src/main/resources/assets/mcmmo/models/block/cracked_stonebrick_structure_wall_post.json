@@ -1,0 +1,6 @@
+{
+	"parent": "mcmmo:block/structure_wall_post",
+	"textures": {
+		"wall": "minecraft:blocks/stonebrick_cracked"
+	}
+}
