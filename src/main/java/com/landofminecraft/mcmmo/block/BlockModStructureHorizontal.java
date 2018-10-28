@@ -24,6 +24,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockModStructureHorizontal extends Block {
 
+	public static final String SUFFIX = "structure_horizontal";
+
 	public static final PropertyBool	NORTH_EAST	= PropertyBool.create("north_east");
 	public static final PropertyBool	NORTH_WEST	= PropertyBool.create("north_west");
 	public static final PropertyBool	SOUTH_EAST	= PropertyBool.create("south_east");

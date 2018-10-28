@@ -26,6 +26,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockModWall extends Block {
 
+	public static final String SUFFIX = "wall";
+
 	public static final PropertyBool	UP		= PropertyBool.create("up");
 	public static final PropertyBool	NORTH	= PropertyBool.create("north");
 	public static final PropertyBool	SOUTH	= PropertyBool.create("south");

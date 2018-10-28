@@ -10,6 +10,8 @@ import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.block.BlockPlanksStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockPlanksStructureWall;
 import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureWall;
 import com.landofminecraft.mcmmo.block.BlockSandStoneStructureHorizontal;
@@ -226,5 +228,86 @@ public class ModBlocks {
 	public static final BlockRedSandstoneStructureHorizontal	RED_SANDSTONE_STRUCTURE_HORIZONTAL			= null;
 	public static final BlockRedSandstoneStructureHorizontal	CHISELED_RED_SANDSTONE_STRUCTURE_HORIZONTAL	= null;
 	public static final BlockRedSandstoneStructureHorizontal	SMOOTH_RED_SANDSTONE_STRUCTURE_HORIZONTAL	= null;
+
+	public static final BlockLogWall	OAK_LOG_WALL		= null;
+	public static final BlockLogWall	SPRUCE_LOG_WALL		= null;
+	public static final BlockLogWall	BIRCH_LOG_WALL		= null;
+	public static final BlockLogWall	JUNGLE_LOG_WALL		= null;
+	public static final BlockLogWall	ACACIA_LOG_WALL		= null;
+	public static final BlockLogWall	DARK_OAK_LOG_WALL	= null;
+
+	public static final BlockStoneWall	STONE_WALL				= null;
+	public static final BlockStoneWall	GRANITE_WALL			= null;
+	public static final BlockStoneWall	GRANITE_SMOOTH_WALL		= null;
+	public static final BlockStoneWall	DIORITE_WALL			= null;
+	public static final BlockStoneWall	DIORITE_SMOOTH_WALL		= null;
+	public static final BlockStoneWall	ANDESITE_WALL			= null;
+	public static final BlockStoneWall	ANDESITE_SMOOTH_WALL	= null;
+
+	public static final BlockPlanksStructureWall	OAK_PLANKS_STRUCTURE_WALL		= null;
+	public static final BlockPlanksStructureWall	SPRUCE_PLANKS_STRUCTURE_WALL	= null;
+	public static final BlockPlanksStructureWall	BIRCH_PLANKS_STRUCTURE_WALL		= null;
+	public static final BlockPlanksStructureWall	JUNGLE_PLANKS_STRUCTURE_WALL	= null;
+	public static final BlockPlanksStructureWall	ACACIA_PLANKS_STRUCTURE_WALL	= null;
+	public static final BlockPlanksStructureWall	DARK_OAK_PLANKS_STRUCTURE_WALL	= null;
+
+	public static final BlockLogStructureWall	OAK_LOG_STRUCTURE_WALL		= null;
+	public static final BlockLogStructureWall	SPRUCE_LOG_STRUCTURE_WALL	= null;
+	public static final BlockLogStructureWall	BIRCH_LOG_STRUCTURE_WALL	= null;
+	public static final BlockLogStructureWall	JUNGLE_LOG_STRUCTURE_WALL	= null;
+	public static final BlockLogStructureWall	ACACIA_LOG_STRUCTURE_WALL	= null;
+	public static final BlockLogStructureWall	DARK_OAK_LOG_STRUCTURE_WALL	= null;
+
+	public static final BlockStoneStructureWall	STONE_STRUCTURE_WALL			= null;
+	public static final BlockStoneStructureWall	GRANITE_STRUCTURE_WALL			= null;
+	public static final BlockStoneStructureWall	GRANITE_SMOOTH_STRUCTURE_WALL	= null;
+	public static final BlockStoneStructureWall	DIORITE_STRUCTURE_WALL			= null;
+	public static final BlockStoneStructureWall	DIORITE_SMOOTH_STRUCTURE_WALL	= null;
+	public static final BlockStoneStructureWall	ANDESITE_STRUCTURE_WALL			= null;
+	public static final BlockStoneStructureWall	ANDESITE_SMOOTH_STRUCTURE_WALL	= null;
+
+	public static final BlockPlanksStructureHorizontal	OAK_PLANKS_STRUCTURE_HORIZONTAL			= null;
+	public static final BlockPlanksStructureHorizontal	SPRUCE_PLANKS_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockPlanksStructureHorizontal	BIRCH_PLANKS_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockPlanksStructureHorizontal	JUNGLE_PLANKS_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockPlanksStructureHorizontal	ACACIA_PLANKS_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockPlanksStructureHorizontal	DARK_OAK_PLANKS_STRUCTURE_HORIZONTAL	= null;
+
+	public static final BlockLogStructureHorizontal	OAK_LOG_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockLogStructureHorizontal	SPRUCE_LOG_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockLogStructureHorizontal	BIRCH_LOG_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockLogStructureHorizontal	JUNGLE_LOG_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockLogStructureHorizontal	ACACIA_LOG_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockLogStructureHorizontal	DARK_OAK_LOG_STRUCTURE_HORIZONTAL	= null;
+
+	public static final BlockStoneStructureHorizontal	STONE_STRUCTURE_HORIZONTAL				= null;
+	public static final BlockStoneStructureHorizontal	GRANITE_STRUCTURE_HORIZONTAL			= null;
+	public static final BlockStoneStructureHorizontal	GRANITE_SMOOTH_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockStoneStructureHorizontal	DIORITE_STRUCTURE_HORIZONTAL			= null;
+	public static final BlockStoneStructureHorizontal	DIORITE_SMOOTH_STRUCTURE_HORIZONTAL		= null;
+	public static final BlockStoneStructureHorizontal	ANDESITE_STRUCTURE_HORIZONTAL			= null;
+	public static final BlockStoneStructureHorizontal	ANDESITE_SMOOTH_STRUCTURE_HORIZONTAL	= null;
+
+//	  OAK(0, "oak", MapColor.WOOD),
+//    SPRUCE(1, "spruce", MapColor.OBSIDIAN),
+//    BIRCH(2, "birch", MapColor.SAND),
+//    JUNGLE(3, "jungle", MapColor.DIRT),
+//    ACACIA(4, "acacia", MapColor.ADOBE),
+//    DARK_OAK(5, "dark_oak", "big_oak", MapColor.BROWN);
+
+//	OAK(0, "oak", MapColor.WOOD),
+//  SPRUCE(1, "spruce", MapColor.OBSIDIAN),
+//  BIRCH(2, "birch", MapColor.SAND),
+//  JUNGLE(3, "jungle", MapColor.DIRT),
+//  ACACIA(4, "acacia", MapColor.ADOBE),
+//  DARK_OAK(5, "dark_oak", "big_oak", MapColor.BROWN);
+
+//	   STONE(0, MapColor.STONE, "stone", true),
+//     GRANITE(1, MapColor.DIRT, "granite", true),
+//     GRANITE_SMOOTH(2, MapColor.DIRT, "smooth_granite", "graniteSmooth", false),
+//     DIORITE(3, MapColor.QUARTZ, "diorite", true),
+//     DIORITE_SMOOTH(4, MapColor.QUARTZ, "smooth_diorite", "dioriteSmooth", false),
+//     ANDESITE(5, MapColor.STONE, "andesite", true),
+//     ANDESITE_SMOOTH(6, MapColor.STONE, "smooth_andesite", "andesiteSmooth", false);
 
 }

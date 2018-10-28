@@ -7,13 +7,11 @@ import net.minecraft.item.EnumDyeColor;
 
 public class BlockConcreteWall extends BlockModWall {
 
-	public static final String SUFFIX = "concrete_wall";
-
 	private final EnumDyeColor color;
 
 	public BlockConcreteWall(final EnumDyeColor color) {
 		super(Blocks.CONCRETE.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, color.getName() + "_" + SUFFIX);
+		ModUtil.setRegistryNames(this, color.getName() + "_concrete_" + SUFFIX);
 		this.color = color;
 
 //      registerBlock(251, "concrete", (new BlockColored(Material.ROCK)).setHardness(1.8F).setSoundType(SoundType.STONE).setTranslationKey("concrete"));

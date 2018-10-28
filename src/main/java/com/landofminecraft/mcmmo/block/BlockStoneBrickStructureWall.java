@@ -7,8 +7,6 @@ import net.minecraft.init.Blocks;
 
 public class BlockStoneBrickStructureWall extends BlockModStructureWall {
 
-	public static final String SUFFIX = "structure_wall";
-
 	private final BlockStoneBrick.EnumType type;
 
 	public BlockStoneBrickStructureWall(final BlockStoneBrick.EnumType type) {

@@ -10,6 +10,8 @@ import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.block.BlockPlanksStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockPlanksStructureWall;
 import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureWall;
 import com.landofminecraft.mcmmo.block.BlockSandStoneStructureHorizontal;
@@ -27,8 +29,10 @@ import com.landofminecraft.mcmmo.util.ModReference;
 import com.landofminecraft.mcmmo.util.ModUtil;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockRedSandstone;
 import net.minecraft.block.BlockSandStone;
+import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.block.BlockWall;
 import net.minecraft.entity.Entity;
@@ -112,6 +116,31 @@ public final class EventSubscriber {
 			registry.register(new BlockRedSandstoneStructureWall(cobblestoneType));
 
 			registry.register(new BlockRedSandstoneStructureHorizontal(cobblestoneType));
+		}
+
+		for (final BlockPlanks.EnumType planksType : BlockPlanks.EnumType.values()) {
+
+			registry.register(new BlockPlanksStructureWall(planksType));
+
+			registry.register(new BlockPlanksStructureHorizontal(planksType));
+		}
+
+		for (final BlockPlanks.EnumType logType : BlockPlanks.EnumType.values()) {
+
+			registry.register(new BlockWoodWall(logType));
+
+			registry.register(new BlockWoodStructureWall(logType));
+
+			registry.register(new BlockWoodStructureHorizontal(logType));
+		}
+
+		for (final BlockStone.EnumType stoneType : BlockStone.EnumType.values()) {
+
+			registry.register(new BlockStoneWall(stoneType));
+
+			registry.register(new BlockStoneStructureWall(stoneType));
+
+			registry.register(new BlockStoneStructureHorizontal(stoneType));
 		}
 
 		MinecraftMMO.debug("Registered blocks");

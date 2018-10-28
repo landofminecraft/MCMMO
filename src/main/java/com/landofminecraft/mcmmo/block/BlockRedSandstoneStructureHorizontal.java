@@ -8,12 +8,10 @@ import net.minecraft.init.Blocks;
 
 public class BlockRedSandstoneStructureHorizontal extends BlockModStructureHorizontal {
 
-	public static final String SUFFIX = "structure_horizontal";
-
 	private final BlockRedSandstone.EnumType type;
 
 	public BlockRedSandstoneStructureHorizontal(final EnumType type) {
-		super(Blocks.CONCRETE.getDefaultState().getMaterial());
+		super(Blocks.RED_SANDSTONE.getDefaultState().getMaterial());
 		ModUtil.setRegistryNames(this, type.getName() + "_" + SUFFIX);
 
 		this.type = type;

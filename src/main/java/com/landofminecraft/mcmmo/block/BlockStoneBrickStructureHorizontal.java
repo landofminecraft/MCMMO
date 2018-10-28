@@ -7,8 +7,6 @@ import net.minecraft.init.Blocks;
 
 public class BlockStoneBrickStructureHorizontal extends BlockModStructureHorizontal {
 
-	public static final String SUFFIX = "structure_horizontal";
-
 	private final BlockStoneBrick.EnumType type;
 
 	public BlockStoneBrickStructureHorizontal(final BlockStoneBrick.EnumType type) {

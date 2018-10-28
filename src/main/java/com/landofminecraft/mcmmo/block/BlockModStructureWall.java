@@ -30,6 +30,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockModStructureWall extends Block {
 
+	public static final String SUFFIX = "structure_wall";
+
 	public static final PropertyBool	NORTH	= PropertyBool.create("north");
 	public static final PropertyBool	SOUTH	= PropertyBool.create("south");
 	public static final PropertyBool	WEST	= PropertyBool.create("west");

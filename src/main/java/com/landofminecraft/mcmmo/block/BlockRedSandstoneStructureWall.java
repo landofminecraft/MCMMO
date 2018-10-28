@@ -8,12 +8,10 @@ import net.minecraft.init.Blocks;
 
 public class BlockRedSandstoneStructureWall extends BlockModStructureWall {
 
-	public static final String SUFFIX = "structure_wall";
-
 	private final BlockRedSandstone.EnumType type;
 
 	public BlockRedSandstoneStructureWall(final EnumType type) {
-		super(Blocks.CONCRETE.getDefaultState().getMaterial());
+		super(Blocks.RED_SANDSTONE.getDefaultState().getMaterial());
 		ModUtil.setRegistryNames(this, type.getName() + "_" + SUFFIX);
 
 		this.type = type;
