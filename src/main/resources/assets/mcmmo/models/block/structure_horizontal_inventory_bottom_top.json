@@ -1,6 +1,6 @@
-{
-    "parent": "mcmmo:block/structure_horizontal_inventory_bottom_top",
+{   "parent": "block/cube_bottom_top",
     "textures": {
+        "side": "#wall",
         "bottom": "#wall",
         "top": "#wall"
     }

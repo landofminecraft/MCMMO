@@ -229,6 +229,11 @@ public abstract class BlockModStructureHorizontal extends Block {
 	/* ======================================== FORGE END ======================================== */
 
 	@Override
+	public boolean isTopSolid(final IBlockState state) {
+		return true;
+	}
+
+	@Override
 	public boolean isSideSolid(final IBlockState base_state, final IBlockAccess world, final BlockPos pos, final EnumFacing side) {
 		if (true) {
 			return true;

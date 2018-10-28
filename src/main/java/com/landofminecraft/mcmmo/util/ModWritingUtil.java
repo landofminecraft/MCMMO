@@ -364,17 +364,19 @@ public class ModWritingUtil {
 //			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + sandStoneType.getName());
 			final ResourceLocation textureLocation = new ResourceLocation("minecraft", sandStoneType.getName().equals("sandstone") ? "sandstone_normal" : "sandstone_" + sandStoneType.getName().replace("_sandstone", "").replace("chiseled", "carved"));
 
-			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post");
-			final String textureName = "wall";
-			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
-			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+			final HashMap<String, ResourceLocation> textureNameToTextureLocationMap = new HashMap<>();
+			textureNameToTextureLocationMap.put("wall", getTextureLocation(textureLocation, "block"));
+			textureNameToTextureLocationMap.put("bottom", getTextureLocation(new ResourceLocation("minecraft", "sandstone_bottom"), "block"));
+			textureNameToTextureLocationMap.put("top", getTextureLocation(new ResourceLocation("minecraft", "sandstone_top"), "block"));
 
-			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side");
-			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post_bottom_top");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureNameToTextureLocationMap));
 
-			final ResourceLocation itemTextureLocation = blockTextureLocation;
-			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory");
-			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side_bottom_top");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureNameToTextureLocationMap));
+
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory_bottom_top");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureNameToTextureLocationMap));
 
 		}
 
@@ -426,17 +428,19 @@ public class ModWritingUtil {
 //			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + redSandstoneType.getName());
 			final ResourceLocation textureLocation = new ResourceLocation("minecraft", redSandstoneType.getName().equals("red_sandstone") ? "red_sandstone_normal" : "red_sandstone_" + redSandstoneType.getName().replace("_red_sandstone", "").replace("chiseled", "carved"));
 
-			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post");
-			final String textureName = "wall";
-			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
-			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+			final HashMap<String, ResourceLocation> textureNameToTextureLocationMap = new HashMap<>();
+			textureNameToTextureLocationMap.put("wall", getTextureLocation(textureLocation, "block"));
+			textureNameToTextureLocationMap.put("bottom", getTextureLocation(new ResourceLocation("minecraft", "red_sandstone_bottom"), "block"));
+			textureNameToTextureLocationMap.put("top", getTextureLocation(new ResourceLocation("minecraft", "red_sandstone_top"), "block"));
 
-			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side");
-			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_post_bottom_top");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureNameToTextureLocationMap));
 
-			final ResourceLocation itemTextureLocation = blockTextureLocation;
-			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory");
-			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_side_bottom_top");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureNameToTextureLocationMap));
+
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_horizontal_inventory_bottom_top");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureNameToTextureLocationMap));
 
 		}
 
@@ -749,17 +753,19 @@ public class ModWritingUtil {
 //			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + sandStoneType.getName());
 			final ResourceLocation textureLocation = new ResourceLocation("minecraft", sandStoneType.getName().equals("sandstone") ? "sandstone_normal" : "sandstone_" + sandStoneType.getName().replace("_sandstone", "").replace("chiseled", "carved"));
 
-			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post");
-			final String textureName = "wall";
-			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
-			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+			final HashMap<String, ResourceLocation> textureNameToTextureLocationMap = new HashMap<>();
+			textureNameToTextureLocationMap.put("wall", getTextureLocation(textureLocation, "block"));
+			textureNameToTextureLocationMap.put("bottom", getTextureLocation(new ResourceLocation("minecraft", "sandstone_bottom"), "block"));
+			textureNameToTextureLocationMap.put("top", getTextureLocation(new ResourceLocation("minecraft", "sandstone_top"), "block"));
 
-			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side");
-			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post_bottom_top");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureNameToTextureLocationMap));
 
-			final ResourceLocation itemTextureLocation = blockTextureLocation;
-			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory");
-			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side_bottom_top");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureNameToTextureLocationMap));
+
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory_bottom_top");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureNameToTextureLocationMap));
 
 		}
 
@@ -811,17 +817,19 @@ public class ModWritingUtil {
 //			final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + redSandstoneType.getName());
 			final ResourceLocation textureLocation = new ResourceLocation("minecraft", redSandstoneType.getName().equals("red_sandstone") ? "red_sandstone_normal" : "red_sandstone_" + redSandstoneType.getName().replace("_red_sandstone", "").replace("chiseled", "carved"));
 
-			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post");
-			final String textureName = "wall";
-			final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
-			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+			final HashMap<String, ResourceLocation> textureNameToTextureLocationMap = new HashMap<>();
+			textureNameToTextureLocationMap.put("wall", getTextureLocation(textureLocation, "block"));
+			textureNameToTextureLocationMap.put("bottom", getTextureLocation(new ResourceLocation("minecraft", "red_sandstone_bottom"), "block"));
+			textureNameToTextureLocationMap.put("top", getTextureLocation(new ResourceLocation("minecraft", "red_sandstone_top"), "block"));
 
-			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side");
-			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+			final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post_bottom_top");
+			blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureNameToTextureLocationMap));
 
-			final ResourceLocation itemTextureLocation = blockTextureLocation;
-			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory");
-			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+			final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side_bottom_top");
+			blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureNameToTextureLocationMap));
+
+			final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory_bottom_top");
+			itemModels.put(model.getPath(), generateModelJSON(itemParent, textureNameToTextureLocationMap));
 
 		}
 
@@ -1646,11 +1654,26 @@ public class ModWritingUtil {
 	}
 
 	private static String generateModelJSON(final ResourceLocation parent, final String textureName, final ResourceLocation textureLocation) {
+		final HashMap<String, ResourceLocation> textureNameToTextureLocationMap = new HashMap<>();
+		textureNameToTextureLocationMap.put(textureName, textureLocation);
+		return generateModelJSON(parent, textureNameToTextureLocationMap);
+	}
+
+	private static String generateModelJSON(final ResourceLocation parent, final HashMap<String, ResourceLocation> textureNameToTextureLocationMap) {
 		String model = "";
 		model += "{" + "\n";
 		model += "	" + "\"parent\": \"" + parent.toString() + "\"," + "\n";
 		model += "	" + "\"textures\": {" + "\n";
-		model += "		" + "\"" + textureName + "\": \"" + textureLocation.toString() + "\"" + "\n";
+		for (final String textureName : textureNameToTextureLocationMap.keySet()) {
+			final ResourceLocation textureLocation = textureNameToTextureLocationMap.get(textureName);
+			model += "		" + "\"" + textureName + "\": \"" + textureLocation.toString() + "\"," + "\n";
+		}
+
+		// remove last comma
+		if (textureNameToTextureLocationMap.size() > 0) {
+			model = StringUtils.reverse(StringUtils.reverse(model).replaceFirst(",", ""));
+		}
+
 		model += "	" + "}" + "\n";
 		model += "}" + "\n";
 		return model;

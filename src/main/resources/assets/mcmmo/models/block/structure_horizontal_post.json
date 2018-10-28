@@ -1,3 +1,7 @@
 {
-    "parent": "mcmmo:block/structure_wall_post"
+    "parent": "mcmmo:block/structure_horizontal_post_bottom_top",
+    "textures": {
+        "bottom": "#wall",
+        "top": "#wall"
+    }
 }

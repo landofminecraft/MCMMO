@@ -5,8 +5,11 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockTorch;
+import net.minecraft.block.BlockTrapDoor;
+import net.minecraft.block.BlockTripWireHook;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -245,6 +248,18 @@ public abstract class BlockModStructureWall extends Block {
 			return otherState.getValue(BlockTorch.FACING) == facing;
 		}
 
+		if (otherBlock instanceof BlockTrapDoor) {
+			return otherState.getValue(BlockTrapDoor.FACING) == facing;
+		}
+
+		if (otherBlock instanceof BlockTripWireHook) {
+			return otherState.getValue(BlockTripWireHook.FACING) == facing;
+		}
+
+		if (otherBlock instanceof BlockDoor) {
+			return true;
+		}
+
 		if (otherState.getBlockFaceShape(world, otherPos, facing.getOpposite()) == BlockFaceShape.SOLID) {
 			return true;
 		}
@@ -257,6 +272,11 @@ public abstract class BlockModStructureWall extends Block {
 	}
 
 	/* ======================================== FORGE END ======================================== */
+
+	@Override
+	public boolean isTopSolid(final IBlockState state) {
+		return true;
+	}
 
 	@Override
 	public boolean isSideSolid(final IBlockState base_state, final IBlockAccess world, final BlockPos pos, final EnumFacing side) {

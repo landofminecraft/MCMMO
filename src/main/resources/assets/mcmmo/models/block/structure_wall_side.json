@@ -1,18 +1,7 @@
 {
+    "parent": "mcmmo:block/structure_wall_side_bottom_top",
     "textures": {
-        "particle": "#wall"
-    },
-    "elements": [
-        {   "from": [ 4, 0, 0 ],
-            "to": [ 12, 16, 4 ],
-            "faces": {
-                "down":  { "texture": "#wall", "cullface": "down" },
-                "up":    { "texture": "#wall" },
-                "north": { "texture": "#wall", "cullface": "north" },
-                "west":  { "texture": "#wall" },
-                "east":  { "texture": "#wall" }
-            },
-            "__comment": "wall"
-        }
-    ]
+        "bottom": "#wall",
+        "top": "#wall"
+    }
 }
