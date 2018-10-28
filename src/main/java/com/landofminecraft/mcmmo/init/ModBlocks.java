@@ -10,6 +10,11 @@ import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.block.BlockLogStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockLogStructureWall;
+import com.landofminecraft.mcmmo.block.BlockLogWall;
+import com.landofminecraft.mcmmo.block.BlockNetherBrickStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockNetherBrickStructureWall;
 import com.landofminecraft.mcmmo.block.BlockPlanksStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockPlanksStructureWall;
 import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureHorizontal;
@@ -22,6 +27,9 @@ import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
 import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureWall;
 import com.landofminecraft.mcmmo.block.BlockStoneBrickWall;
+import com.landofminecraft.mcmmo.block.BlockStoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockStoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockStoneWall;
 import com.landofminecraft.mcmmo.util.ModReference;
 
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
@@ -288,26 +296,8 @@ public class ModBlocks {
 	public static final BlockStoneStructureHorizontal	ANDESITE_STRUCTURE_HORIZONTAL			= null;
 	public static final BlockStoneStructureHorizontal	ANDESITE_SMOOTH_STRUCTURE_HORIZONTAL	= null;
 
-//	  OAK(0, "oak", MapColor.WOOD),
-//    SPRUCE(1, "spruce", MapColor.OBSIDIAN),
-//    BIRCH(2, "birch", MapColor.SAND),
-//    JUNGLE(3, "jungle", MapColor.DIRT),
-//    ACACIA(4, "acacia", MapColor.ADOBE),
-//    DARK_OAK(5, "dark_oak", "big_oak", MapColor.BROWN);
+	public static final BlockNetherBrickStructureWall NETHER_BRICK_STRUCTURE_WALL = null;
 
-//	OAK(0, "oak", MapColor.WOOD),
-//  SPRUCE(1, "spruce", MapColor.OBSIDIAN),
-//  BIRCH(2, "birch", MapColor.SAND),
-//  JUNGLE(3, "jungle", MapColor.DIRT),
-//  ACACIA(4, "acacia", MapColor.ADOBE),
-//  DARK_OAK(5, "dark_oak", "big_oak", MapColor.BROWN);
-
-//	   STONE(0, MapColor.STONE, "stone", true),
-//     GRANITE(1, MapColor.DIRT, "granite", true),
-//     GRANITE_SMOOTH(2, MapColor.DIRT, "smooth_granite", "graniteSmooth", false),
-//     DIORITE(3, MapColor.QUARTZ, "diorite", true),
-//     DIORITE_SMOOTH(4, MapColor.QUARTZ, "smooth_diorite", "dioriteSmooth", false),
-//     ANDESITE(5, MapColor.STONE, "andesite", true),
-//     ANDESITE_SMOOTH(6, MapColor.STONE, "smooth_andesite", "andesiteSmooth", false);
+	public static final BlockNetherBrickStructureHorizontal NETHER_BRICK_STRUCTURE_HORIZONTAL = null;
 
 }

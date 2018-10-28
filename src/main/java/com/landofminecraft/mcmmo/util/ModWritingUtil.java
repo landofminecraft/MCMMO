@@ -833,6 +833,35 @@ public class ModWritingUtil {
 
 		}
 
+//		for (final BlockPlanks.EnumType planksType : BlockPlanks.EnumType.values()) {
+//
+//			registry.register(new BlockPlanksStructureWall(planksType));
+//
+//			registry.register(new BlockPlanksStructureHorizontal(planksType));
+//		}
+//
+//		for (final BlockPlanks.EnumType logType : BlockPlanks.EnumType.values()) {
+//
+//			registry.register(new BlockLogWall(logType));
+//
+//			registry.register(new BlockLogStructureWall(logType));
+//
+//			registry.register(new BlockLogStructureHorizontal(logType));
+//		}
+//
+//		for (final BlockStone.EnumType stoneType : BlockStone.EnumType.values()) {
+//
+//			registry.register(new BlockStoneWall(stoneType));
+//
+//			registry.register(new BlockStoneStructureWall(stoneType));
+//
+//			registry.register(new BlockStoneStructureHorizontal(stoneType));
+//		}
+//
+//		registry.register(new BlockNetherBrickStructureWall());
+//
+//		registry.register(new BlockNetherBrickStructureHorizontal());
+
 		blockstates.forEach((name, state) -> {
 			final ArrayList<String> data = new ArrayList<>(Arrays.asList(state.split("\n")));
 			final Iterator<String> it = data.iterator();

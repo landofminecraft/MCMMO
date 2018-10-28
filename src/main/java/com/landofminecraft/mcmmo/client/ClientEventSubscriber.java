@@ -218,6 +218,69 @@ public final class ClientEventSubscriber {
 		registerModel(ModBlocks.CHISELED_RED_SANDSTONE_STRUCTURE_HORIZONTAL);
 		registerModel(ModBlocks.SMOOTH_RED_SANDSTONE_STRUCTURE_HORIZONTAL);
 
+		registerModel(ModBlocks.OAK_LOG_WALL);
+		registerModel(ModBlocks.SPRUCE_LOG_WALL);
+		registerModel(ModBlocks.BIRCH_LOG_WALL);
+		registerModel(ModBlocks.JUNGLE_LOG_WALL);
+		registerModel(ModBlocks.ACACIA_LOG_WALL);
+		registerModel(ModBlocks.DARK_OAK_LOG_WALL);
+
+		registerModel(ModBlocks.STONE_WALL);
+		registerModel(ModBlocks.GRANITE_WALL);
+		registerModel(ModBlocks.GRANITE_SMOOTH_WALL);
+		registerModel(ModBlocks.DIORITE_WALL);
+		registerModel(ModBlocks.DIORITE_SMOOTH_WALL);
+		registerModel(ModBlocks.ANDESITE_WALL);
+		registerModel(ModBlocks.ANDESITE_SMOOTH_WALL);
+
+		registerModel(ModBlocks.OAK_PLANKS_STRUCTURE_WALL);
+		registerModel(ModBlocks.SPRUCE_PLANKS_STRUCTURE_WALL);
+		registerModel(ModBlocks.BIRCH_PLANKS_STRUCTURE_WALL);
+		registerModel(ModBlocks.JUNGLE_PLANKS_STRUCTURE_WALL);
+		registerModel(ModBlocks.ACACIA_PLANKS_STRUCTURE_WALL);
+		registerModel(ModBlocks.DARK_OAK_PLANKS_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.OAK_LOG_STRUCTURE_WALL);
+		registerModel(ModBlocks.SPRUCE_LOG_STRUCTURE_WALL);
+		registerModel(ModBlocks.BIRCH_LOG_STRUCTURE_WALL);
+		registerModel(ModBlocks.JUNGLE_LOG_STRUCTURE_WALL);
+		registerModel(ModBlocks.ACACIA_LOG_STRUCTURE_WALL);
+		registerModel(ModBlocks.DARK_OAK_LOG_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.STONE_STRUCTURE_WALL);
+		registerModel(ModBlocks.GRANITE_STRUCTURE_WALL);
+		registerModel(ModBlocks.GRANITE_SMOOTH_STRUCTURE_WALL);
+		registerModel(ModBlocks.DIORITE_STRUCTURE_WALL);
+		registerModel(ModBlocks.DIORITE_SMOOTH_STRUCTURE_WALL);
+		registerModel(ModBlocks.ANDESITE_STRUCTURE_WALL);
+		registerModel(ModBlocks.ANDESITE_SMOOTH_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.OAK_PLANKS_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.SPRUCE_PLANKS_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BIRCH_PLANKS_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.JUNGLE_PLANKS_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.ACACIA_PLANKS_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.DARK_OAK_PLANKS_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.OAK_LOG_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.SPRUCE_LOG_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.BIRCH_LOG_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.JUNGLE_LOG_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.ACACIA_LOG_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.DARK_OAK_LOG_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.STONE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GRANITE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.GRANITE_SMOOTH_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.DIORITE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.DIORITE_SMOOTH_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.ANDESITE_STRUCTURE_HORIZONTAL);
+		registerModel(ModBlocks.ANDESITE_SMOOTH_STRUCTURE_HORIZONTAL);
+
+		registerModel(ModBlocks.NETHER_BRICK_STRUCTURE_WALL);
+
+		registerModel(ModBlocks.NETHER_BRICK_STRUCTURE_HORIZONTAL);
+
 		registerTileEntitySpecialRenderers();
 		registerEntityRenderers();
 	}

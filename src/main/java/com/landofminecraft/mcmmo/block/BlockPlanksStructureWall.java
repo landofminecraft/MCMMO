@@ -2,17 +2,16 @@ package com.landofminecraft.mcmmo.block;
 
 import com.landofminecraft.mcmmo.util.ModUtil;
 
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.init.Blocks;
 
 public class BlockPlanksStructureWall extends BlockModStructureWall {
 
-	private final BlockPlanks.EnumType type;
+	private final EnumType type;
 
 	public BlockPlanksStructureWall(final EnumType type) {
 		super(Blocks.PLANKS.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, type.getName() + "_" + SUFFIX);
+		ModUtil.setRegistryNames(this, type.getName() + "_planks_" + SUFFIX);
 
 		this.type = type;
 

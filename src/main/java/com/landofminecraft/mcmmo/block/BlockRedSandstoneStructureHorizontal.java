@@ -2,13 +2,12 @@ package com.landofminecraft.mcmmo.block;
 
 import com.landofminecraft.mcmmo.util.ModUtil;
 
-import net.minecraft.block.BlockRedSandstone;
 import net.minecraft.block.BlockRedSandstone.EnumType;
 import net.minecraft.init.Blocks;
 
 public class BlockRedSandstoneStructureHorizontal extends BlockModStructureHorizontal {
 
-	private final BlockRedSandstone.EnumType type;
+	private final EnumType type;
 
 	public BlockRedSandstoneStructureHorizontal(final EnumType type) {
 		super(Blocks.RED_SANDSTONE.getDefaultState().getMaterial());

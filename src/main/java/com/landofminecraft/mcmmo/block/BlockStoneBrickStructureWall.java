@@ -2,14 +2,14 @@ package com.landofminecraft.mcmmo.block;
 
 import com.landofminecraft.mcmmo.util.ModUtil;
 
-import net.minecraft.block.BlockStoneBrick;
+import net.minecraft.block.BlockStoneBrick.EnumType;
 import net.minecraft.init.Blocks;
 
 public class BlockStoneBrickStructureWall extends BlockModStructureWall {
 
-	private final BlockStoneBrick.EnumType type;
+	private final EnumType type;
 
-	public BlockStoneBrickStructureWall(final BlockStoneBrick.EnumType type) {
+	public BlockStoneBrickStructureWall(final EnumType type) {
 		super(Blocks.STONEBRICK.getDefaultState().getMaterial());
 		ModUtil.setRegistryNames(this, type.getName() + "_" + SUFFIX);
 
@@ -22,7 +22,7 @@ public class BlockStoneBrickStructureWall extends BlockModStructureWall {
 
 	}
 
-	public BlockStoneBrick.EnumType getType() {
+	public EnumType getType() {
 		return this.type;
 	}
 }

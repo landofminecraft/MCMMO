@@ -2,13 +2,12 @@ package com.landofminecraft.mcmmo.block;
 
 import com.landofminecraft.mcmmo.util.ModUtil;
 
-import net.minecraft.block.BlockWall;
 import net.minecraft.block.BlockWall.EnumType;
 import net.minecraft.init.Blocks;
 
 public class BlockCobblestoneStructureHorizontal extends BlockModStructureHorizontal {
 
-	private final BlockWall.EnumType type;
+	private final EnumType type;
 
 	public BlockCobblestoneStructureHorizontal(final EnumType type) {
 		super(Blocks.COBBLESTONE.getDefaultState().getMaterial());

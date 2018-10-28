@@ -10,6 +10,11 @@ import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.block.BlockLogStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockLogStructureWall;
+import com.landofminecraft.mcmmo.block.BlockLogWall;
+import com.landofminecraft.mcmmo.block.BlockNetherBrickStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockNetherBrickStructureWall;
 import com.landofminecraft.mcmmo.block.BlockPlanksStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockPlanksStructureWall;
 import com.landofminecraft.mcmmo.block.BlockRedSandstoneStructureHorizontal;
@@ -22,6 +27,9 @@ import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
 import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureHorizontal;
 import com.landofminecraft.mcmmo.block.BlockStoneBrickStructureWall;
 import com.landofminecraft.mcmmo.block.BlockStoneBrickWall;
+import com.landofminecraft.mcmmo.block.BlockStoneStructureHorizontal;
+import com.landofminecraft.mcmmo.block.BlockStoneStructureWall;
+import com.landofminecraft.mcmmo.block.BlockStoneWall;
 import com.landofminecraft.mcmmo.init.ModBlocks;
 import com.landofminecraft.mcmmo.item.ModItemBlock;
 import com.landofminecraft.mcmmo.tileentity.TileEntityGrindstone;
@@ -127,11 +135,11 @@ public final class EventSubscriber {
 
 		for (final BlockPlanks.EnumType logType : BlockPlanks.EnumType.values()) {
 
-			registry.register(new BlockWoodWall(logType));
+			registry.register(new BlockLogWall(logType));
 
-			registry.register(new BlockWoodStructureWall(logType));
+			registry.register(new BlockLogStructureWall(logType));
 
-			registry.register(new BlockWoodStructureHorizontal(logType));
+			registry.register(new BlockLogStructureHorizontal(logType));
 		}
 
 		for (final BlockStone.EnumType stoneType : BlockStone.EnumType.values()) {
@@ -142,6 +150,10 @@ public final class EventSubscriber {
 
 			registry.register(new BlockStoneStructureHorizontal(stoneType));
 		}
+
+		registry.register(new BlockNetherBrickStructureWall());
+
+		registry.register(new BlockNetherBrickStructureHorizontal());
 
 		MinecraftMMO.debug("Registered blocks");
 
@@ -360,6 +372,69 @@ public final class EventSubscriber {
 		registry.register(new ModItemBlock(ModBlocks.RED_SANDSTONE_STRUCTURE_HORIZONTAL));
 		registry.register(new ModItemBlock(ModBlocks.CHISELED_RED_SANDSTONE_STRUCTURE_HORIZONTAL));
 		registry.register(new ModItemBlock(ModBlocks.SMOOTH_RED_SANDSTONE_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.OAK_LOG_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SPRUCE_LOG_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BIRCH_LOG_WALL));
+		registry.register(new ModItemBlock(ModBlocks.JUNGLE_LOG_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ACACIA_LOG_WALL));
+		registry.register(new ModItemBlock(ModBlocks.DARK_OAK_LOG_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.STONE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRANITE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRANITE_SMOOTH_WALL));
+		registry.register(new ModItemBlock(ModBlocks.DIORITE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.DIORITE_SMOOTH_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ANDESITE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ANDESITE_SMOOTH_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.OAK_PLANKS_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SPRUCE_PLANKS_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BIRCH_PLANKS_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.JUNGLE_PLANKS_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ACACIA_PLANKS_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.DARK_OAK_PLANKS_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.OAK_LOG_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.SPRUCE_LOG_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.BIRCH_LOG_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.JUNGLE_LOG_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ACACIA_LOG_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.DARK_OAK_LOG_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.STONE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRANITE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.GRANITE_SMOOTH_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.DIORITE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.DIORITE_SMOOTH_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ANDESITE_STRUCTURE_WALL));
+		registry.register(new ModItemBlock(ModBlocks.ANDESITE_SMOOTH_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.OAK_PLANKS_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.SPRUCE_PLANKS_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BIRCH_PLANKS_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.JUNGLE_PLANKS_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.ACACIA_PLANKS_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.DARK_OAK_PLANKS_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.OAK_LOG_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.SPRUCE_LOG_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.BIRCH_LOG_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.JUNGLE_LOG_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.ACACIA_LOG_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.DARK_OAK_LOG_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.STONE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GRANITE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.GRANITE_SMOOTH_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.DIORITE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.DIORITE_SMOOTH_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.ANDESITE_STRUCTURE_HORIZONTAL));
+		registry.register(new ModItemBlock(ModBlocks.ANDESITE_SMOOTH_STRUCTURE_HORIZONTAL));
+
+		registry.register(new ModItemBlock(ModBlocks.NETHER_BRICK_STRUCTURE_WALL));
+
+		registry.register(new ModItemBlock(ModBlocks.NETHER_BRICK_STRUCTURE_HORIZONTAL));
 
 		MinecraftMMO.debug("Registered items");
 
