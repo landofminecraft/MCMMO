@@ -15,8 +15,11 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.landofminecraft.mcmmo.MinecraftMMO;
+import com.landofminecraft.mcmmo.block.BlockConcreteStructureWall;
 import com.landofminecraft.mcmmo.block.BlockConcreteWall;
+import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
+import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayStructureWall;
 import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
 import com.landofminecraft.mcmmo.init.ModBlocks;
 import com.landofminecraft.mcmmo.init.ModItems;
@@ -28,6 +31,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -35,6 +39,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SuppressWarnings({ "javadoc", "unused" })
 @Mod.EventBusSubscriber(Side.CLIENT)
 @SideOnly(Side.CLIENT)
 public class ModWritingUtil {
@@ -80,231 +85,8 @@ public class ModWritingUtil {
 					try {
 						generateAndWriteModels(material);
 
-						final HashMap<String, String> blockstates = new HashMap<>();
-						final HashMap<String, String> blockModels = new HashMap<>();
-						final HashMap<String, String> itemModels = new HashMap<>();
-
-						for (final EnumDyeColor color : EnumDyeColor.values()) {
-							final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, color.getName() + "_" + BlockStainedHardenedClayWall.SUFFIX);
-							blockstates.put(model.getPath(), "{\n" +
-
-									"    \"multipart\": [\n" +
-
-									"        {   \"when\": { \"up\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"north\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"east\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"south\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"west\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
-
-									"        }\n" +
-
-									"    ]\n" +
-
-									"}\n");
-
-							final ResourceLocation textureLocation = new ResourceLocation("minecraft", "hardened_clay_stained_" + color.getName());
-
-							final ResourceLocation postParent = new ResourceLocation("", "block/wall_post");
-							final String textureName = "wall";
-							final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
-							blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
-
-							final ResourceLocation sideParent = new ResourceLocation("", "block/wall_side");
-							blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
-
-							final ResourceLocation itemTextureLocation = blockTextureLocation;
-							final ResourceLocation itemParent = new ResourceLocation("minecraft", "block/wall_inventory");
-							itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
-						}
-
-						for (final EnumDyeColor color : EnumDyeColor.values()) {
-							final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, color.getName() + "_" + BlockConcreteWall.SUFFIX);
-							blockstates.put(model.getPath(), "{\n" +
-
-									"    \"multipart\": [\n" +
-
-									"        {   \"when\": { \"up\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"north\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"east\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"south\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"west\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
-
-									"        }\n" +
-
-									"    ]\n" +
-
-									"}\n");
-
-							final ResourceLocation textureLocation = new ResourceLocation("minecraft", "concrete_" + color.getName());
-
-							final ResourceLocation postParent = new ResourceLocation("", "block/wall_post");
-							final String textureName = "wall";
-							final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
-							blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
-
-							final ResourceLocation sideParent = new ResourceLocation("", "block/wall_side");
-							blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
-//
-							final ResourceLocation itemTextureLocation = blockTextureLocation;
-							final ResourceLocation itemParent = new ResourceLocation("minecraft", "block/wall_inventory");
-							itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
-						}
-
-						for (final EnumDyeColor color : EnumDyeColor.values()) {
-							final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, color.getName() + "_" + BlockGlazedTerracottaWall.SUFFIX);
-							blockstates.put(model.getPath(), "{\n" +
-
-									"    \"multipart\": [\n" +
-
-									"        {   \"when\": { \"up\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"north\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"east\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"south\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
-
-									"        },\n" +
-
-									"        {   \"when\": { \"west\": \"true\" },\n" +
-
-									"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
-
-									"        }\n" +
-
-									"    ]\n" +
-
-									"}\n");
-
-							final ResourceLocation textureLocation = new ResourceLocation("minecraft", "glazed_terracotta_" + color.getName());
-
-							final ResourceLocation postParent = new ResourceLocation("", "block/wall_post");
-							final String textureName = "wall";
-							final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
-							blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
-
-							final ResourceLocation sideParent = new ResourceLocation("", "block/wall_side");
-							blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
-//
-							final ResourceLocation itemTextureLocation = blockTextureLocation;
-							final ResourceLocation itemParent = new ResourceLocation("minecraft", "block/wall_inventory");
-							itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
-						}
-
-						blockstates.forEach((name, state) -> {
-							final ArrayList<String> data = new ArrayList<>(Arrays.asList(state.split("\n")));
-							final Iterator<String> it = data.iterator();
-							while (it.hasNext()) {
-								if (it.next().equals("")) {
-									it.remove();
-								}
-							}
-
-							final Path file = Paths.get(ASSET_DIR + "blockstates/" + name.toLowerCase() + ".json");
-							try {
-//								MinecraftMMO.info("Writing Blockstate " + name.toLowerCase() + ".json");
-								Files.write(file, data, Charset.forName("UTF-8"));
-							} catch (final IOException e) {
-								e.printStackTrace();
-							}
-
-						});
-
-						blockModels.forEach((name, model) -> {
-							final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
-							final Iterator<String> it = data.iterator();
-							while (it.hasNext()) {
-								if (it.next().equals("")) {
-									it.remove();
-								}
-							}
-
-							final Path file = Paths.get(ASSET_DIR + "models/block/" + name.toLowerCase() + ".json");
-							try {
-//								MinecraftMMO.info("Writing Block Model " + name.toLowerCase() + ".json");
-								Files.write(file, data, Charset.forName("UTF-8"));
-							} catch (final IOException e) {
-								e.printStackTrace();
-							}
-
-						});
-
-						itemModels.forEach((name, model) -> {
-							final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
-							final Iterator<String> it = data.iterator();
-							while (it.hasNext()) {
-								if (it.next().equals("")) {
-									it.remove();
-								}
-							}
-
-							final Path file = Paths.get(ASSET_DIR + "models/item/" + name.toLowerCase() + ".json");
-							try {
-//								MinecraftMMO.info("Writing Item Model " + name.toLowerCase() + ".json");
-								Files.write(file, data, Charset.forName("UTF-8"));
-							} catch (final IOException e) {
-								e.printStackTrace();
-							}
-
-						});
+						generateAndWriteWallModels();
+						generateAndWriteStructureWallModels();
 
 					} catch (final Exception e) {
 						e.printStackTrace();
@@ -312,6 +94,279 @@ public class ModWritingUtil {
 				}
 			}, "JSON Writer Thread").start();
 		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	private static void generateAndWriteStructureWallModels() {
+		final HashMap<String, String> blockstates = new HashMap<>();
+		final HashMap<String, String> blockModels = new HashMap<>();
+		final HashMap<String, String> itemModels = new HashMap<>();
+
+		for (final EnumDyeColor color : EnumDyeColor.values()) {
+
+			for (final Tuple<String, String> tupple : new Tuple[] {
+
+					new Tuple<>(BlockStainedHardenedClayStructureWall.SUFFIX, "hardened_clay_stained_"),
+
+					new Tuple<>(BlockConcreteStructureWall.SUFFIX, "concrete_"),
+
+					new Tuple<>(BlockGlazedTerracottaStructureWall.SUFFIX, "glazed_terracotta_"),
+
+			}) {
+				final String suffix = tupple.getFirst();
+				final String vanillaTexture = tupple.getSecond();
+
+				final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, color.getName() + "_" + suffix);
+				blockstates.put(model.getPath(), "{\n" +
+
+						"    \"multipart\": [\n" +
+
+						// when always true
+						"        {   \"when\": {\"OR\": [{\"north\": true}, {\"north\": false}]},\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"north\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"east\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"south\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"west\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+						"        }\n" +
+
+						"    ]\n" +
+
+						"}\n");
+
+				final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + color.getName());
+
+				final ResourceLocation postParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_post");
+				final String textureName = "wall";
+				final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+				blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+				final ResourceLocation sideParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_side");
+				blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+				final ResourceLocation itemTextureLocation = blockTextureLocation;
+				final ResourceLocation itemParent = new ResourceLocation(ModReference.MOD_ID, "block/structure_wall_inventory");
+				itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+			}
+
+		}
+
+		blockstates.forEach((name, state) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(state.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "blockstates/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Blockstate " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		blockModels.forEach((name, model) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "models/block/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Block Model " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		itemModels.forEach((name, model) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "models/item/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Item Model " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+	}
+
+	@SuppressWarnings("unchecked")
+	private static void generateAndWriteWallModels() {
+		final HashMap<String, String> blockstates = new HashMap<>();
+		final HashMap<String, String> blockModels = new HashMap<>();
+		final HashMap<String, String> itemModels = new HashMap<>();
+
+		for (final EnumDyeColor color : EnumDyeColor.values()) {
+
+			for (final Tuple<String, String> tupple : new Tuple[] {
+
+					new Tuple<>(BlockStainedHardenedClayWall.SUFFIX, "hardened_clay_stained_"),
+
+					new Tuple<>(BlockConcreteWall.SUFFIX, "concrete_"),
+
+					new Tuple<>(BlockGlazedTerracottaWall.SUFFIX, "glazed_terracotta_"),
+
+			}) {
+				final String suffix = tupple.getFirst();
+				final String vanillaTexture = tupple.getSecond();
+
+				final ResourceLocation model = new ResourceLocation(ModReference.MOD_ID, color.getName() + "_" + suffix);
+				blockstates.put(model.getPath(), "{\n" +
+
+						"    \"multipart\": [\n" +
+
+						"        {   \"when\": { \"up\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_post\" }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"north\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"east\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 90, \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"south\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 180, \"uvlock\": true }\n" +
+
+						"        },\n" +
+
+						"        {   \"when\": { \"west\": \"true\" },\n" +
+
+						"            \"apply\": { \"model\": \"" + model + "_side\", \"y\": 270, \"uvlock\": true }\n" +
+
+						"        }\n" +
+
+						"    ]\n" +
+
+						"}\n");
+
+				final ResourceLocation textureLocation = new ResourceLocation("minecraft", vanillaTexture + color.getName());
+
+				final ResourceLocation postParent = new ResourceLocation("", "block/wall_post");
+				final String textureName = "wall";
+				final ResourceLocation blockTextureLocation = getTextureLocation(textureLocation, "block");
+				blockModels.put(model.getPath() + "_post", generateModelJSON(postParent, textureName, blockTextureLocation));
+
+				final ResourceLocation sideParent = new ResourceLocation("", "block/wall_side");
+				blockModels.put(model.getPath() + "_side", generateModelJSON(sideParent, textureName, blockTextureLocation));
+
+				final ResourceLocation itemTextureLocation = blockTextureLocation;
+				final ResourceLocation itemParent = new ResourceLocation("minecraft", "block/wall_inventory");
+				itemModels.put(model.getPath(), generateModelJSON(itemParent, textureName, itemTextureLocation));
+
+			}
+
+		}
+
+		blockstates.forEach((name, state) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(state.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "blockstates/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Blockstate " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		blockModels.forEach((name, model) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "models/block/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Block Model " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		itemModels.forEach((name, model) -> {
+			final ArrayList<String> data = new ArrayList<>(Arrays.asList(model.split("\n")));
+			final Iterator<String> it = data.iterator();
+			while (it.hasNext()) {
+				if (it.next().equals("")) {
+					it.remove();
+				}
+			}
+
+			final Path file = Paths.get(ASSET_DIR + "models/item/" + name.toLowerCase() + ".json");
+			try {
+//				MinecraftMMO.info("Writing Item Model " + name.toLowerCase() + ".json");
+				Files.write(file, data, Charset.forName("UTF-8"));
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+
+		});
 
 	}
 

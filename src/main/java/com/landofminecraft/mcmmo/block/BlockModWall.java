@@ -114,7 +114,7 @@ public abstract class BlockModWall extends Block {
 
 	@Override
 	public BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { UP, NORTH, EAST, WEST, SOUTH });
+		return new BlockStateContainer(this, new IProperty[] { UP, NORTH, SOUTH, WEST, EAST });
 	}
 
 	/**
@@ -238,12 +238,12 @@ public abstract class BlockModWall extends Block {
 	 */
 	@Override
 	public IBlockState getActualState(final IBlockState state, final IBlockAccess worldIn, final BlockPos pos) {
-		final boolean flag = this.canWallConnectTo(worldIn, pos, EnumFacing.NORTH);
-		final boolean flag1 = this.canWallConnectTo(worldIn, pos, EnumFacing.EAST);
-		final boolean flag2 = this.canWallConnectTo(worldIn, pos, EnumFacing.SOUTH);
-		final boolean flag3 = this.canWallConnectTo(worldIn, pos, EnumFacing.WEST);
-		final boolean flag4 = (flag && !flag1 && flag2 && !flag3) || (!flag && flag1 && !flag2 && flag3);
-		return state.withProperty(UP, Boolean.valueOf(!flag4 || !worldIn.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
+		final boolean north = this.canWallConnectTo(worldIn, pos, EnumFacing.NORTH);
+		final boolean east = this.canWallConnectTo(worldIn, pos, EnumFacing.EAST);
+		final boolean south = this.canWallConnectTo(worldIn, pos, EnumFacing.SOUTH);
+		final boolean west = this.canWallConnectTo(worldIn, pos, EnumFacing.WEST);
+		final boolean up = (north && !east && south && !west) || (!north && east && !south && west);
+		return state.withProperty(UP, (!up || !worldIn.isAirBlock(pos.up()))).withProperty(NORTH, north).withProperty(EAST, east).withProperty(SOUTH, south).withProperty(WEST, west);
 	}
 
 	/**

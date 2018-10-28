@@ -1,0 +1,6 @@
+{
+	"parent": "mcmmo:block/structure_wall_side",
+	"textures": {
+		"wall": "minecraft:blocks/hardened_clay_stained_brown"
+	}
+}

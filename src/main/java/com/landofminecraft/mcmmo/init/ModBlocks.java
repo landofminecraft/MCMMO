@@ -1,9 +1,12 @@
 package com.landofminecraft.mcmmo.init;
 
+import com.landofminecraft.mcmmo.block.BlockConcreteStructureWall;
 import com.landofminecraft.mcmmo.block.BlockConcreteWall;
+import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaStructureWall;
 import com.landofminecraft.mcmmo.block.BlockGlazedTerracottaWall;
 import com.landofminecraft.mcmmo.block.BlockGrindstone;
 import com.landofminecraft.mcmmo.block.BlockGrindstoneHandle;
+import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayStructureWall;
 import com.landofminecraft.mcmmo.block.BlockStainedHardenedClayWall;
 import com.landofminecraft.mcmmo.util.ModReference;
 
@@ -72,5 +75,56 @@ public class ModBlocks {
 	public static final BlockGlazedTerracottaWall	GREEN_GLAZED_TERRACOTTA_WALL		= null;
 	public static final BlockGlazedTerracottaWall	RED_GLAZED_TERRACOTTA_WALL			= null;
 	public static final BlockGlazedTerracottaWall	BLACK_GLAZED_TERRACOTTA_WALL		= null;
+
+	public static final BlockStainedHardenedClayStructureWall	WHITE_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	ORANGE_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	MAGENTA_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	LIGHT_BLUE_CLAY_STRUCTURE_WALL	= null;
+	public static final BlockStainedHardenedClayStructureWall	YELLOW_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	LIME_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	PINK_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	GRAY_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	SILVER_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	CYAN_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	PURPLE_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	BLUE_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	BROWN_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	GREEN_CLAY_STRUCTURE_WALL		= null;
+	public static final BlockStainedHardenedClayStructureWall	RED_CLAY_STRUCTURE_WALL			= null;
+	public static final BlockStainedHardenedClayStructureWall	BLACK_CLAY_STRUCTURE_WALL		= null;
+
+	public static final BlockConcreteStructureWall	WHITE_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	ORANGE_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	MAGENTA_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	LIGHT_BLUE_CONCRETE_STRUCTURE_WALL	= null;
+	public static final BlockConcreteStructureWall	YELLOW_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	LIME_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	PINK_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	GRAY_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	SILVER_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	CYAN_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	PURPLE_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	BLUE_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	BROWN_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	GREEN_CONCRETE_STRUCTURE_WALL		= null;
+	public static final BlockConcreteStructureWall	RED_CONCRETE_STRUCTURE_WALL			= null;
+	public static final BlockConcreteStructureWall	BLACK_CONCRETE_STRUCTURE_WALL		= null;
+
+	public static final BlockGlazedTerracottaStructureWall	WHITE_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	ORANGE_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	MAGENTA_GLAZED_TERRACOTTA_STRUCTURE_WALL	= null;
+	public static final BlockGlazedTerracottaStructureWall	LIGHT_BLUE_GLAZED_TERRACOTTA_STRUCTURE_WALL	= null;
+	public static final BlockGlazedTerracottaStructureWall	YELLOW_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	LIME_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	PINK_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	GRAY_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	SILVER_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	CYAN_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	PURPLE_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	BLUE_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	BROWN_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	GREEN_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	RED_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
+	public static final BlockGlazedTerracottaStructureWall	BLACK_GLAZED_TERRACOTTA_STRUCTURE_WALL		= null;
 
 }
