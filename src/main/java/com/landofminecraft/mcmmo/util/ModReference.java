@@ -54,7 +54,7 @@ public final class ModReference {
 		 * It is changed when we patch small problems that do not cause a change to any greater versions.<br>
 		 * It is reset when we update to a new Minecraft version, our Major Mod Version increments, our Major API Version increments or our Minor Mod Version increments.
 		 */
-		public static final int PATCH_VERSION = 8;
+		public static final int PATCH_VERSION = 9;
 
 		/**
 		 * This is our Mod's PreRelease Version.<br>
