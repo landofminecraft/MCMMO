@@ -1,11 +1,5 @@
 package com.landofminecraft.mcmmo.block;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.landofminecraft.mcmmo.util.ModUtil;
 
 import net.minecraft.block.BlockStone.EnumType;
@@ -18,7 +12,7 @@ public class BlockStoneWall extends BlockModWall {
 	public BlockStoneWall(final EnumType type) {
 		super(Blocks.LOG.getDefaultState().getMaterial());
 		// smooth_andesite -> andesite_smooth
-		ModUtil.setRegistryNames(this, StringUtils.join(Arrays.asList(type.getName().split("_")).stream().collect(Collectors.toCollection(LinkedList::new)).descendingIterator(), "_") + "_" + SUFFIX);
+		ModUtil.setRegistryNames(this, type.name().toLowerCase() + "_" + SUFFIX);
 
 		this.type = type;
 
