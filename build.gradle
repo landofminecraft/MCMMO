@@ -57,9 +57,15 @@ dependencies {
 
 }
 
-processResources {
+sourceSets {
+    main {
+        java {
+            exclude '**ModWritingUtil.java**'
+        }
+    }
+}
 
-	exclude 'ModWritingUtil.java'
+processResources {
 
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
