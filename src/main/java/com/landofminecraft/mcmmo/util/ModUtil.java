@@ -94,6 +94,7 @@ public final class ModUtil {
 	 * @return the entry
 	 */
 	public static <T extends IForgeRegistryEntry.Impl<?>> T setRegistryNames(final T entry, final ResourceLocation registryName, final String unlocalizedName) {
+//		MinecraftMMO.info(entry + " | " + registryName);
 		entry.setRegistryName(registryName);
 		if (entry instanceof Block) {
 			((Block) entry).setTranslationKey(unlocalizedName);
