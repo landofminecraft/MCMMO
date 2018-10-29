@@ -78,10 +78,26 @@ public class ModWritingUtil {
 
 	@SubscribeEvent
 	public static void onBakeModelsEvent(final ModelBakeEvent event) {
-		MinecraftMMO.fatal("IF YOU CAN SEE THIS AND YOU AREN'T IN A DEVELOPER ENVIRONMENT EXIT THE GAME, REMOVE THIS MOD (" + ModReference.MOD_NAME + ", " + ModReference.MOD_ID + ") AND REPORT THIS IMMEDIATELY TO THE MOD AUTHOR");
+
 		if (!(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment")) {
-			throw new ReportedException(new CrashReport("Not deobfuscated but trying to auto-generate models, recipes and lang files! THIS IS A FATAL ERROR - REPORT THIS TO THE MOD AUTHOR", new IllegalStateException()));
+
+			final String description =
+
+					ModReference.MOD_NAME + " (" + ModReference.MOD_ID + "): " + "Has deliberately crashed the game because a developer-only part of the mod responsible for autogenerating resource files has been detected in a non-development environment." +
+
+							"\n" +
+
+							"This is a fatal error that effects every user of the mod!" +
+
+							"\n" +
+
+							"Report this immediately to the mod author and remove this mod";
+
+			final CrashReport crashReport = new CrashReport(description, new IllegalStateException());
+
+			throw new ReportedException(crashReport);
 		}
+
 		writeMod();
 	}
 
