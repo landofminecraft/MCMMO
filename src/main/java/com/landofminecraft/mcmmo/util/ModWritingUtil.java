@@ -55,10 +55,13 @@ import net.minecraft.block.BlockSandStone;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.block.BlockWall;
+import net.minecraft.crash.CrashReport;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraftforge.client.event.ModelBakeEvent;
@@ -75,6 +78,10 @@ public class ModWritingUtil {
 
 	@SubscribeEvent
 	public static void onBakeModelsEvent(final ModelBakeEvent event) {
+		MinecraftMMO.fatal("IF YOU CAN SEE THIS AND YOU AREN'T IN A DEVELOPER ENVIRONMENT EXIT THE GAME, REMOVE THIS MOD (" + ModReference.MOD_NAME + ", " + ModReference.MOD_ID + ") AND REPORT THIS IMMEDIATELY TO THE MOD AUTHOR");
+		if (!(boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment")) {
+			throw new ReportedException(new CrashReport("Not deobfuscated but trying to auto-generate models, recipes and lang files! THIS IS A FATAL ERROR - REPORT THIS TO THE MOD AUTHOR", new IllegalStateException()));
+		}
 		writeMod();
 	}
 
