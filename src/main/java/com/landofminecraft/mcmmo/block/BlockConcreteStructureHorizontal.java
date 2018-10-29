@@ -7,11 +7,13 @@ import net.minecraft.item.EnumDyeColor;
 
 public class BlockConcreteStructureHorizontal extends BlockModStructureHorizontal {
 
+	public static final String SUFFIX = "concrete_" + BlockModStructureHorizontal.SUFFIX;
+
 	private final EnumDyeColor color;
 
 	public BlockConcreteStructureHorizontal(final EnumDyeColor color) {
 		super(Blocks.CONCRETE.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, color.getName() + "_concrete_" + SUFFIX);
+		ModUtil.setRegistryNames(this, color.getName() + "_" + SUFFIX);
 		this.color = color;
 
 //      registerBlock(251, "concrete", (new BlockColored(Material.ROCK)).setHardness(1.8F).setSoundType(SoundType.STONE).setTranslationKey("concrete"));

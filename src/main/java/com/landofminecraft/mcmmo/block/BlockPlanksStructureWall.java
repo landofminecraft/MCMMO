@@ -7,11 +7,13 @@ import net.minecraft.init.Blocks;
 
 public class BlockPlanksStructureWall extends BlockModStructureWall {
 
+	public static final String SUFFIX = "planks_" + BlockModStructureWall.SUFFIX;
+
 	private final EnumType type;
 
 	public BlockPlanksStructureWall(final EnumType type) {
 		super(Blocks.PLANKS.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, type.getName() + "_planks_" + SUFFIX);
+		ModUtil.setRegistryNames(this, type.getName() + "_" + SUFFIX);
 
 		this.type = type;
 

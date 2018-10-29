@@ -7,11 +7,13 @@ import net.minecraft.init.Blocks;
 
 public class BlockPlanksStructureHorizontal extends BlockModStructureHorizontal {
 
+	public static final String SUFFIX = "planks_" + BlockModStructureHorizontal.SUFFIX;
+
 	private final EnumType type;
 
 	public BlockPlanksStructureHorizontal(final EnumType type) {
 		super(Blocks.PLANKS.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, type.getName() + "_planks_" + SUFFIX);
+		ModUtil.setRegistryNames(this, type.getName() + "_" + SUFFIX);
 
 		this.type = type;
 

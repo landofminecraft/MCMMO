@@ -7,11 +7,13 @@ import net.minecraft.item.EnumDyeColor;
 
 public class BlockStainedHardenedClayStructureWall extends BlockModStructureWall {
 
+	public static final String SUFFIX = "terracotta_" + BlockModStructureWall.SUFFIX;
+
 	private final EnumDyeColor color;
 
 	public BlockStainedHardenedClayStructureWall(final EnumDyeColor color) {
 		super(Blocks.STAINED_HARDENED_CLAY.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, color.getName() + "_terracotta_" + SUFFIX);
+		ModUtil.setRegistryNames(this, color.getName() + "_" + SUFFIX);
 		this.color = color;
 
 //		registerBlock(159, "stained_hardened_clay", (new BlockStainedHardenedClay()).setHardness(1.25F).setResistance(7.0F).setSoundType(SoundType.STONE).setTranslationKey("clayHardenedStained"));

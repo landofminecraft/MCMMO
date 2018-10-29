@@ -7,11 +7,13 @@ import net.minecraft.item.EnumDyeColor;
 
 public class BlockGlazedTerracottaWall extends BlockModWall {
 
+	public static final String SUFFIX = "glazed_terracotta_" + BlockModWall.SUFFIX;
+
 	private final EnumDyeColor color;
 
 	public BlockGlazedTerracottaWall(final EnumDyeColor color) {
 		super(Blocks.WHITE_GLAZED_TERRACOTTA.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, color.getName() + "_glazed_terracotta_" + SUFFIX);
+		ModUtil.setRegistryNames(this, color.getName() + "_" + SUFFIX);
 		this.color = color;
 
 //		registerBlock(250, "black_glazed_terracotta", new BlockGlazedTerracotta(EnumDyeColor.BLACK));

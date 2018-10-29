@@ -7,11 +7,13 @@ import net.minecraft.init.Blocks;
 
 public class BlockLogStructureWall extends BlockModStructureWall {
 
+	public static final String SUFFIX = "log_" + BlockModStructureWall.SUFFIX;
+
 	private final EnumType type;
 
 	public BlockLogStructureWall(final EnumType type) {
 		super(Blocks.LOG.getDefaultState().getMaterial());
-		ModUtil.setRegistryNames(this, type.getName() + "_log_" + SUFFIX);
+		ModUtil.setRegistryNames(this, type.getName() + "_" + SUFFIX);
 
 		this.type = type;
 
