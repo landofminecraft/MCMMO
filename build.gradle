@@ -57,12 +57,10 @@ dependencies {
 
 }
 
-jar {
-    sourceSets {
-        main {
-            java {
-                exclude '**/ModWritingUtil.java'
-            }
+sourceSets {
+    main {
+        java {
+            exclude '**/ModWritingUtil.java'
         }
     }
 }
