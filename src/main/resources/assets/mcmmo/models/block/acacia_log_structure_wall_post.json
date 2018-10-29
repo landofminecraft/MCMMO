@@ -1,0 +1,8 @@
+{
+	"parent": "mcmmo:block/structure_wall_post_bottom_top",
+	"textures": {
+		"top": "minecraft:blocks/log_acacia_top",
+		"bottom": "minecraft:blocks/log_acacia_top",
+		"wall": "minecraft:blocks/log_acacia"
+	}
+}

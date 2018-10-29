@@ -1,0 +1,6 @@
+{
+	"parent": "mcmmo:block/structure_horizontal_side",
+	"textures": {
+		"wall": "minecraft:blocks/planks_birch"
+	}
+}
