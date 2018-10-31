@@ -181,11 +181,11 @@ public final class ModUtil {
 	 * portable_generator -> Portable Generator<br>
 	 * tile_portable_generator -> Tile Portable Generator <br>
 	 *
-	 * @param unlocalised the unlocalised name in
-	 * @return the recommended localised name for the class
+	 * @param translationKey the translation key in
+	 * @return the recommended translated name for the class
 	 */
-	public static String getLocalisedName(final String unlocalised) {
-		final String[] strs = unlocalised.split("_");
+	public static String getTranslatedName(final String translationKey) {
+		final String[] strs = translationKey.split("_");
 		for (int i = 0; i < strs.length; i++) {
 			strs[i] = org.apache.commons.lang3.StringUtils.capitalize(strs[i]);
 		}
