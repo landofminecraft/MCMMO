@@ -76,8 +76,6 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
  */
 public enum ModMaterial implements IEnumNameFormattable {
 
-	// TODO @Cadiboo weight
-
 	BRONZE(0, new MetalProperties(false, 3.00f, 8.7f)),
 
 	STEEL(1, new MetalProperties(false, 4.50f, 8.0f)),
@@ -92,7 +90,7 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	TITANIUM(6, new MetalProperties(true, 6.00f, 4.51f)),
 
-	/* technically diamond is the highest the scale goes at 10, but "-Alverium: A unique Alloy that’s stronger than Diamonds" */
+	/** technically diamond is the highest the scale goes at 10, but "-Alverium: A unique Alloy that’s stronger than Diamonds" */
 	ALVERIUM(7, new MetalProperties(false, 11.00f, Float.MAX_VALUE)),
 
 	MIXED_CHUNK(8, new ModMaterialProperties(false, true, true, null, false, null, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, 3.00f, 10.0f, null, null, null)),
@@ -125,10 +123,13 @@ public enum ModMaterial implements IEnumNameFormattable {
 
 	STONE(18, new ModMaterialProperties(false, false, false, null, false, null, false, true, 2.00f, 5.0f, null, null, null)),
 
-	CLOTH(18, new ModMaterialProperties(false, true, true, "", false, null, true, false, 0.50f, 1.5f, null, new BlockRenderLayer[] { BlockRenderLayer.CUTOUT }, null)),
+	CLOTH(19, new ModMaterialProperties(false, true, true, "", false, null, true, false, 0.50f, 1.5f, null, new BlockRenderLayer[] { BlockRenderLayer.CUTOUT }, null)),
 
 	;
 
+	/**
+	 * a total of 25 reduction = invincibility (if you want invincibility achieve it a different way) so we clamp reduction between 0 and (25-1)/4 = 6 for each armor piece
+	 */
 	public static final int MAX_ARMOR_REDUCTION_PER_PIECE = 6;
 
 	private final int					id;
