@@ -29,7 +29,7 @@ public final class ModUtil {
 	 * @return the block
 	 */
 	public static Block setRegistryNames(final Block block, final ModMaterial material, final String nameSuffix) {
-		final ResourceLocation registryName = new ResourceLocation(material.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.BLOCKS), material.getVanillaNameLowercase(nameSuffix) + (nameSuffix.length() > 0 ? "_" + nameSuffix : ""));
+		final ResourceLocation registryName = new ResourceLocation(material.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.BLOCKS), getNameWithSuffix(material.getVanillaNameLowercase(nameSuffix), nameSuffix));
 		block.setHardness(material.getProperties().getHardness());
 		setRegistryNames(block, registryName);
 
@@ -53,7 +53,7 @@ public final class ModUtil {
 	 * @return the item
 	 */
 	public static Item setRegistryNames(final Item item, final ModMaterial material, final String nameSuffix) {
-		final ResourceLocation registryName = new ResourceLocation(material.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.ITEMS), material.getVanillaNameLowercase(nameSuffix) + (nameSuffix.length() > 0 ? "_" + nameSuffix : ""));
+		final ResourceLocation registryName = new ResourceLocation(material.getResouceLocationDomainWithOverrides(nameSuffix, ForgeRegistries.ITEMS), getNameWithSuffix(material.getVanillaNameLowercase(nameSuffix), nameSuffix));
 		setRegistryNames(item, registryName);
 
 		final Item overriddenItem = ForgeRegistries.ITEMS.getValue(registryName);
@@ -213,6 +213,22 @@ public final class ModUtil {
 			default:
 				return slotIn.name().toLowerCase();
 		}
+	}
+
+	/**
+	 * "name", "suffix" -> "name_suffix"<br>
+	 * "name, "" -> "name"<br>
+	 * "", "suffix" -> "_suffix"
+	 *
+	 * @param name   the name
+	 * @param suffix the suffix
+	 * @return name + "_" + suffix if the suffix's length is greater than 0 or just the name
+	 */
+	public static String getNameWithSuffix(final String name, final String suffix) {
+		if (suffix.length() <= 0) {
+			return name;
+		}
+		return name + "_" + suffix;
 	}
 
 }
